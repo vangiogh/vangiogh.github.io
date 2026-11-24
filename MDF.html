@@ -14,6 +14,7 @@
    TYPE Space Grotesk 500 + Inter
    LAYOUT green band with title, buttons and drop zone; below, file list left and ledger right; phone stacks */
 :root{color-scheme:light dark;--bg:light-dark(#ffffff,#07130d);--ink:light-dark(#0b0b10,#e9f3ee);--mute:light-dark(#4d5a54,#9fb3a9);--band:light-dark(#00a862,#0b3a25);--bandink:light-dark(#0b0b10,#e9f3ee);--mist:light-dark(#eafaf2,#0f2219);--line:light-dark(#d5e3dc,#1f3a2d);--card:light-dark(#ffffff,#0b1a13);--red:light-dark(#c62d22,#ff7a6e);--amber:light-dark(#9a6200,#ffc061);--green:light-dark(#00804a,#3ddc97)}
+@supports not (color:light-dark(#fff,#000)){:root{--bg:#ffffff;--ink:#0b0b10;--mute:#4d5a54;--band:#00a862;--bandink:#0b0b10;--mist:#eafaf2;--line:#d5e3dc;--card:#ffffff;--red:#c62d22;--amber:#9a6200;--green:#00804a}}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
@@ -124,7 +125,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 .add label{font-weight:500;font-size:15px}
 .add select{width:auto;flex:1 1 180px}
 .add input{flex:2 1 200px;width:auto}
-.foot{background:var(--mist);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px 40px;font-size:15px}
+.foot{background:var(--mist);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:20px 40px;font-size:15px}
 .foot h3{font-size:18px;margin-bottom:6px}
 .foot p{margin:0;color:var(--mute)}
 code{font-size:14px;overflow-wrap:anywhere;background:var(--card);padding:1px 5px;border-radius:4px}
@@ -162,6 +163,112 @@ dialog::backdrop{background:rgb(0 0 0/.45)}
 <input type="file" id="pickdir" class="vh" webkitdirectory directory multiple tabindex="-1" aria-hidden="true">
 <script>
 var I18N={
+"qué inteligencia artificial o programa lo creó":["quina intel·ligència artificial o programa el va crear", "which artificial intelligence or program created it"],
+"datos ocultos que no se ven a simple vista":["dades ocultes que no es veuen a primera vista", "hidden data you can’t see at first glance"],
+"1 palabra mezcla letras latinas con otras que parecen iguales (cirílicas o griegas)":["1 paraula barreja lletres llatines amb altres que semblen iguals (ciríl·liques o gregues)", "1 word mixes Latin letters with look-alikes (Cyrillic or Greek)"],
+"1 espacio de un tipo poco habitual":["1 espai d’un tipus poc habitual", "1 unusual kind of space"],
+"1 línea termina con espacios o tabuladores":["1 línia acaba amb espais o tabuladors", "1 line ends with spaces or tabs"],
+"1 trozo de texto marcado como oculto":["1 tros de text marcat com a ocult", "1 piece of text marked as hidden"],
+"Marca de descarga de Windows":["Marca de descàrrega de Windows", "Windows download mark"],
+"Windows marca los archivos descargados (también la copia limpia). Para quitarla: clic derecho › Propiedades › Desbloquear.":["Windows marca els fitxers descarregats (també la còpia neta). Per treure-la: clic dret › Propietats › Desbloqueja.", "Windows marks downloaded files (including the clean copy). To remove it: right-click › Properties › Unblock."],
+"Credenciales de contenido (C2PA)":["Credencials de contingut (C2PA)", "Content Credentials (C2PA)"],
+"Indican de dónde viene el archivo: qué programa o IA lo creó y qué cambios se le hicieron. Pueden incluir el nombre del autor. Quitarlas no cambia el origen del archivo; algunas redes las usan para etiquetar contenido hecho con IA.":["Indiquen d’on ve el fitxer: quin programa o IA el va crear i quins canvis s’hi van fer. Poden incloure el nom de l’autor. Treure-les no canvia l’origen del fitxer; algunes xarxes les fan servir per etiquetar contingut fet amb IA.", "They show where the file comes from: which program or AI created it and what changes were made. They may include the author’s name. Removing them doesn’t change the file’s origin; some networks use them to label AI-made content."],
+"Credenciales C2PA":["Credencials C2PA", "C2PA credentials"],
+"dice que se generó con IA · {0}":["diu que es va generar amb IA · {0}", "says it was generated with AI · {0}"],
+"Bloques privados o desconocidos":["Blocs privats o desconeguts", "Private or unknown blocks"],
+"Bloques que añaden algunos programas. No forman parte de la imagen.":["Blocs que afegeixen alguns programes. No formen part de la imatge.", "Blocks added by some programs. They are not part of the image."],
+"Bloques que añaden algunos programas. No forman parte de la imagen ni del sonido.":["Blocs que afegeixen alguns programes. No formen part de la imatge ni del so.", "Blocks added by some programs. They are not part of the picture or sound."],
+"datos internos de Apple ({0})":["dades internes d’Apple ({0})", "internal Apple data ({0})"],
+"datos de Adobe Fireworks ({0})":["dades d’Adobe Fireworks ({0})", "Adobe Fireworks data ({0})"],
+"vista previa de Fireworks ({0})":["previsualització de Fireworks ({0})", "Fireworks preview ({0})"],
+"datos de ImageMagick ({0})":["dades d’ImageMagick ({0})", "ImageMagick data ({0})"],
+"orientación guardada por un programa ({0})":["orientació desada per un programa ({0})", "orientation saved by a program ({0})"],
+"metadatos privados ({0})":["metadades privades ({0})", "private metadata ({0})"],
+"bloque XMP con datos del programa o del autor ({0})":["bloc XMP amb dades del programa o de l’autor ({0})", "XMP block with program or author data ({0})"],
+"Datos añadidos al final del archivo":["Dades afegides al final del fitxer", "Data appended at the end of the file"],
+"Van pegados después del final de la imagen o del sonido. Los programas normales no los muestran.":["Van enganxades després del final de la imatge o del so. Els programes normals no les mostren.", "They are attached after the end of the picture or sound. Normal programs don’t show them."],
+"Datos al final":["Dades al final", "Trailing data"],
+"{0} de datos desconocidos":["{0} de dades desconegudes", "{0} of unknown data"],
+"el vídeo de la «foto en movimiento» ({0})":["el vídeo de la «foto en moviment» ({0})", "the video of the “motion photo” ({0})"],
+"datos de Samsung: pueden incluir vídeo, ubicación o ediciones ({0})":["dades de Samsung: poden incloure vídeo, ubicació o edicions ({0})", "Samsung data: may include video, location or edits ({0})"],
+"un archivo ZIP escondido ({0})":["un fitxer ZIP amagat ({0})", "a hidden ZIP file ({0})"],
+"otra imagen escondida ({0})":["una altra imatge amagada ({0})", "another hidden image ({0})"],
+"relleno vacío ({0})":["farciment buit ({0})", "empty padding ({0})"],
+"Etiquetas APE":["Etiquetes APE", "APE tags"],
+"Bloque APE":["Bloc APE", "APE block"],
+"Caracteres invisibles y huellas en el texto":["Caràcters invisibles i empremtes al text", "Invisible characters and text fingerprints"],
+"Se usan para marcar copias de un texto o esconder mensajes. Quitarlos no cambia lo que se lee.":["Es fan servir per marcar còpies d’un text o amagar missatges. Treure’ls no canvia el que es llegeix.", "They are used to mark copies of a text or hide messages. Removing them doesn’t change what you read."],
+"Se usan para marcar copias de un texto o esconder mensajes. Quitarlos no cambia lo que se lee. En PDF, las páginas afectadas se guardan como imagen.":["Es fan servir per marcar còpies d’un text o amagar missatges. Treure’ls no canvia el que es llegeix. En PDF, les pàgines afectades es desen com a imatge.", "They are used to mark copies of a text or hide messages. Removing them doesn’t change what you read. In PDFs, affected pages are saved as images."],
+"Caracteres invisibles":["Caràcters invisibles", "Invisible characters"],
+"{0} caracteres invisibles que esconden este mensaje: «{1}»":["{0} caràcters invisibles que amaguen aquest missatge: «{1}»", "{0} invisible characters hiding this message: “{1}”"],
+"{0} caracteres invisibles (espacios de ancho cero, marcas de dirección…)":["{0} caràcters invisibles (espais d’amplada zero, marques de direcció…)", "{0} invisible characters (zero-width spaces, direction marks…)"],
+"Letras de otros alfabetos":["Lletres d’altres alfabets", "Letters from other alphabets"],
+"{0} palabras mezclan letras latinas con otras que parecen iguales (cirílicas o griegas)":["{0} paraules barregen lletres llatines amb altres que semblen iguals (ciríl·liques o gregues)", "{0} words mix Latin letters with look-alikes (Cyrillic or Greek)"],
+"Espacios especiales":["Espais especials", "Special spaces"],
+"{0} espacios de tipos poco habituales":["{0} espais de tipus poc habituals", "{0} unusual kinds of spaces"],
+"Espacios al final de línea":["Espais al final de línia", "Spaces at line ends"],
+"{0} líneas terminan con espacios o tabuladores":["{0} línies acaben amb espais o tabuladors", "{0} lines end with spaces or tabs"],
+"Huella del empaquetado":["Empremta de l’empaquetat", "Packaging fingerprint"],
+"Las piezas internas del archivo guardan la fecha y hora en que se guardaron, y su orden delata el programa usado. Al quitarlo, se reempaqueta con un orden fijo y fechas neutras.":["Les peces internes del fitxer guarden la data i l’hora en què es van desar, i el seu ordre delata el programa utilitzat. Si ho treus, es reempaqueta amb un ordre fix i dates neutres.", "The file’s internal parts store the date and time they were saved, and their order gives away the program used. Removing it repacks the file with a fixed order and neutral dates."],
+"Fechas y orden internos":["Dates i ordre interns", "Internal dates and order"],
+"{0} piezas guardadas el {1}":["{0} peces desades el {1}", "{0} parts saved on {1}"],
+"{0} piezas guardadas entre el {1} y el {2}":["{0} peces desades entre el {1} i el {2}", "{0} parts saved between {1} and {2}"],
+"que se creó o editó con inteligencia artificial, y con qué herramienta":["que es va crear o editar amb intel·ligència artificial, i amb quina eina", "that it was created or edited with artificial intelligence, and with which tool"],
+"IA":["IA", "AI"],
+"el PDF lleva archivos dentro (también credenciales C2PA)":["el PDF porta fitxers a dins (també credencials C2PA)", "the PDF has files inside (also C2PA credentials)"],
+"Páginas escaneadas":["Pàgines escanejades", "Scanned pages"],
+"1 página es una imagen (escaneada): su texto no se puede revisar automáticamente, revísala a mano":["1 pàgina és una imatge (escanejada): el seu text no es pot revisar automàticament, revisa-la a mà", "1 page is an image (scanned): its text can’t be checked automatically, check it by hand"],
+"{0} páginas son imágenes (escaneadas): su texto no se puede revisar automáticamente, revísalas a mano":["{0} pàgines són imatges (escanejades): el seu text no es pot revisar automàticament, revisa-les a mà", "{0} pages are images (scanned): their text can’t be checked automatically, check them by hand"],
+"Fotos JPG, PNG, WebP y HEIC · PDF · Word, Excel y PowerPoint · LibreOffice · MP3 · Vídeos MP4 y MOV · Textos y CSV":["Fotos JPG, PNG, WebP i HEIC · PDF · Word, Excel i PowerPoint · LibreOffice · MP3 · Vídeos MP4 i MOV · Textos i CSV", "JPG, PNG, WebP and HEIC photos · PDF · Word, Excel and PowerPoint · LibreOffice · MP3 · MP4 and MOV videos · Text and CSV"],
+"Para fotos RAW y formatos poco comunes usa ExifTool:":["Per a fotos RAW i formats poc comuns fes servir ExifTool:", "For RAW photos and unusual formats use ExifTool:"],
+"1 campo con datos escritos":["1 camp amb dades escrites", "1 field with data filled in"],
+"{0} veces":["{0} vegades", "{0} times"],
+"Quita autor, empresa, revisiones, comentarios, cambios y contenido oculto.":["Treu autor, empresa, revisions, comentaris, canvis i contingut ocult.", "Removes author, company, revisions, comments, changes and hidden content."],
+"texto oculto, notas o archivos que no se ven a simple vista":["text ocult, notes o fitxers que no es veuen a primera vista", "hidden text, notes or files you can’t see at first glance"],
+"Al quitarlos se sustituyen por [borrado] en el texto. También puedes escribir otro valor.":["Si els treus se substitueixen per [esborrat] al text. També pots escriure un altre valor.", "Removing them replaces them with [deleted] in the text. You can also type another value."],
+"[borrado]":["[esborrat]", "[deleted]"],
+"Al quitarlos o cambiarlos se tapan en el PDF. Para que desaparezcan de verdad, las páginas con cambios se guardan como imagen: ese texto ya no se podrá seleccionar ni buscar.":["Si els treus o els canvies es tapen al PDF. Perquè desapareguin de veritat, les pàgines amb canvis es desen com a imatge: aquest text ja no es podrà seleccionar ni cercar.", "Removing or changing them covers them in the PDF. So they are really gone, pages with changes are saved as images: that text can no longer be selected or searched."],
+"Esta app no puede cambiar el texto de este archivo: revisa estos datos antes de enviarlo.":["Aquesta app no pot canviar el text d’aquest fitxer: revisa aquestes dades abans d’enviar-lo.", "This app can’t change the text of this file: check this data before sending it."],
+"Comentarios, revisiones y datos ocultos":["Comentaris, revisions i dades ocultes", "Comments, revisions and hidden data"],
+"puede incluir el nombre de tu impresora":["pot incloure el nom de la teva impressora", "may include the name of your printer"],
+"Configuración de impresora":["Configuració d’impressora", "Printer settings"],
+"imagen pequeña de la primera página guardada aparte":["imatge petita de la primera pàgina desada a part", "small image of the first page stored separately"],
+"Miniatura de la primera página":["Miniatura de la primera pàgina", "First-page thumbnail"],
+"Impresora configurada":["Impressora configurada", "Configured printer"],
+"Las fotos HEIC (iPhone) se guardan como JPG: puedes editar o quitar sus datos como en cualquier foto. La conversión funciona en Safari (Mac, iPhone y iPad); otros navegadores pueden no saber abrir HEIC.":["Les fotos HEIC (iPhone) es desen com a JPG: en pots editar o treure les dades com en qualsevol foto. La conversió funciona a Safari (Mac, iPhone i iPad); altres navegadors potser no saben obrir HEIC.", "HEIC photos (iPhone) are saved as JPG: you can edit or remove their data like any photo. Conversion works in Safari (Mac, iPhone and iPad); other browsers may not open HEIC."],
+"Al guardar se borran los datos sin tocar la imagen ni el sonido. Los textos del vídeo no se pueden reescribir aquí, solo quitar.":["En desar s’esborren les dades sense tocar la imatge ni el so. Els textos del vídeo no es poden reescriure aquí, només treure.", "Saving deletes the data without touching picture or sound. Video texts can’t be rewritten here, only removed."],
+"{0} diapositivas con notas":["{0} diapositives amb notes", "{0} slides with notes"],
+"Notas del orador":["Notes de l’orador", "Speaker notes"],
+"Otros datos ocultos del PDF":["Altres dades ocultes del PDF", "Other hidden PDF data"],
+"{0}, de: {1}":["{0}, de: {1}", "{0}, by: {1}"],
+"Comentarios y anotaciones":["Comentaris i anotacions", "Comments and annotations"],
+"el PDF lleva archivos dentro":["el PDF porta fitxers a dins", "the PDF has files inside"],
+"Archivos adjuntos":["Fitxers adjunts", "Attachments"],
+"código que se ejecuta al abrir el PDF":["codi que s’executa en obrir el PDF", "code that runs when the PDF opens"],
+"JavaScript":["JavaScript", "JavaScript"],
+"información interna de Illustrator, Acrobat u otros (PieceInfo)":["informació interna d’Illustrator, Acrobat o altres (PieceInfo)", "internal data from Illustrator, Acrobat or others (PieceInfo)"],
+"Datos privados de programas":["Dades privades de programes", "Private program data"],
+"{0} campos con datos escritos":["{0} camps amb dades escrites", "{0} fields with data filled in"],
+"Formulario rellenado":["Formulari emplenat", "Filled-in form"],
+"Identificador único del documento":["Identificador únic del document", "Unique document ID"],
+"Perfil de color":["Perfil de color", "Colour profile"],
+"no es un dato personal; si lo quitas los colores pueden variar un poco":["no és una dada personal; si el treus els colors poden variar una mica", "not personal data; removing it may shift colours slightly"],
+"{0} trozos de texto marcados como ocultos":["{0} trossos de text marcats com a ocults", "{0} pieces of text marked as hidden"],
+"Texto oculto":["Text ocult", "Hidden text"],
+"marcas internas que permiten seguir cuándo se editó cada parte":["marques internes que permeten seguir quan es va editar cada part", "internal marks that track when each part was edited"],
+"Identificadores de edición (rsid)":["Identificadors d’edició (rsid)", "Editing IDs (rsid)"],
+"datos de SharePoint u otros programas guardados dentro":["dades de SharePoint o altres programes desades a dins", "SharePoint or other program data stored inside"],
+"Datos XML personalizados":["Dades XML personalitzades", "Custom XML data"],
+"Ruta de la plantilla":["Ruta de la plantilla", "Template path"],
+"Versiones guardadas":["Versions desades", "Saved versions"],
+"versiones anteriores del documento guardadas dentro":["versions anteriors del document desades a dins", "earlier versions of the document stored inside"],
+"{0} archivos dentro del documento; al quitar se limpian sus metadatos":["{0} fitxers dins del document; en treure’ls se’n netegen les metadades", "{0} files inside the document; removing cleans their metadata"],
+"Objetos incrustados antiguos":["Objectes incrustats antics", "Old embedded objects"],
+"{0} objetos; al quitar se convierten en imagen":["{0} objectes; en treure’ls es converteixen en imatge", "{0} objects; removing turns them into images"],
+"{0} objetos en formato antiguo: ábrelos y guárdalos aparte para limpiarlos":["{0} objectes en format antic: obre’ls i desa’ls a part per netejar-los", "{0} objects in an old format: open and save them separately to clean them"],
+"Lo que no se puede quitar aquí":["El que no es pot treure aquí", "What can’t be removed here"],
+"oculto":["ocult", "hidden"],
+"datos personales":["dades personals", "personal data"],
 '1 comentario, con el nombre de quien lo escribió':['1 comentari, amb el nom de qui el va escriure','1 comment, with the name of who wrote it'],'1 revela dónde se hizo':['1 revela on es va fer','1 reveals where it was taken'],'1 cambio sin aceptar, con autor y fecha (el texto borrado sigue dentro)':['1 canvi sense acceptar, amb autor i data (el text esborrat continua a dins)','1 unaccepted change, with author and date (deleted text is still inside)'],
 'Metadatos de archivos':['Metadades dels fitxers','File metadata'],
 'Ayuda':['Ajuda','Help'],'Idioma':['Idioma','Language'],
@@ -314,8 +421,10 @@ es:`<h2>Qué son los metadatos</h2>
 <ul><li>Sube uno o varios archivos, o una carpeta entera.</li><li>Mira el nivel de riesgo y los datos marcados como <b>privado</b>.</li><li>Pulsa un perfil de limpieza rápida, o quita y edita campo a campo.</li><li>Pulsa <b>Guardar cambios</b>: se descarga una copia limpia y la app comprueba qué le queda.</li><li>Si necesitas dejar constancia, descarga el <b>Informe PDF</b>.</li></ul>
 <h3>Privacidad</h3>
 <p>Todo ocurre en tu navegador. Los archivos no se suben a ningún servidor y la app funciona también sin internet.</p>
-<h3>Límites</h3>
-<ul><li>No borra texto del documento: si encuentra DNI, teléfonos o correos, te avisa para que los revises.</li><li>Los vídeos solo se revisan; para limpiarlos usa ExifTool.</li><li>Las fotos HEIC se convierten a JPG en Safari.</li></ul>`,
+<h3>Qué puede quitar</h3>
+<ul><li>Todo lo que la app encuentra se puede quitar o editar: autor, fechas, ubicación, cámara, comentarios, cambios, texto oculto, notas, datos de formularios y datos personales escritos en el texto (DNI, teléfonos, correos, cuentas…).</li><li>En los PDF, las páginas donde se tapan datos personales se guardan como imagen para que el texto desaparezca de verdad.</li><li>Las fechas de "Creado" y "Modificado" que ves en tu ordenador no están dentro del archivo: las pone el sistema.</li></ul></ul>
+<h3>Lo que ningún navegador puede hacer</h3>
+<ul><li><b>Marca de descarga de Windows (Zone.Identifier):</b> Windows la pega a cualquier archivo descargado, también a la copia limpia. Para quitarla: clic derecho › Propiedades › Desbloquear.</li><li><b>Marcas de agua de IA estadísticas o invisibles en la imagen:</b> solo las puede detectar quien tiene la clave del fabricante. La app no se lo inventa: muestra únicamente las marcas declaradas, como C2PA o los datos del generador.</li></ul>`,
 ca:`<h2>Què són les metadades</h2>
 <p>Són dades que van <b>dins</b> d’un fitxer però no es veuen quan l’obres: qui l’ha fet, quan, amb quin mòbil o programa i, en moltes fotos, <b>on</b> es va fer, amb coordenades GPS exactes.</p>
 <h3>Per què importen</h3>
@@ -324,8 +433,10 @@ ca:`<h2>Què són les metadades</h2>
 <ul><li>Puja un o diversos fitxers, o una carpeta sencera.</li><li>Mira el nivell de risc i les dades marcades com a <b>privat</b>.</li><li>Fes clic a un perfil de neteja ràpida, o treu i edita camp a camp.</li><li>Fes clic a <b>Desar els canvis</b>: es descarrega una còpia neta i l’app comprova què li queda.</li><li>Si has de deixar-ne constància, descarrega l’<b>Informe PDF</b>.</li></ul>
 <h3>Privadesa</h3>
 <p>Tot passa al teu navegador. Els fitxers no es pugen a cap servidor i l’app també funciona sense internet.</p>
-<h3>Límits</h3>
-<ul><li>No esborra text del document: si troba DNI, telèfons o correus, t’avisa perquè els revisis.</li><li>Els vídeos només es revisen; per netejar-los fes servir ExifTool.</li><li>Les fotos HEIC es converteixen a JPG amb Safari.</li></ul>`,
+<h3>Què pot treure</h3>
+<ul><li>Tot el que l’app troba es pot treure o editar: autor, dates, ubicació, càmera, comentaris, canvis, text ocult, notes, dades de formularis i dades personals escrites al text (DNI, telèfons, correus, comptes…).</li><li>Als PDF, les pàgines on es tapen dades personals es desen com a imatge perquè el text desaparegui de veritat.</li><li>Les dates de "Creat" i "Modificat" que veus a l’ordinador no són dins del fitxer: les posa el sistema.</li></ul></ul>
+<h3>El que cap navegador pot fer</h3>
+<ul><li><b>Marca de descàrrega de Windows (Zone.Identifier):</b> Windows l’enganxa a qualsevol fitxer descarregat, també a la còpia neta. Per treure-la: clic dret › Propietats › Desbloqueja.</li><li><b>Marques d’aigua d’IA estadístiques o invisibles a la imatge:</b> només les pot detectar qui té la clau del fabricant. L’app no s’ho inventa: mostra només les marques declarades, com C2PA o les dades del generador.</li></ul>`,
 en:`<h2>What metadata is</h2>
 <p>It is data stored <b>inside</b> a file that you don’t see when you open it: who made it, when, with which phone or program and, in many photos, <b>where</b> it was taken, with exact GPS coordinates.</p>
 <h3>Why it matters</h3>
@@ -334,8 +445,10 @@ en:`<h2>What metadata is</h2>
 <ul><li>Add one or more files, or a whole folder.</li><li>Look at the risk level and the items marked <b>private</b>.</li><li>Click a quick-clean profile, or remove and edit field by field.</li><li>Click <b>Save changes</b>: a clean copy is downloaded and the app checks what is left in it.</li><li>If you need a record, download the <b>PDF report</b>.</li></ul>
 <h3>Privacy</h3>
 <p>Everything happens in your browser. Files are not uploaded to any server and the app also works offline.</p>
-<h3>Limits</h3>
-<ul><li>It doesn’t delete text from the document: if it finds ID numbers, phones or emails, it warns you so you can check them.</li><li>Videos can only be reviewed; to clean them use ExifTool.</li><li>HEIC photos are converted to JPG in Safari.</li></ul>`};
+<h3>What it can remove</h3>
+<ul><li>Everything the app finds can be removed or edited: author, dates, location, camera, comments, changes, hidden text, notes, form data and personal data written in the text (ID numbers, phones, emails, accounts…).</li><li>In PDFs, pages where personal data is covered are saved as images so the text is really gone.</li><li>The "Created" and "Modified" dates you see on your computer are not inside the file: the system sets them.</li></ul></ul>
+<h3>What no browser can do</h3>
+<ul><li><b>Windows download mark (Zone.Identifier):</b> Windows attaches it to any downloaded file, including the clean copy. To remove it: right-click › Properties › Unblock.</li><li><b>Statistical or invisible AI watermarks in images:</b> only whoever holds the maker’s key can detect them. The app doesn’t make it up: it only shows declared marks, such as C2PA or generator data.</li></ul>`};
 
 </script>
 <script>
@@ -444,7 +557,7 @@ const PRIVCATS=['loc','who','org','serial','com','chg','pii'];
 function G(F,id,name,o={}){let g=F.groups.find(x=>x.id===id);if(!g){g={id,name,rows:[],granular:false,removable:true,removed:false,...o};F.groups.push(g)}return g}
 const grp=(F,id)=>F.groups.find(g=>g.id===id);
 const gone=(g,r)=>g.removed||r.removed||r.forced;
-const metaGroups=F=>F.groups.filter(g=>!['sys','tech','oinfo'].includes(g.id));
+const metaGroups=F=>F.groups.filter(g=>!['sys','oinfo'].includes(g.id));
 const fieldGroups=F=>metaGroups(F).filter(g=>g.id!=='pii');
 const blank=()=>({le:true,ifd0:[],exif:[],gps:[],maker:0,thumb:false});
 
@@ -468,7 +581,7 @@ function tiffFrom(F){
 
 /* ================= XMP / IPTC ================= */
 const unent=s=>s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&#(\d+);/g,(m,n)=>String.fromCharCode(+n));
-const xcat=k=>/gps|latitude|longitude|city|country|state|location|sublocation/i.test(k)?'loc':/serial|uniqueid|imageuniqueid|documentid|instanceid/i.test(k)?'serial':/creator(?!tool)|author|owner|by-?line|rights|person|artist|contact/i.test(k)?'who':/creatortool|software|history|producer/i.test(k)?'soft':/date/i.test(k)?'date':/make|model|lens/i.test(k)?'dev':'txt';
+const xcat=k=>/DigitalSourceType|c2pa|AIGenerated|^ai:/i.test(k)?'ai':/gps|latitude|longitude|city|country|state|location|sublocation/i.test(k)?'loc':/serial|uniqueid|imageuniqueid|documentid|instanceid/i.test(k)?'serial':/creator(?!tool)|author|owner|by-?line|rights|person|artist|contact/i.test(k)?'who':/creatortool|software|history|producer/i.test(k)?'soft':/date/i.test(k)?'date':/make|model|lens/i.test(k)?'dev':'txt';
 function xmpRows(x){const rows=[],seen=new Set();
  const add=(k,v,xk)=>{v=unent(v).trim();if(!v||v.length>400||seen.has(k))return;seen.add(k);rows.push({label:k,value:v,cat:xcat(k),xk,edit:true})};
  for(const m of x.matchAll(/<([A-Za-z]+:[A-Za-z]+)>\s*<rdf:(?:Seq|Bag|Alt)>([\s\S]*?)<\/rdf:(?:Seq|Bag|Alt)>/g)){const v=[...m[2].matchAll(/<rdf:li[^>]*>([^<]*)<\/rdf:li>/g)].map(a=>a[1]).filter(Boolean);if(v.length)add(m[1],v.join('; '),'list')}
@@ -490,6 +603,71 @@ const IPTC={5:'Título',25:'Palabras clave',55:'Fecha de creación',80:'Autor (B
 const ICAT={55:'date',80:'who',85:'who',90:'loc',92:'loc',95:'loc',101:'loc',116:'who',118:'who',122:'who'};
 function iptcRows(d){const rows=[];for(let i=0;i<d.length-5;i++){if(d[i]===0x1C&&d[i+1]===2){const ds=d[i+2],len=(d[i+3]<<8)|d[i+4];if(len>0&&len<4000&&i+5+len<=d.length){if(IPTC[ds])rows.push({label:IPTC[ds],value:td.decode(d.slice(i+5,i+5+len)),cat:ICAT[ds]||'txt'});i+=4+len}}}return rows}
 
+/* ================= procedencia, bloques privados y datos finales ================= */
+const C2PA_NOTE='Indican de dónde viene el archivo: qué programa o IA lo creó y qué cambios se le hicieron. Pueden incluir el nombre del autor. Quitarlas no cambia el origen del archivo; algunas redes las usan para etiquetar contenido hecho con IA.';
+const AI_RE=/DALL[·\-\s]?E|Midjourney|Stable ?Diffusion|Adobe Firefly|Firefly|Google Imagen|Gemini|ChatGPT|OpenAI|Leonardo\.?Ai|NovelAI|ComfyUI|Automatic1111|InvokeAI|\bFlux\b|trainedAlgorithmicMedia|compositeSynthetic|algorithmicMedia|Made with AI|AI[- ]generated/i;
+function c2paRow(d){const s=latin1(d.slice(0,400000));const m=s.match(/claim_generator(?:_info)?[^\x20-\x7e]{0,12}(?:name[^\x20-\x7e]{0,4})?([\x20-\x7e]{3,80})/);const gen=m?m[1].replace(/\s*https?:?\/\/.*$/,'').replace(/[^\w .\/()-]/g,'').trim():'';const ai=/trainedAlgorithmicMedia|compositeWithTrainedAlgorithmicMedia|compositeSynthetic/.test(s);
+ return{label:'Credenciales C2PA',vt:ai?['dice que se generó con IA · {0}',gen||size(d.length)]:['{0}',gen||size(d.length)],cat:'ai'}}
+const PNG_STD=['IHDR','PLTE','IDAT','IEND','tRNS','cHRM','gAMA','iCCP','sBIT','sRGB','cICP','mDCv','cLLi','mDCV','cLLI','bKGD','hIST','pHYs','sPLT','eXIf','tIME','tEXt','zTXt','iTXt','acTL','fcTL','fdAT','caBX'];
+const PRIV_NAMES={iDOT:'datos internos de Apple ({0})',mkBF:'datos de Adobe Fireworks ({0})',mkTS:'datos de Adobe Fireworks ({0})',mkBS:'datos de Adobe Fireworks ({0})',mkBT:'datos de Adobe Fireworks ({0})',prVW:'vista previa de Fireworks ({0})',vpAg:'datos de ImageMagick ({0})',orNT:'orientación guardada por un programa ({0})',meTa:'metadatos privados ({0})',iTXt:'{0}'};
+function trailGroup(F,d){const h=latin1(d.slice(0,64)),t=latin1(d.slice(-64));let k='{0} de datos desconocidos';
+ if(/ftyp/.test(h.slice(0,16)))k='el vídeo de la «foto en movimiento» ({0})';else if(/SEF[TH]/.test(t))k='datos de Samsung: pueden incluir vídeo, ubicación o ediciones ({0})';else if(h.startsWith('PK\x03\x04'))k='un archivo ZIP escondido ({0})';else if(h.startsWith('\xFF\xD8'))k='otra imagen escondida ({0})';else if(d.every(b=>b===0||b===0xFF))k='relleno vacío ({0})';
+ const g=G(F,'trail','Datos añadidos al final del archivo',{note:'Van pegados después del final de la imagen o del sonido. Los programas normales no los muestran.'});g.rows.push({label:'Datos al final',vt:[k,size(d.length)],cat:'hid'});return g}
+
+/* ================= huellas en el texto ================= */
+const ZWc=/[​‌‎‏⁠-⁤⁪-⁯﻿᠎­]/,BIDIc=/[‪-‮⁦-⁩]/,SPCc=/[ -   　]/;
+const CONF={'а':'a','е':'e','о':'o','р':'p','с':'c','у':'y','х':'x','і':'i','ј':'j','ѕ':'s','ԁ':'d','һ':'h','ӏ':'l','ԛ':'q','ԝ':'w','А':'A','В':'B','Е':'E','К':'K','М':'M','Н':'H','О':'O','Р':'P','С':'C','Т':'T','Х':'X','У':'Y','І':'I','Ј':'J','Ѕ':'S','Ԛ':'Q','Ԝ':'W','α':'a','ο':'o','ρ':'p','ν':'v','ι':'i','κ':'k','τ':'t','Α':'A','Β':'B','Ε':'E','Ζ':'Z','Η':'H','Ι':'I','Κ':'K','Μ':'M','Ν':'N','Ο':'O','Ρ':'P','Τ':'T','Χ':'X','Υ':'Y'};
+const emoC=c=>c>=0xD800&&c<=0xDFFF||c>=0x2600&&c<=0x27BF||c===0xFE0F;
+/* devuelve, para cada posición del texto, la acción: undefined = dejar, '' = borrar, otra letra = sustituir */
+function stegoMap(s,o){const act=new Map();const n=s.length;
+ for(let i=0;i<n;i++){const ch=s[i],c=s.charCodeAt(i);
+  if(o.invis){if(ZWc.test(ch)||BIDIc.test(ch)||(c>=0xFE00&&c<=0xFE0E)){act.set(i,'');continue}
+   if(c===0x200D&&!(emoC(s.charCodeAt(i-1))&&emoC(s.charCodeAt(i+1)))){act.set(i,'');continue}
+   if(c===0xDB40&&i+1<n){const d=s.charCodeAt(i+1);if(d>=0xDC00&&d<=0xDC7F||d>=0xDD00&&d<=0xDDEF){act.set(i,'');act.set(i+1,'');i++;continue}}}
+  if(o.spc&&SPCc.test(ch))act.set(i,' ')}
+ if(o.homo)for(const m of s.matchAll(/[\p{L}]+/gu)){const w=m[0];if(!/[A-Za-z]/.test(w))continue;for(let k=0;k<w.length;k++)if(CONF[w[k]])act.set(m.index+k,CONF[w[k]])}
+ if(o.trail)for(const m of s.matchAll(/[ \t]+(?=\n|$)/g))for(let k=0;k<m[0].length;k++)act.set(m.index+k,'');
+ return act}
+function stegoScan(s){if(!s)return{total:0,invis:0};const all={invis:1,homo:1,spc:1};const a=stegoMap(s,all);let invis=0,homo=0,spc=0,tags='';
+ for(const[i,v]of a){if(v==='')invis++;else if(v===' ')spc++;else homo++}
+ for(const m of s.matchAll(/\uDB40([\uDC20-\uDC7E])/g))tags+=String.fromCharCode(m[1].charCodeAt(0)-0xDC00);
+ const words=new Set();for(const m of s.matchAll(/[\p{L}]+/gu)){const w=m[0];if(/[A-Za-z]/.test(w)&&[...w].some(c=>CONF[c]))words.add(w)}
+ const trail=(s.match(/[ \t]+$/gm)||[]).length;return{invis,homo:words.size,spc,tags,trail,total:invis+words.size+spc}}
+function stegoClean(s,o){const a=stegoMap(s,o);if(!a.size)return s;let out='';for(let i=0;i<s.length;i++){const v=a.get(i);out+=v===undefined?s[i]:v}return out}
+function cleanSegs(segs,o){let g='';const pos=[];let prev;segs.forEach((sg,i)=>{if(i&&sg.para!==prev)g+='\n';const v=sg.get();pos.push([g.length,g.length+v.length]);g+=v;prev=sg.para});
+ const a=stegoMap(g,o);if(!a.size)return 0;segs.forEach((sg,i)=>{const[x,y]=pos[i];let ch=false,out='';for(let k=x;k<y;k++){const v=a.get(k);if(v!==undefined)ch=true;out+=v===undefined?g[k]:v}if(ch)sg.set(out)});return a.size}
+const STEGO_KINDS={text:1,docx:1,xlsx:1,pptx:1,odf:1,pdf:1};
+function stegoGroup(F){
+ if(!STEGO_KINDS[F.kind]||F.enc)return;const txt=F.kind==='pdf'?(F.pageTexts||[]).join('\n'):F.text;if(!txt)return;
+ const r=stegoScan(txt);const tr=F.kind==='text'?r.trail:0;if(!r.total&&!tr)return;
+ const g=G(F,'stego','Caracteres invisibles y huellas en el texto',{granular:true,note:F.kind==='pdf'?'Se usan para marcar copias de un texto o esconder mensajes. Quitarlos no cambia lo que se lee. En PDF, las páginas afectadas se guardan como imagen.':'Se usan para marcar copias de un texto o esconder mensajes. Quitarlos no cambia lo que se lee.'});
+ if(r.invis)g.rows.push({label:'Caracteres invisibles',vt:r.tags?['{0} caracteres invisibles que esconden este mensaje: «{1}»',r.invis,r.tags.slice(0,140)]:['{0} caracteres invisibles (espacios de ancho cero, marcas de dirección…)',r.invis],act:'invis',cat:'hid'});
+ if(r.homo)g.rows.push({label:'Letras de otros alfabetos',vt:[r.homo===1?'1 palabra mezcla letras latinas con otras que parecen iguales (cirílicas o griegas)':'{0} palabras mezclan letras latinas con otras que parecen iguales (cirílicas o griegas)',r.homo],act:'homo',cat:'hid'});
+ if(r.spc)g.rows.push({label:'Espacios especiales',vt:[r.spc===1?'1 espacio de un tipo poco habitual':'{0} espacios de tipos poco habituales',r.spc],act:'spc',cat:'hid'});
+ if(tr)g.rows.push({label:'Espacios al final de línea',vt:[tr===1?'1 línea termina con espacios o tabuladores':'{0} líneas terminan con espacios o tabuladores',tr],act:'trail',cat:'tech'})}
+function stegoOpts(F){const g=grp(F,'stego');if(!g)return null;const o={};for(const r of g.rows)if(gone(g,r))o[r.act]=true;return Object.keys(o).length?o:null}
+async function cleanOffice(F,zip,o){
+ const names=Object.keys(zip.files);
+ if(F.kind==='docx')for(const p of[...storyParts(names),'word/comments.xml'])await editXml(zip,p,d=>cleanSegs(elSegs(d,e=>e.namespaceURI===W&&(e.localName==='t'||e.localName==='delText'),'p'),o));
+ if(F.kind==='pptx')for(const p of names.filter(n=>/^ppt\/(slides|notesSlides|comments)\/[^/]+\.xml$/.test(n)))await editXml(zip,p,d=>{cleanSegs(elSegs(d,e=>e.namespaceURI===DML&&e.localName==='t','p'),o);cleanSegs(elSegs(d,e=>e.localName==='text'&&e.prefix==='p','text'),o)});
+ if(F.kind==='xlsx'){await editXml(zip,'xl/sharedStrings.xml',d=>cleanSegs(elSegs(d,e=>e.namespaceURI===SML&&e.localName==='t','si'),o));
+  for(const p of names.filter(n=>/^xl\/(comments\d*\.xml|comments\/[^/]+\.xml|worksheets\/[^/]+\.xml)$/.test(n)))await editXml(zip,p,d=>cleanSegs(elSegs(d,e=>e.namespaceURI===SML&&e.localName==='t',p.includes('comments')?'comment':'c'),o))}}
+async function cleanODF(zip,o){const TX='urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+ for(const p of['content.xml','styles.xml'])await editXml(zip,p,d=>{const w=d.createTreeWalker(d.documentElement,NodeFilter.SHOW_TEXT);const segs=[];let n;while(n=w.nextNode()){const node=n;let q=node.parentNode;while(q&&!(q.namespaceURI===TX&&(q.localName==='p'||q.localName==='h')))q=q.parentNode;segs.push({para:q||node.parentNode,get:()=>node.data,set:v=>{node.data=v}})}cleanSegs(segs,o)})}
+
+/* ================= empaquetado ZIP ================= */
+function zipGroup(F,zip){const fs=Object.values(zip.files).filter(f=>!f.dir&&f.date);if(!fs.length)return;const ds=fs.map(f=>+f.date).sort((a,b)=>a-b);const fmt=t=>new Date(t).toLocaleString(LANG==='en'?'en-GB':LANG==='ca'?'ca-ES':'es-ES');
+ if(ds[ds.length-1]<=Date.UTC(1980,0,2))return;
+ const g=G(F,'zipfp','Huella del empaquetado',{granular:true,note:'Las piezas internas del archivo guardan la fecha y hora en que se guardaron, y su orden delata el programa usado. Al quitarlo, se reempaqueta con un orden fijo y fechas neutras.'});
+ g.rows.push({label:'Fechas y orden internos',vt:ds[0]===ds[ds.length-1]?['{0} piezas guardadas el {1}',fs.length,fmt(ds[0])]:['{0} piezas guardadas entre el {1} y el {2}',fs.length,fmt(ds[0]),fmt(ds[ds.length-1])],act:'zipnorm',cat:'date'})}
+async function packZip(F,zip,odf){
+ const g=grp(F,'zipfp');const norm=g&&g.rows.some(r=>gone(g,r));
+ if(!norm)return zip.generateAsync({type:'uint8array',compression:'DEFLATE',mimeType:'application/octet-stream'});
+ const JSZip=await need('jszip');const z=new JSZip();const D=new Date(Date.UTC(1980,0,1,12,0,0));const names=Object.keys(zip.files).filter(n=>!zip.files[n].dir);
+ const first=odf?['mimetype','META-INF/manifest.xml']:['[Content_Types].xml','_rels/.rels'];const order=[...first.filter(n=>names.includes(n)),...names.filter(n=>!first.includes(n)).sort()];
+ for(const n of order)z.file(n,await zip.file(n).async('uint8array'),{date:D,createFolders:false,compression:n==='mimetype'?'STORE':'DEFLATE'});
+ return z.generateAsync({type:'uint8array',compression:'DEFLATE',compressionOptions:{level:6}})}
+
 /* ================= JPEG ================= */
 function jpegSegs(u){
  if(u[0]!==0xFF||u[1]!==0xD8)throw new Error(T('No parece un JPEG válido'));
@@ -497,13 +675,14 @@ function jpegSegs(u){
  while(p+4<=u.length){if(u[p]!==0xFF)throw new Error(T('Estructura de archivo inesperada'));const m=u[p+1];
   if(m===0xFF){p++;continue}if(m===0xD9)break;
   if((m>=0xD0&&m<=0xD7)||m===0x01){segs.push({m,standalone:true});p+=2;continue}
-  if(m===0xDA){segs.push({m,rest:u.slice(p)});break}
+  if(m===0xDA){let e=-1;for(let i=p+2;i<u.length-1;i++)if(u[i]===0xFF&&u[i+1]===0xD9){e=i;break}if(e<0)e=u.length-2;segs.push({m,rest:u.slice(p,e+2)});if(e+2<u.length)segs.push({m:-1,kind:'trail',data:u.slice(e+2)});break}
   const len=(u[p+2]<<8)|u[p+3];segs.push({m,data:u.slice(p+4,p+2+len)});p+=2+len}
  for(const s of segs){if(!s.data)continue;const h=latin1(s.data.slice(0,35));
   if(s.m===0xE1&&h.startsWith('Exif\0\0'))s.kind='exif';
   else if(s.m===0xE1&&h.startsWith('http://ns.adobe.com/xap/1.0/'))s.kind='xmp';
   else if(s.m===0xE1&&h.startsWith('http://ns.adobe.com/xmp/extension/'))s.kind='xmpx';
   else if(s.m===0xED)s.kind='iptc';else if(s.m===0xFE)s.kind='com';else if(s.m===0xE2&&h.startsWith('ICC_PROFILE'))s.kind='icc';
+  else if(s.m===0xEB&&/jumb|c2pa|JP/.test(h))s.kind='c2pa';
   else if(s.m>=0xE3&&s.m<=0xEF&&s.m!==0xEE)s.kind='app'}
  return segs}
 const seg=(m,d)=>concat([new Uint8Array([0xFF,m,(d.length+2)>>8,(d.length+2)&255]),d]);
@@ -513,6 +692,7 @@ function writeJpeg(segs,keep,tiff){
  if(!segs.some(s=>s.kind==='exif'||s.m===0xE0))ex();
  for(const s of segs){
   if(s.m===0xDA){ex();out.push(s.rest);continue}
+  if(s.kind==='trail'){if(keep(s))out.push(s.data);continue}
   if(s.kind==='exif'){ex();continue}
   if(!keep(s))continue;
   out.push(s.standalone?new Uint8Array([0xFF,s.m]):seg(s.m,s.data));
@@ -520,7 +700,7 @@ function writeJpeg(segs,keep,tiff){
  return concat(out)}
 function jpegClean(u){try{const segs=jpegSegs(u);const es=segs.find(s=>s.kind==='exif');let tiff=null;
   if(es){const t=parseTiff(es.data.slice(6));const o=t.ifd0.find(e=>e.tag===0x112);if(o)tiff=writeTiff(t.le,[o],[],[])}
-  return writeJpeg(segs,s=>!['xmp','xmpx','iptc','com','app'].includes(s.kind),tiff)}catch(e){return u}}
+  return writeJpeg(segs,s=>!['xmp','xmpx','iptc','com','app','c2pa','trail'].includes(s.kind),tiff)}catch(e){return u}}
 async function pJPEG(F){
  const segs=jpegSegs(F.bytes);F.segs=segs;let t=null;
  for(const s of segs){
@@ -529,8 +709,10 @@ async function pJPEG(F){
   else if(s.kind==='xmpx'){s.g=G(F,'xmp','XMP (Adobe y móviles)')}
   else if(s.kind==='iptc'){const g=G(F,'iptc','IPTC (agencias y Photoshop)');const r=iptcRows(s.data);g.rows.push(...(r.length?r:[{label:'Bloque de Photoshop',value:size(s.data.length),cat:'txt'}]));s.g=g}
   else if(s.kind==='com'){const g=G(F,'com','Comentario incrustado');g.rows.push({label:'Comentario',value:td.decode(s.data).trim()||'—',cat:'txt'});s.g=g}
+  else if(s.kind==='c2pa'){const g=G(F,'c2pa','Credenciales de contenido (C2PA)',{note:C2PA_NOTE});if(!g.rows.length)g.rows.push(c2paRow(s.data));s.g=g}
+  else if(s.kind==='trail'){s.g=trailGroup(F,s.data)}
   else if(s.kind==='app'){const g=G(F,'app','Otros bloques de aplicación');g.rows.push({label:'Bloque APP'+(s.m-0xE0),value:size(s.data.length)+' · '+latin1(s.data.slice(0,24)).replace(/[^\x20-\x7e]/g,'').trim(),cat:'soft'});s.g=g}
-  else if(s.kind==='icc'){G(F,'tech','Datos técnicos que se conservan',{removable:false}).rows.push({label:'Perfil de color ICC',vt:['se mantiene para que los colores no cambien']})}}
+  else if(s.kind==='icc'){const tg=G(F,'tech','Perfil de color');if(!tg.rows.length)tg.rows.push({label:'Perfil de color ICC',vt:['no es un dato personal; si lo quitas los colores pueden variar un poco'],norisk:true});s.g=tg}}
  tiffGroups(F,t||blank());F.canAdd='exif'}
 const bJPEG=F=>{const g=grp(F,'xmp');const segs=F.segs.map(s=>s.kind==='xmp'&&s.xmpText&&g&&!xmpDropped(g)&&xmpChanged(g)?{...s,data:concat([te.encode('http://ns.adobe.com/xap/1.0/\0'),te.encode(xmpApply(s.xmpText,g.rows))])}:s);return writeJpeg(segs,s=>!(s.g&&(s.g.id==='xmp'?xmpDropped(s.g):s.g.removed)),tiffFrom(F))};
 
@@ -538,18 +720,21 @@ const bJPEG=F=>{const g=grp(F,'xmp');const segs=F.segs.map(s=>s.kind==='xmp'&&s.
 async function pPNG(F){
  const u=F.bytes,dv=new DataView(u.buffer,u.byteOffset);if(dv.getUint32(0)!==0x89504E47)throw new Error(T('No parece un PNG válido'));
  const ch=[];let p=8;while(p+12<=u.length){const len=dv.getUint32(p),type=latin1(u.slice(p+4,p+8));ch.push({type,data:u.slice(p+8,p+8+len)});p+=12+len;if(type==='IEND')break}
+ if(p<u.length)F.trailG=trailGroup(F,u.slice(p)),F.trail=u.slice(p);
  F.chunks=ch;const g=G(F,'png','Textos del PNG',{granular:true});let t=null;
- const pc=k=>/author|copyright|source/i.test(k)?'who':/creation time|date/i.test(k)?'date':/software/i.test(k)?'soft':'txt';
+ const pc=k=>/^(parameters|prompt|workflow|negative_prompt|Dream|sd-metadata|invokeai_metadata|generation_data)$|^SD:|^AI:/i.test(k)?'ai':/author|copyright|source/i.test(k)?'who':/creation time|date/i.test(k)?'date':/software/i.test(k)?'soft':'txt';
  for(const c of ch){const d=c.data,z=d.indexOf(0);
   try{
    if(c.type==='tEXt'){const k=latin1(d.slice(0,z));g.rows.push({label:k,value:latin1(d.slice(z+1)),edit:true,c,cat:pc(k)})}
    else if(c.type==='zTXt'){const k=latin1(d.slice(0,z));g.rows.push({label:k,value:latin1(await inflate(d.slice(z+2))),edit:true,c,cat:pc(k)})}
    else if(c.type==='iTXt'){const k=latin1(d.slice(0,z));const cf=d[z+1];let q=z+3;q=d.indexOf(0,q)+1;q=d.indexOf(0,q)+1;let body=d.slice(q);if(cf)body=await inflate(body);const v=td.decode(body);
-    if(k==='XML:com.adobe.xmp'){const xr=xmpRows(v);g.rows.push({label:'XMP',value:xr.map(r=>r.label+': '+r.value).slice(0,8).join(' · ')||size(v.length),c,cat:xr.some(r=>r.cat==='loc')?'loc':xr.some(r=>r.cat==='who')?'who':'txt'})}
+    if(k==='XML:com.adobe.xmp'){const xg=G(F,'xmp','XMP (Adobe y móviles)');const xr=xmpRows(v);xg.rows.push(...(xr.length?xr:[{label:'Bloque XMP',value:size(v.length),cat:'txt'}]));xg.granular=xmpRowsOnly(xg);c.xmpText=xr.length?v:null;c.isXmp=true;c.g=xg}
     else g.rows.push({label:k,value:v,edit:true,c,cat:pc(k)})}
    else if(c.type==='eXIf'){c.kind='exif';t=parseTiff(d)}
    else if(c.type==='tIME'){const v=new DataView(d.buffer);const tg=G(F,'ptime','Fecha interna del PNG');tg.rows.push({label:'Última modificación',value:`${v.getUint16(0)}-${pad(d[2])}-${pad(d[3])} ${pad(d[4])}:${pad(d[5])}`,cat:'date'});c.g=tg}
-   else if(c.type==='iCCP'){G(F,'tech','Datos técnicos que se conservan',{removable:false}).rows.push({label:'Perfil de color ICC',value:latin1(d.slice(0,z))})}
+   else if(c.type==='iCCP'){const tg=G(F,'tech','Perfil de color');tg.rows.push({label:'Perfil de color ICC',value:latin1(d.slice(0,z)),norisk:true});c.g=tg}
+   else if(c.type==='caBX'){const cg=G(F,'c2pa','Credenciales de contenido (C2PA)',{granular:true,note:C2PA_NOTE});const r=c2paRow(d);cg.rows.push(r);c.g=cg;c.row=r}
+   else if(!PNG_STD.includes(c.type)&&/^[a-z]/.test(c.type)){const xg=G(F,'priv','Bloques privados o desconocidos',{granular:true,note:'Bloques que añaden algunos programas. No forman parte de la imagen.'});const r={label:c.type,vt:[PRIV_NAMES[c.type]||'{0}',size(d.length)],cat:'hid'};xg.rows.push(r);c.g=xg;c.row=r}
   }catch(e){g.rows.push({label:c.type,vt:['(no se pudo leer)'],c,cat:'txt'})}}
  if(!g.rows.length)F.groups.splice(F.groups.indexOf(g),1);
  tiffGroups(F,t||blank());F.canAdd='png'}
@@ -559,40 +744,45 @@ function bPNG(F){
  const itxt=(k,v)=>concat([te.encode(k),new Uint8Array([0,0,0,0,0]),te.encode(v)]);
  for(const c of F.chunks){
   if(c.kind==='exif')continue;
+  if(c.isXmp){if(xmpDropped(c.g))continue;out.push(c.xmpText&&xmpChanged(c.g)?pngChunk('iTXt',itxt('XML:com.adobe.xmp',xmpApply(c.xmpText,c.g.rows))):pngChunk(c.type,c.data));continue}
   if(['tEXt','zTXt','iTXt'].includes(c.type)){const r=g&&g.rows.find(x=>x.c===c);if(!r||gone(g,r))continue;out.push(r.newVal!==undefined&&r.newVal!==r.value?pngChunk('iTXt',itxt(r.label,r.newVal)):pngChunk(c.type,c.data));continue}
-  if(c.g&&c.g.removed)continue;
+  if(c.g&&c.g.removed)continue;if(c.row&&gone(c.g,c.row))continue;
   out.push(pngChunk(c.type,c.data));
   if(c.type==='IHDR'){if(g)for(const r of g.rows)if(r.isNew&&!gone(g,r)&&r.newVal)out.push(pngChunk('iTXt',itxt(r.label,r.newVal)));if(tiff)out.push(pngChunk('eXIf',tiff))}}
+ if(F.trail&&!F.trailG.removed)out.push(F.trail);
  return concat(out)}
 
 /* ================= WebP ================= */
 async function pWEBP(F){
  const u=F.bytes;if(latin1(u.slice(0,4))!=='RIFF'||latin1(u.slice(8,12))!=='WEBP')throw new Error(T('No parece un WebP válido'));
- const dv=new DataView(u.buffer,u.byteOffset),ch=[];let p=12;
- while(p+8<=u.length){const type=latin1(u.slice(p,p+4)),len=dv.getUint32(p+4,true);ch.push({type,data:u.slice(p+8,p+8+len)});p+=8+len+(len&1)}
+ const dv=new DataView(u.buffer,u.byteOffset),ch=[];let p=12;const end=Math.min(u.length,8+dv.getUint32(4,true));
+ if(end<u.length){F.trail=u.slice(end);F.trailG=trailGroup(F,F.trail)}
+ while(p+8<=end){const type=latin1(u.slice(p,p+4)),len=dv.getUint32(p+4,true);ch.push({type,data:u.slice(p+8,p+8+len)});p+=8+len+(len&1)}
  F.chunks=ch;let t=null;
  for(const c of ch){
   if(c.type==='EXIF'){let d=c.data;if(latin1(d.slice(0,6))==='Exif\0\0')d=d.slice(6);c.kind='exif';try{t=parseTiff(d)}catch(e){}}
   else if(c.type==='XMP '){const x=td.decode(c.data);c.xmpText=x;const g=G(F,'xmp','XMP (Adobe y móviles)');g.rows.push(...xmpRows(x));if(!g.rows.length)g.rows.push({label:'Bloque XMP',value:size(c.data.length),cat:'txt'});g.granular=xmpRowsOnly(g);c.g=g}
-  else if(c.type==='ICCP')G(F,'tech','Datos técnicos que se conservan',{removable:false}).rows.push({label:'Perfil de color ICC',vt:['se mantiene para que los colores no cambien']})}
+  else if(c.type==='ICCP'){const tg=G(F,'tech','Perfil de color');tg.rows.push({label:'Perfil de color ICC',vt:['no es un dato personal; si lo quitas los colores pueden variar un poco'],norisk:true});c.g=tg}
+  else if(c.type==='C2PA'){const cg=G(F,'c2pa','Credenciales de contenido (C2PA)',{granular:true,note:C2PA_NOTE});const r=c2paRow(c.data);cg.rows.push(r);c.g=cg;c.row=r}
+  else if(!['VP8 ','VP8L','VP8X','ALPH','ANIM','ANMF'].includes(c.type)){const xg=G(F,'priv','Bloques privados o desconocidos',{granular:true,note:'Bloques que añaden algunos programas. No forman parte de la imagen.'});const r={label:c.type.trim(),vt:['{0}',size(c.data.length)],cat:'hid'};xg.rows.push(r);c.g=xg;c.row=r}}
  tiffGroups(F,t||blank());
  F.canAdd=ch.some(c=>c.type==='VP8X')?'exif':''}
 function bWEBP(F){
- const tiff=tiffFrom(F),items=[];let hasX=false;
- for(const c of F.chunks){if(c.kind==='exif')continue;if(c.g&&(c.g.id==='xmp'?xmpDropped(c.g):c.g.removed))continue;if(c.type==='XMP ')hasX=true;items.push({t:c.type,d:c.type==='XMP '&&c.xmpText&&xmpChanged(c.g)?te.encode(xmpApply(c.xmpText,c.g.rows)):c.data})}
+ const tiff=tiffFrom(F),items=[];let hasX=false,hasI=false;
+ for(const c of F.chunks){if(c.kind==='exif')continue;if(c.g&&(c.g.id==='xmp'?xmpDropped(c.g):c.g.removed))continue;if(c.row&&gone(c.g,c.row))continue;if(c.type==='XMP ')hasX=true;if(c.type==='ICCP')hasI=true;items.push({t:c.type,d:c.type==='XMP '&&c.xmpText&&xmpChanged(c.g)?te.encode(xmpApply(c.xmpText,c.g.rows)):c.data})}
  const vx=items.find(i=>i.t==='VP8X');
  if(tiff&&vx){const xi=items.findIndex(i=>i.t==='XMP ');items.splice(xi<0?items.length:xi,0,{t:'EXIF',d:tiff})}
- if(vx){vx.d=vx.d.slice();vx.d[0]=(vx.d[0]&~0x0C)|(tiff?0x08:0)|(hasX?0x04:0)}
+ if(vx){vx.d=vx.d.slice();vx.d[0]=(vx.d[0]&~0x2C)|(hasI?0x20:0)|(tiff?0x08:0)|(hasX?0x04:0)}
  const mk=(t,d)=>{const h=new Uint8Array(8);h.set(te.encode(t));new DataView(h.buffer).setUint32(4,d.length,true);return d.length&1?concat([h,d,new Uint8Array(1)]):concat([h,d])};
  const body=concat(items.map(i=>mk(i.t,i.d))),hd=new Uint8Array(12);hd.set(te.encode('RIFF'));new DataView(hd.buffer).setUint32(4,body.length+4,true);hd.set(te.encode('WEBP'),8);
- return concat([hd,body])}
+ return F.trail&&!F.trailG.removed?concat([hd,body,F.trail]):concat([hd,body])}
 
 /* ================= HEIC (solo lectura + conversión) ================= */
 async function pHEIC(F){
  const u=F.bytes;let t=null;
  for(let i=0;i<u.length-12&&!t;i++){if(u[i]===0x45&&u[i+1]===0x78&&u[i+2]===0x69&&u[i+3]===0x66&&u[i+4]===0&&u[i+5]===0&&(u[i+6]===0x4D||u[i+6]===0x49)){try{t=parseTiff(u.subarray(i+6))}catch(e){}}}
- if(t)tiffGroups(F,t,true);
- F.convert=true;F.note='Las fotos HEIC (iPhone) no se pueden reescribir en el navegador, pero sí convertir a JPG sin ningún dato. La conversión funciona en Safari (Mac, iPhone y iPad); otros navegadores pueden no saber abrir HEIC.'}
+ tiffGroups(F,t||blank());const og=grp(F,'t-ifd0');if(og)og.rows=og.rows.filter(r=>!(r.e&&r.e.tag===0x112));
+ F.canAdd='exif';F.convert=true;F.note='Las fotos HEIC (iPhone) se guardan como JPG: puedes editar o quitar sus datos como en cualquier foto. La conversión funciona en Safari (Mac, iPhone y iPad); otros navegadores pueden no saber abrir HEIC.'}
 async function heicToJpeg(F){
  const blob=new Blob([F.bytes],{type:'image/heic'});let img=null;
  try{img=await createImageBitmap(blob)}catch(e){img=await new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=URL.createObjectURL(blob)})}
@@ -612,25 +802,58 @@ async function pPDF(F){
  const md=doc.catalog.get(PDFName.of('Metadata'));
  if(md){const xg=G(F,'pdfx','Metadatos XMP del PDF');try{const st=doc.context.lookup(md);let raw=st.contents||new Uint8Array();const flt=st.dict&&st.dict.get(PDFName.of('Filter'));if(flt&&String(flt).includes('FlateDecode'))raw=await inflate(raw);const x=td.decode(raw);const r=x.includes('xmpmeta')?xmpRows(x):[];if(r.length)F.xmpText=x;xg.rows.push(...(r.length?r:[{label:'Bloque XMP',vt:['comprimido o ilegible; se puede quitar igualmente'],cat:'txt'}]));xg.granular=xmpRowsOnly(xg)}catch(e){xg.rows.push({label:'Bloque XMP',vt:['presente'],cat:'txt'})}}
  if(!g.rows.length)g.rows.push({label:'Sin propiedades',vt:['el PDF no tiene título, autor ni fechas guardadas'],noop:true});
+ try{pdfExtras(F,doc,L)}catch(e){}
  F.canAdd='pdf';
- if(!F.enc){try{F.text=await pdfAllText(F.bytes)}catch(e){F.textErr=true;F.textErrMsg=String(e&&e.message||e)}}}
+ if(!F.enc){try{F.text=await pdfAllText(F.bytes);F.scanned=pdfAllText.empty;F.pageTexts=pdfAllText.pages}catch(e){F.textErr=true;F.textErrMsg=String(e&&e.message||e)}}}
+function pdfExtras(F,doc,L){
+ const{PDFName,PDFDict}=L;const ex=G(F,'pdfextra','Otros datos ocultos del PDF',{granular:true});const cat=doc.catalog;
+ let na=0;const au=new Set();
+ for(const p of doc.getPages()){const ar=p.node.Annots();if(!ar)continue;for(let i=0;i<ar.size();i++){const a=ar.lookup(i);if(!(a instanceof PDFDict))continue;const st=String(a.get(PDFName.of('Subtype'))||'');if(/Link|Widget|Popup/.test(st))continue;na++;const t=a.lookup(PDFName.of('T'));if(t&&t.decodeText)au.add(t.decodeText())}}
+ if(na)ex.rows.push({label:'Comentarios y anotaciones',vt:[au.size?'{0}, de: {1}':'{0}',na,[...au].slice(0,4).join(', ')],act:'annots',cat:'com'});
+ const nm=cat.lookup(PDFName.of('Names'));
+ if((nm instanceof PDFDict&&nm.get(PDFName.of('EmbeddedFiles')))||cat.get(PDFName.of('AF'))||doc.getPages().some(p=>p.node.get(PDFName.of('AF'))))ex.rows.push({label:'Archivos adjuntos',vt:['el PDF lleva archivos dentro (también credenciales C2PA)'],act:'attach',cat:'hid'});
+ const oa=cat.lookup(PDFName.of('OpenAction'));const js=(nm instanceof PDFDict&&nm.get(PDFName.of('JavaScript')))||cat.get(PDFName.of('AA'))||(oa instanceof PDFDict&&String(oa.get(PDFName.of('S')))==='/JavaScript');
+ if(js)ex.rows.push({label:'JavaScript',vt:['código que se ejecuta al abrir el PDF'],act:'js',cat:'soft'});
+ if(cat.get(PDFName.of('PieceInfo'))||doc.getPages().some(p=>p.node.get(PDFName.of('PieceInfo'))||p.node.get(PDFName.of('Metadata'))))ex.rows.push({label:'Datos privados de programas',vt:['información interna de Illustrator, Acrobat u otros (PieceInfo)'],act:'piece',cat:'soft'});
+ try{const form=doc.getForm();const n=form.getFields().filter(f=>{try{return f.getText?!!f.getText():f.isChecked?f.isChecked():f.getSelected?f.getSelected().length>0:false}catch(e){return false}}).length;if(n)ex.rows.push({label:'Formulario rellenado',vt:[n===1?'1 campo con datos escritos':'{0} campos con datos escritos',n],act:'form',cat:'pii'})}catch(e){}
+ const id=doc.context.trailerInfo.ID;if(id)ex.rows.push({label:'Identificador único del documento',value:String(id).replace(/[<>\[\]\s]/g,'').slice(0,32)+'…',act:'id',cat:'serial'});
+ if(!ex.rows.length)F.groups.splice(F.groups.indexOf(ex),1)}
+function pdfGC(doc,L){
+ const{PDFRef,PDFDict,PDFArray}=L;const ctx=doc.context;const seen=new Set();const st=[ctx.trailerInfo.Root,ctx.trailerInfo.Info].filter(Boolean);
+ while(st.length){const o=st.pop();if(o instanceof PDFRef){const k=o.toString();if(seen.has(k))continue;seen.add(k);st.push(ctx.lookup(o))}else if(o instanceof PDFDict){for(const[,v]of o.entries())st.push(v)}else if(o instanceof PDFArray){for(let i=0;i<o.size();i++)st.push(o.get(i))}else if(o&&o.dict instanceof PDFDict)st.push(o.dict)}
+ for(const[ref]of ctx.enumerateIndirectObjects())if(!seen.has(ref.toString()))ctx.delete(ref)}
+function pdfJoin(items){let g='';const pos=[];for(const it of items){const str=it.str||'';if(!str.trim()){pos.push(-1);if(it.hasEOL&&!g.endsWith('\n'))g+='\n';continue}if(g&&!/\s$/.test(g)&&!/^\s/.test(str))g+=' ';pos.push(g.length);g+=str;if(it.hasEOL)g+='\n'}return{g,pos}}
 async function pdfAllText(bytes){
  const L=await needPdfjs();
  const task=L.getDocument({data:bytes.slice(),isEvalSupported:false,disableFontFace:true,useSystemFonts:false,verbosity:0});const doc=await task.promise;
  let out='';const n=Math.min(doc.numPages,200);
- for(let i=1;i<=n;i++){const pg=await doc.getPage(i);const tc=await pg.getTextContent();out+=tc.items.map(x=>(x.str||'')+(x.hasEOL?'\n':' ')).join('')+'\n';pg.cleanup()}
- try{await task.destroy()}catch(e){}return out}
+ let empty=0;const pages=[];for(let i=1;i<=n;i++){const pg=await doc.getPage(i);const tc=await pg.getTextContent();if(!tc.items.some(x=>(x.str||'').trim()))empty++;const pt=pdfJoin(tc.items).g;pages.push(pt);out+=pt+'\n';pg.cleanup()}
+ try{await task.destroy()}catch(e){}pdfAllText.empty=empty;pdfAllText.pages=pages;return out}
 async function bPDF(F){
  if(F.enc)throw new Error(T('El PDF está protegido con contraseña: no se puede guardar sin dañarlo.'));
- const L=await need('pdflib');const{PDFDocument,PDFName,PDFHexString,PDFString,PDFRef}=L;
- const doc=await PDFDocument.load(F.bytes,{updateMetadata:false}),info=doc.getInfoDict(),g=grp(F,'pdf');
+ const L=await need('pdflib');const{PDFDocument,PDFName,PDFHexString,PDFString,PDFRef,PDFDict}=L;
+ const plan=piiPlan(F);const ex=grp(F,'pdfextra');const want=a=>ex&&ex.rows.some(r=>r.act===a&&gone(ex,r));
+ const so=stegoOpts(F);const force=so?new Set((F.pageTexts||[]).map((t,i)=>stegoClean(t,so)!==t?i+1:0).filter(Boolean)):null;
+ const ras=!!(plan||(force&&force.size));
+ const doc=ras?await pdfRedact(F,plan,force):await PDFDocument.load(F.bytes,{updateMetadata:false});
+ const info=doc.getInfoDict(),g=grp(F,'pdf');const cat=doc.catalog;
  const val=(r,v)=>r.date?PDFString.of(v):PDFHexString.fromText(v);
- for(const r of g.rows){if(r.noop)continue;const k=PDFName.of(r.key);
+ for(const r of g.rows){if(r.noop)continue;const k=PDFName.of(r.key);const changed=r.newVal!==undefined&&r.newVal!==r.value;
   if(r.isNew){if(!gone(g,r)&&r.newVal)info.set(k,val(r,r.newVal));continue}
-  if(gone(g,r))info.delete(k);else if(r.newVal!==undefined&&r.newVal!==r.value)info.set(k,val(r,r.newVal))}
- const xg=grp(F,'pdfx');if(xg&&(xmpDropped(xg)||(F.xmpText&&xmpChanged(xg)))){const ref=doc.catalog.get(PDFName.of('Metadata'));doc.catalog.delete(PDFName.of('Metadata'));if(ref instanceof PDFRef)doc.context.delete(ref);
-  if(!xmpDropped(xg)){const st=doc.context.stream(te.encode(xmpApply(F.xmpText,xg.rows)),{Type:'Metadata',Subtype:'XML'});doc.catalog.set(PDFName.of('Metadata'),doc.context.register(st))}}
- return await doc.save({useObjectStreams:false})}
+  if(gone(g,r))info.delete(k);else if(changed)info.set(k,val(r,r.newVal));else if(ras)info.set(k,val(r,r.value))}
+ const xg=grp(F,'pdfx');
+ if(xg&&(ras||xmpDropped(xg)||(F.xmpText&&xmpChanged(xg)))){const ref=cat.get(PDFName.of('Metadata'));cat.delete(PDFName.of('Metadata'));if(ref instanceof PDFRef)doc.context.delete(ref);
+  if(!xmpDropped(xg)&&F.xmpText){const st=doc.context.stream(te.encode(xmpApply(F.xmpText,xg.rows)),{Type:'Metadata',Subtype:'XML'});cat.set(PDFName.of('Metadata'),doc.context.register(st))}}
+ if(want('annots'))for(const p of doc.getPages()){const ar=p.node.Annots();if(!ar)continue;const keep=[];for(let i=0;i<ar.size();i++){const a=ar.lookup(i);const st=a instanceof PDFDict?String(a.get(PDFName.of('Subtype'))||''):'';if(/Link|Widget/.test(st))keep.push(ar.get(i))}
+  if(keep.length)p.node.set(PDFName.of('Annots'),doc.context.obj(keep));else p.node.delete(PDFName.of('Annots'))}
+ const nm=cat.lookup(PDFName.of('Names'));
+ if(want('attach')){if(nm instanceof PDFDict)nm.delete(PDFName.of('EmbeddedFiles'));cat.delete(PDFName.of('AF'));for(const p of doc.getPages())p.node.delete(PDFName.of('AF'))}
+ if(want('js')){if(nm instanceof PDFDict)nm.delete(PDFName.of('JavaScript'));const oa=cat.lookup(PDFName.of('OpenAction'));if(oa instanceof PDFDict&&String(oa.get(PDFName.of('S')))==='/JavaScript')cat.delete(PDFName.of('OpenAction'));cat.delete(PDFName.of('AA'));for(const p of doc.getPages())p.node.delete(PDFName.of('AA'))}
+ if(want('piece')){cat.delete(PDFName.of('PieceInfo'));for(const p of doc.getPages()){p.node.delete(PDFName.of('PieceInfo'));p.node.delete(PDFName.of('Metadata'))}}
+ if(want('form')){try{for(const f of doc.getForm().getFields()){try{if(f.setText)f.setText('');else if(f.uncheck)f.uncheck();else if(f.clear)f.clear()}catch(e){}}}catch(e){}}
+ if(want('id'))doc.context.trailerInfo.ID=undefined;
+ pdfGC(doc,L);
+ return await doc.save({useObjectStreams:false,updateFieldAppearances:true})}
 
 /* ================= Office (docx, xlsx, pptx) ================= */
 const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
@@ -650,7 +873,7 @@ async function pOffice(F){
  if(F.app){const g=G(F,'app','Propiedades de la aplicación',{granular:true});[...F.app.documentElement.children].forEach((el,i)=>{const d=APPP[el.localName];if(d)g.rows.push({label:d[0],value:el.textContent,edit:/^(Company|Manager)$/.test(el.localName),idx:i,cat:d[1]})});if(!g.rows.length)F.groups.splice(F.groups.indexOf(g),1)}
  if(F.custom){const g=G(F,'custom','Propiedades personalizadas',{granular:true});[...F.custom.documentElement.children].forEach((el,i)=>g.rows.push({label:el.getAttribute('name')||'Propiedad',value:el.textContent,edit:!!el.firstElementChild,idx:i,cat:'custom'}));if(!g.rows.length)F.groups.splice(F.groups.indexOf(g),1)}
  const has=re=>names.filter(n=>re.test(n));
- const cl=G(F,'oclean','Comentarios y revisiones',{granular:true,note:'Al quitarlos se borran del documento: los comentarios desaparecen y los cambios pendientes quedan aceptados.'});
+ const cl=G(F,'oclean','Comentarios, revisiones y datos ocultos',{granular:true,note:'Al quitarlos se borran del documento: los comentarios desaparecen y los cambios pendientes quedan aceptados.'});
  const info=[];let text='';
  if(F.kind==='docx'){
   const cx=await str('word/comments.xml');const nc=(cx.match(/<w:comment\b/g)||[]).length;
@@ -658,30 +881,43 @@ async function pOffice(F){
   let nch=0;for(const p of storyParts(names)){const s=await str(p);nch+=(s.match(/<w:(ins|del|moveFrom|moveTo)\b/g)||[]).length+(s.match(/<w:(rPrChange|pPrChange|sectPrChange|tblPrChange|trPrChange|tcPrChange)\b/g)||[]).length;text+=s.replace(/<\/w:p>/g,'\n').replace(/<w:tab\/>/g,' ').replace(/<[^>]+>/g,'')+'\n'}
   if(nch)cl.rows.push({label:'Control de cambios',vt:[nch===1?'1 cambio sin aceptar, con autor y fecha (el texto borrado sigue dentro)':'{0} cambios sin aceptar, con autor y fecha (el texto borrado sigue dentro)',nch],act:'changes',cat:'chg'});
   if(zip.file('word/people.xml'))cl.rows.push({label:'Lista de personas',vt:['nombres de quienes editaron o comentaron'],act:'people',cat:'who'});
+  let hid=0,rs=0;for(const p of storyParts(names)){const x=await str(p);hid+=(x.match(/<w:vanish\/>|<w:vanish w:val="(true|1|on)"\/>/g)||[]).length;rs+=(x.match(/ w:rsid\w*="/g)||[]).length}
+  const st=await str('word/settings.xml');rs+=(st.match(/<w:rsid/g)||[]).length;
+  if(hid)cl.rows.push({label:'Texto oculto',vt:[hid===1?'1 trozo de texto marcado como oculto':'{0} trozos de texto marcados como ocultos',hid],act:'hidden',cat:'hid'});
+  if(rs)cl.rows.push({label:'Identificadores de edición (rsid)',vt:['marcas internas que permiten seguir cuándo se editó cada parte'],act:'rsid',cat:'hist'});
+  const sr=await str('word/_rels/settings.xml.rels');const tm=sr.match(/attachedTemplate"[^>]*Target="([^"]+)"|Target="([^"]+)"[^>]*attachedTemplate/);if(tm)cl.rows.push({label:'Ruta de la plantilla',value:unent(tm[1]||tm[2]),act:'tpl',cat:'org'});
   text+=unent(cx.replace(/<\/w:p>/g,'\n').replace(/<[^>]+>/g,''));
   text=unent(text)}
  else if(F.kind==='pptx'){
   const cp=has(/^ppt\/(comments\/|commentAuthors\.xml$|authors\.xml$)/);
   if(cp.length)cl.rows.push({label:'Comentarios',vt:['{0} archivos de comentarios con sus autores',cp.length],act:'pcomments',cat:'com'});
+  const ns=has(/^ppt\/notesSlides\/[^/]+\.xml$/);if(ns.length){let nt='';for(const p of ns)nt+=xmlTextOf(await str(p),'a:t');if(nt.replace(/\d|\s/g,''))cl.rows.push({label:'Notas del orador',vt:['{0} diapositivas con notas',ns.length],act:'notes',cat:'hid'})}
   for(const p of has(/^ppt\/(slides|notesSlides)\/[^/]+\.xml$/))text+=xmlTextOf(await str(p),'a:t')+'\n';
   for(const p of has(/^ppt\/comments\/[^/]+\.xml$/))text+=xmlTextOf(await str(p),'p:text')+'\n'}
  else if(F.kind==='xlsx'){
-  if(has(/^xl\/(comments\d*\.xml|threadedComments\/)/).length)info.push({label:'Comentarios',vt:['sí, con el nombre de quien los escribió'],cat:'com'});
-  text+=xmlTextOf(await str('xl/sharedStrings.xml'),'t')+'\n';
-  for(const p of has(/^xl\/worksheets\/[^/]+\.xml$/)){const s=await str(p);text+=xmlTextOf(s,'t')+' ';for(const m of s.matchAll(/<c\b(?![^>]*t="s")[^>]*>(?:<f>[^<]*<\/f>)?<v>([^<]*)<\/v>/g))text+=m[1]+'\n'}
-  for(const p of has(/^xl\/comments\d*\.xml$/))text+=xmlTextOf(await str(p),'t')+'\n'}
+  if(has(/^xl\/(comments\d*\.xml|comments\/|threadedComments\/)/).length)cl.rows.push({label:'Comentarios',vt:['sí, con el nombre de quien los escribió'],act:'xcomments',cat:'com'});
+  text+=[...(await str('xl/sharedStrings.xml')).matchAll(/<si>([\s\S]*?)<\/si>/g)].map(m=>xmlTextOf(m[1],'t')).join('\n')+'\n';
+  for(const p of has(/^xl\/worksheets\/[^/]+\.xml$/)){const s=await str(p);for(const m of s.matchAll(/<c\b([^>]*)>([\s\S]*?)<\/c>/g)){if(/t="s"/.test(m[1]))continue;if(/t="inlineStr"/.test(m[1]))text+=xmlTextOf(m[2],'t')+'\n';else if(!/<f>/.test(m[2])){const v=m[2].match(/<v>([^<]*)<\/v>/);if(v)text+=v[1]+'\n'}}}
+  for(const p of has(/^xl\/(comments\d*\.xml|comments\/[^/]+\.xml)$/))text+=xmlTextOf(await str(p),'t')+'\n'}
+ if(has(/^customXml\/item\d+\.xml$/).length)cl.rows.push({label:'Datos XML personalizados',vt:['datos de SharePoint u otros programas guardados dentro'],act:'customxml',cat:'custom'});
+ const pr=has(/printerSettings\/[^/]+\.bin$/);if(pr.length)cl.rows.push({label:'Configuración de impresora',vt:['puede incluir el nombre de tu impresora'],act:'printer',cat:'org'});
+ if(has(/^docProps\/thumbnail\./).length)cl.rows.push({label:'Miniatura de la primera página',vt:['imagen pequeña de la primera página guardada aparte'],act:'thumb',cat:'hid'});
+ const emb=has(/^(word|xl|ppt)\/embeddings\/[^/]+$/);F.embs=emb.filter(n=>/\.(docx|xlsx|pptx|docm|xlsm|pptm|pdf|jpe?g|png)$/i.test(n));const bins=emb.filter(n=>!F.embs.includes(n));
+ if(F.embs.length)cl.rows.push({label:'Archivos incrustados',vt:['{0} archivos dentro del documento; al quitar se limpian sus metadatos',F.embs.length],act:'emb',cat:'hid'});
+ if(bins.length){if(F.kind==='docx'){F.embBin=bins;cl.rows.push({label:'Objetos incrustados antiguos',vt:['{0} objetos; al quitar se convierten en imagen',bins.length],act:'embbin',cat:'hid'})}else info.push({label:'Objetos incrustados antiguos',vt:['{0} objetos en formato antiguo: ábrelos y guárdalos aparte para limpiarlos',bins.length],cat:'txt'})}
  if(!cl.rows.length)F.groups.splice(F.groups.indexOf(cl),1);
- const emb=has(/^(word|xl|ppt)\/embeddings\//);if(emb.length)info.push({label:'Archivos incrustados',vt:['{0} (pueden tener sus propios metadatos)',emb.length],cat:'txt'});
- if(info.length)G(F,'oinfo','Lo que esta app no borra',{removable:false,rows:info,note:'Para quitarlo: en Office, Archivo › Información › Comprobar si hay problemas › Inspeccionar documento.'});
- const imgs=has(/^(word|xl|ppt)\/media\/[^/]+\.jpe?g$/i);let withExif=0,withGps=0;
- for(const p of imgs){try{const b=await zip.file(p).async('uint8array');const s=jpegSegs(b).find(x=>x.kind==='exif');if(s){withExif++;const t=parseTiff(s.data.slice(6));if(t.gps.length)withGps++}}catch(e){}}
- if(withExif){F.imgs=imgs;const g=G(F,'oimg','Fotos dentro del documento');g.rows.push({label:'Fotos con EXIF',vt:['{0} de {1} fotos guardan datos de cámara y fecha',withExif,imgs.length],cat:'dev'});if(withGps)g.rows.push({label:'Fotos con GPS',vt:[withGps===1?'1 revela dónde se hizo':'{0} revelan dónde se hicieron',withGps],cat:'loc'})}
+ if(info.length)G(F,'oinfo','Lo que no se puede quitar aquí',{removable:false,rows:info});
+ await imgScan(F,zip,has(/^(word|xl|ppt)\/media\/[^/]+\.jpe?g$/i));
+ zipGroup(F,zip);
  F.text=text;F.canAdd=F.core?'office':''}
+async function imgScan(F,zip,imgs){let withExif=0,withGps=0;
+ for(const p of imgs){try{const b=await zip.file(p).async('uint8array');const sg=jpegSegs(b);const ex=sg.find(x=>x.kind==='exif');let t=null;try{t=ex&&parseTiff(ex.data.slice(6))}catch(e){}const meaningful=sg.some(x=>['xmp','iptc','com','app'].includes(x.kind))||(t&&(t.exif.length||t.gps.length||t.ifd0.some(e=>e.tag!==0x112)||t.maker||t.thumb));if(meaningful){withExif++;const e=jpegSegs(b).find(x=>x.kind==='exif');if(t&&t.gps.length)withGps++}}catch(e){}}
+ if(withExif){F.imgs=imgs;const g=G(F,'oimg','Fotos dentro del documento');g.rows.push({label:'Fotos con EXIF',vt:['{0} de {1} fotos guardan datos de cámara y fecha',withExif,imgs.length],cat:'dev'});if(withGps)g.rows.push({label:'Fotos con GPS',vt:[withGps===1?'1 revela dónde se hizo':'{0} revelan dónde se hicieron',withGps],cat:'loc'})}}
 function resolvePart(base,t){if(t.startsWith('/'))return t.slice(1);const out=[];for(const p of(base+t).split('/')){if(p==='..')out.pop();else if(p&&p!=='.')out.push(p)}return out.join('/')}
 async function removeParts(zip,paths){
  const set=new Set(paths.filter(p=>zip.file(p)));if(!set.size)return;for(const p of set){zip.remove(p);const rp=p.replace(/([^/]+)$/,'_rels/$1.rels');if(zip.file(rp))zip.remove(rp)}
  const ct=zip.file('[Content_Types].xml');if(ct){let s=await ct.async('string');s=s.replace(/<Override\b[^>]*PartName="([^"]+)"[^>]*\/>/g,(m,pn)=>set.has(pn.replace(/^\//,''))?'':m);zip.file('[Content_Types].xml',s)}
- for(const rp of Object.keys(zip.files).filter(n=>/\.rels$/.test(n))){const f=zip.file(rp);if(!f)continue;let s=await f.async('string');const base=rp.replace(/_rels\/[^/]+\.rels$/,'');const before=s;
+ for(const rp of Object.keys(zip.files).filter(n=>/\.rels$/.test(n))){const f=zip.file(rp);if(!f)continue;let s=await f.async('string');const base=rp.replace(/_rels\/[^/]*\.rels$/,'');const before=s;
   s=s.replace(/<Relationship\b[^>]*\/>/g,m=>{if(/TargetMode="External"/.test(m))return m;const t=(m.match(/Target="([^"]+)"/)||[])[1];return t&&set.has(resolvePart(base,t))?'':m});if(s!==before)zip.file(rp,s)}}
 async function editXml(zip,p,fn){const f=zip.file(p);if(!f)return;const d=xmlParse(await f.async('string'));if(d.getElementsByTagName('parsererror').length)return;fn(d);zip.file(p,xmlStr(d))}
 function stripCommentMarks(d){
@@ -714,8 +950,27 @@ async function bOffice(F){
  if(want('changes')){for(const p of storyParts(names))await editXml(zip,p,acceptChanges);await editXml(zip,'word/settings.xml',d=>[...d.getElementsByTagNameNS(W,'trackRevisions')].forEach(e=>e.remove()))}
  if(want('people'))await removeParts(zip,['word/people.xml']);
  if(want('pcomments'))await removeParts(zip,names.filter(n=>/^ppt\/(comments\/|commentAuthors\.xml$|authors\.xml$)/.test(n)));
+ if(want('xcomments')){for(const rp of names.filter(n=>/^xl\/worksheets\/_rels\/[^/]+\.rels$/.test(n))){const x=await zip.file(rp).async('string');const rels=[...x.matchAll(/<Relationship\b[^>]*\/>/g)].map(m=>m[0]);if(!rels.some(r=>/\/comments"/.test(r)))continue;
+   const sheet='xl/worksheets/'+rp.split('/').pop().replace(/\.rels$/,'');const tg=rels.filter(r=>/\/(comments|vmlDrawing|threadedComment)"/.test(r)).map(r=>resolvePart('xl/worksheets/',(r.match(/Target="([^"]+)"/)||[])[1]||''));
+   await removeParts(zip,tg);await editXml(zip,sheet,d=>[...d.getElementsByTagName('*')].filter(e=>e.localName==='legacyDrawing').forEach(e=>e.remove()))}
+  await removeParts(zip,Object.keys(zip.files).filter(n=>/^xl\/(threadedComments|persons)\/[^/]+\.xml$/.test(n)))}
+ if(want('hidden'))for(const p of storyParts(names))await editXml(zip,p,d=>[...d.getElementsByTagNameNS(W,'vanish')].forEach(v=>{const val=v.getAttributeNS(W,'val');if(val&&/^(false|0|off)$/.test(val))return;const rp=v.parentNode,r=rp&&rp.parentNode;if(rp&&rp.localName==='rPr'&&r&&r.localName==='r')r.remove();else v.remove()}));
+ const stripRsid=d=>{for(const e of d.getElementsByTagName('*'))for(const a of[...e.attributes])if(a.namespaceURI===W&&/^rsid/.test(a.localName))e.removeAttributeNode(a)};
+ if(want('rsid')){for(const p of storyParts(names))await editXml(zip,p,stripRsid);await editXml(zip,'word/settings.xml',d=>{[...d.getElementsByTagNameNS(W,'rsids')].forEach(e=>e.remove());stripRsid(d)})}
+ if(want('tpl')){await editXml(zip,'word/settings.xml',d=>[...d.getElementsByTagNameNS(W,'attachedTemplate')].forEach(e=>e.remove()));const f=zip.file('word/_rels/settings.xml.rels');if(f)zip.file('word/_rels/settings.xml.rels',(await f.async('string')).replace(/<Relationship\b[^>]*attachedTemplate[^>]*\/>/g,''))}
+ if(want('notes'))await removeParts(zip,names.filter(n=>/^ppt\/notesSlides\/[^/]+\.xml$/.test(n)));
+ if(want('customxml')){await removeParts(zip,names.filter(n=>/^customXml\/(item|itemProps)\d+\.xml$/.test(n)));for(const p of storyParts(names))await editXml(zip,p,d=>[...d.getElementsByTagNameNS(W,'dataBinding')].forEach(e=>e.remove()))}
+ if(want('printer')){for(const p of names.filter(n=>/^xl\/(worksheets|chartsheets)\/[^/]+\.xml$/.test(n)))await editXml(zip,p,d=>{for(const e of d.getElementsByTagName('*'))if(e.localName==='pageSetup')for(const a of[...e.attributes])if(a.localName==='id'&&a.prefix==='r')e.removeAttributeNode(a)});await removeParts(zip,names.filter(n=>/printerSettings\/[^/]+\.bin$/.test(n)))}
+ if(want('emb'))for(const p of F.embs||[]){try{const b=await zip.file(p).async('uint8array');const sub=await analyze(new File([b],p.split('/').pop()),b,'emb');if(canSave(sub)){applyProfile(sub,'anon');const o=await produce(sub);zip.file(p,o instanceof Blob?new Uint8Array(await o.arrayBuffer()):o)}}catch(e){}}
+ if(want('embbin')){const f=zip.file('word/_rels/document.xml.rels');if(f){const x=await f.async('string');const ids=[...x.matchAll(/<Relationship\b[^>]*\/>/g)].map(m=>m[0]).filter(r=>/\/oleObject"/.test(r)).map(r=>(r.match(/Id="([^"]+)"/)||[])[1]);
+   for(const p of storyParts(names))await editXml(zip,p,d=>[...d.getElementsByTagName('*')].filter(e=>e.localName==='OLEObject'&&ids.includes(e.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','id'))).forEach(e=>e.remove()))}
+  await removeParts(zip,F.embBin||[])}
+ const plan=piiPlan(F);
+ if(plan){await redactOffice(F,zip,plan);await removeParts(zip,Object.keys(zip.files).filter(n=>/^docProps\/thumbnail\./.test(n)))}
+ else if(want('thumb'))await removeParts(zip,names.filter(n=>/^docProps\/thumbnail\./.test(n)));
+ const so=stegoOpts(F);if(so)await cleanOffice(F,zip,so);
  const ig=grp(F,'oimg');if(ig&&ig.removed)for(const p of F.imgs){const b=await zip.file(p).async('uint8array');zip.file(p,jpegClean(b))}
- return await zip.generateAsync({type:'uint8array',compression:'DEFLATE',mimeType:'application/octet-stream'})}
+ return await packZip(F,zip,false)}
 
 /* ================= LibreOffice (odt, ods, odp) ================= */
 const ON='urn:oasis:names:tc:opendocument:xmlns:office:1.0';
@@ -734,15 +989,36 @@ async function pODF(F){
     g.rows.push(r)})}}
  const cf=zip.file('content.xml');
  if(cf){const s=await cf.async('string');const ann=(s.match(/<office:annotation\b/g)||[]).length,chg=(s.match(/<text:changed-region\b/g)||[]).length;
-  const info=[];if(ann)info.push({label:'Comentarios',vt:['{0} comentarios, con el nombre de quien los escribió',ann],cat:'com'});if(chg)info.push({label:'Control de cambios',vt:['{0} cambios registrados, con autor y fecha',chg],cat:'chg'});
-  if(info.length)G(F,'oinfo','Lo que esta app no borra',{removable:false,rows:info,note:'En LibreOffice: Editar › Control de cambios › Gestionar (aceptar todo) y borra los comentarios antes de enviar.'});
+  const cl=G(F,'oclean','Comentarios, revisiones y datos ocultos',{granular:true,note:'Al quitarlos se borran del documento: los comentarios desaparecen y los cambios pendientes quedan aceptados.'});
+  if(ann)cl.rows.push({label:'Comentarios',vt:[ann===1?'1 comentario, con el nombre de quien lo escribió':'{0} comentarios, con el nombre de quien los escribió',ann],act:'ocomments',cat:'com'});if(chg)cl.rows.push({label:'Control de cambios',vt:['{0} cambios registrados, con autor y fecha',chg],act:'ochanges',cat:'chg'});
+  const nn=[...s.matchAll(/<presentation:notes\b[\s\S]*?<\/presentation:notes>/g)].filter(m=>m[0].replace(/<[^>]+>/g,'').trim()).length;if(nn)cl.rows.push({label:'Notas del orador',vt:['{0} diapositivas con notas',nn],act:'onotes',cat:'hid'});
+  const hn=(s.match(/<text:hidden-(text|paragraph)\b/g)||[]).length;if(hn)cl.rows.push({label:'Texto oculto',vt:[hn===1?'1 trozo de texto marcado como oculto':'{0} trozos de texto marcados como ocultos',hn],act:'ohidden',cat:'hid'});
+  if(zip.file('Thumbnails/thumbnail.png'))cl.rows.push({label:'Miniatura de la primera página',vt:['imagen pequeña de la primera página guardada aparte'],act:'thumb',cat:'hid'});
+  const sf=zip.file('settings.xml');if(sf){const x=await sf.async('string');const m=x.match(/config:name="PrinterName"[^>]*>([^<]+)</);if(m)cl.rows.push({label:'Impresora configurada',value:unent(m[1]),act:'printer',cat:'org'})}
+  if(zip.file('VersionList.xml'))cl.rows.push({label:'Versiones guardadas',vt:['versiones anteriores del documento guardadas dentro'],act:'versions',cat:'hist'});
+  if(!cl.rows.length)F.groups.splice(F.groups.indexOf(cl),1);
+  await imgScan(F,zip,Object.keys(zip.files).filter(n=>/^Pictures\/[^/]+\.jpe?g$/i.test(n)));
   F.text=unent(s.replace(/<\/text:(p|h)>/g,'\n').replace(/<text:(tab|s)\b[^>]*\/>/g,' ').replace(/<[^>]+>/g,''))}
+ zipGroup(F,zip);
  F.canAdd=F.meta&&odfMetaRoot(F.meta)?'odf':''}
 async function bODF(F){
  const JSZip=await need('jszip');const zip=await JSZip.loadAsync(F.bytes);
  const s=applyXml(F,F.meta,'odf',odfMetaRoot);if(s)zip.file('meta.xml',s);
+ const cl=grp(F,'oclean');const want=a=>cl&&cl.rows.some(r=>r.act===a&&gone(cl,r));const TX='urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+ const odfRemove=async paths=>{paths=paths.filter(p=>zip.file(p));if(!paths.length)return;paths.forEach(p=>zip.remove(p));await editXml(zip,'META-INF/manifest.xml',d=>[...d.getElementsByTagName('*')].filter(e=>e.localName==='file-entry'&&paths.some(p=>(e.getAttribute('manifest:full-path')||'').replace(/\/$/,'')===p.replace(/\/$/,''))).forEach(e=>e.remove()))};
+ if(want('ocomments'))for(const p of['content.xml','styles.xml'])await editXml(zip,p,d=>[...d.getElementsByTagNameNS(ON,'annotation'),...d.getElementsByTagNameNS(ON,'annotation-end')].forEach(e=>e.remove()));
+ if(want('ochanges'))await editXml(zip,'content.xml',d=>['tracked-changes','change','change-start','change-end'].forEach(n=>[...d.getElementsByTagNameNS(TX,n)].forEach(e=>e.remove())));
+ const PRS='urn:oasis:names:tc:opendocument:xmlns:presentation:1.0';
+ if(want('onotes'))await editXml(zip,'content.xml',d=>{for(const n of[...d.getElementsByTagNameNS(PRS,'notes')])for(const p of[...n.getElementsByTagNameNS(TX,'p'),...n.getElementsByTagNameNS(TX,'h')])p.remove()});
+ if(want('ohidden'))await editXml(zip,'content.xml',d=>['hidden-text','hidden-paragraph'].forEach(k=>[...d.getElementsByTagNameNS(TX,k)].forEach(e=>e.remove())));
+ if(want('printer'))await editXml(zip,'settings.xml',d=>[...d.getElementsByTagName('*')].filter(e=>e.localName==='config-item'&&/^(PrinterName|PrinterSetup|PrinterPaperFromSetup)$/.test(e.getAttribute('config:name')||'')).forEach(e=>{e.textContent=''}));
+ if(want('versions'))await odfRemove(Object.keys(zip.files).filter(n=>n==='VersionList.xml'||n.startsWith('Versions/')));
+ const plan=piiPlan(F);if(plan)await redactODF(zip,plan);
+ if(plan||want('thumb'))await odfRemove(['Thumbnails/thumbnail.png']);
+ const so=stegoOpts(F);if(so)await cleanODF(zip,so);
+ const ig=grp(F,'oimg');if(ig&&ig.removed)for(const p of F.imgs){const b=await zip.file(p).async('uint8array');zip.file(p,jpegClean(b))}
  const mt=zip.file('mimetype');if(mt)zip.file('mimetype',await mt.async('string'),{compression:'STORE'});
- return await zip.generateAsync({type:'uint8array',compression:'DEFLATE'})}
+ return await packZip(F,zip,true)}
 
 /* ================= MP3 (ID3) ================= */
 const ID3N={TIT2:'Título',TPE1:'Artista',TPE2:'Artista del álbum',TALB:'Álbum',TYER:'Año',TDRC:'Fecha de grabación',TDOR:'Fecha original',TCON:'Género',TRCK:'Pista',TPOS:'Disco',TCOM:'Compositor',TEXT:'Letrista',TCOP:'Copyright',TENC:'Codificado por',TSSE:'Programa de codificación',TBPM:'BPM',TKEY:'Tonalidad',TLAN:'Idioma',TPUB:'Editorial',TOWN:'Propietario del archivo',TDEN:'Fecha de codificación',TDTG:'Fecha de etiquetado',TSRC:'ISRC',COMM:'Comentario',USLT:'Letra',APIC:'Carátula',TXXX:'Dato personalizado',PRIV:'Datos privados',GEOB:'Objeto incrustado',UFID:'Identificador único',WXXX:'Enlace',POPM:'Valoración',PCNT:'Nº de reproducciones'};
@@ -775,6 +1051,8 @@ async function pMP3(F){
  F.v1=u.length>=128&&latin1(u.slice(u.length-128,u.length-125))==='TAG';
  if(F.v1){const t=u.slice(u.length-128);const s=(a,b)=>latin1(t.slice(a,b)).replace(/\0.*$/,'').trim();const g1=G(F,'id3v1','Etiqueta ID3v1 (antigua)');[['Título',3,33,'txt'],['Artista',33,63,'txt'],['Álbum',63,93,'txt'],['Año',93,97,'date'],['Comentario',97,127,'txt']].forEach(([l,a,b,c])=>{const v=s(a,b);if(v)g1.rows.push({label:l,value:v,cat:c})});if(!g1.rows.length)g1.rows.push({label:'Etiqueta vacía',value:'128 B',cat:'txt'})}
  F.audioStart=audioStart;F.audioEnd=F.v1?u.length-128:u.length;
+ const af=F.audioEnd-32;if(af>audioStart&&latin1(u.slice(af,af+8))==='APETAGEX'){const dv=new DataView(u.buffer,u.byteOffset);const sz=dv.getUint32(af+12,true),items=dv.getUint32(af+16,true),fl=dv.getUint32(af+20,true);const st=F.audioEnd-sz-((fl&0x80000000)?32:0);
+  if(st>=audioStart){F.apeStart=st;const ag=G(F,'ape','Etiquetas APE');let q=F.audioEnd-sz;for(let i=0;i<items&&q+8<af;i++){const vl=dv.getUint32(q,true);q+=8;let k=q;while(k<af&&u[k]!==0)k++;const key=latin1(u.slice(q,k));const val=td.decode(u.slice(k+1,k+1+vl));q=k+1+vl;ag.rows.push({label:key,value:val.slice(0,300),cat:/artist|author|copyright|comment/i.test(key)?'who':/year|date/i.test(key)?'date':'txt'})}if(!ag.rows.length)ag.rows.push({label:'Bloque APE',value:size(sz),cat:'txt'})}}
  F.canAdd=F.id3&&F.id3.ro?'':'id3'}
 function bMP3(F){
  const u=F.bytes,out=[];const g=grp(F,'id3');
@@ -790,7 +1068,7 @@ function bMP3(F){
   const fb=frames.map(f=>{const h=new Uint8Array(10);h.set(te.encode(f.id));const n=f.body.length;if(ver===4){h[4]=n>>21&127;h[5]=n>>14&127;h[6]=n>>7&127;h[7]=n&127}else{h[4]=n>>>24&255;h[5]=n>>16&255;h[6]=n>>8&255;h[7]=n&255}h[8]=f.fl>>8;h[9]=f.fl&255;return concat([h,f.body])});
   const body=concat(fb);
   if(body.length){const h=new Uint8Array(10);h.set(te.encode('ID3'));h[3]=ver;const n=body.length;h[6]=n>>21&127;h[7]=n>>14&127;h[8]=n>>7&127;h[9]=n&127;out.push(h,body)}}
- out.push(u.slice(F.audioStart,F.audioEnd));
+ const ag=grp(F,'ape');out.push(u.slice(F.audioStart,F.apeStart&&ag&&ag.removed?F.apeStart:F.audioEnd));
  const g1=grp(F,'id3v1');if(F.v1&&g1&&!g1.removed)out.push(u.slice(u.length-128));
  return concat(out)}
 
@@ -800,62 +1078,135 @@ const MP4N={'©xyz':['Ubicación','loc'],'©day':['Fecha','date'],'©mak':['Fabr
 async function pMP4(F){
  const f=F.file,len=f.size;const rd=async(o,n)=>new Uint8Array(await f.slice(o,o+n).arrayBuffer());
  let o=0,moov=null;
- while(o+8<=len){const h=await rd(o,16);const dv=new DataView(h.buffer);let sz=dv.getUint32(0);const type=latin1(h.slice(4,8));if(sz===1)sz=Number(dv.getBigUint64(8));else if(sz===0)sz=len-o;if(sz<8)break;if(type==='moov'){if(sz>80e6)throw new Error(T('Estructura de archivo inesperada'));moov=await rd(o,sz);break}o+=sz}
- F.readonly=true;F.note='Los vídeos se pueden revisar aquí, pero no limpiar. Para quitarles los datos usa ExifTool: exiftool -all= video.mp4';
- const g=G(F,'mp4','Metadatos del vídeo',{removable:false});
- if(!moov){g.rows.push({label:'Sin datos',vt:['no se encontró la cabecera del vídeo'],noop:true});return}
- const boxes=(u,s,e)=>{const out=[];let p=s;const dv=new DataView(u.buffer,u.byteOffset);while(p+8<=e){let sz=dv.getUint32(p);const t=latin1(u.slice(p+4,p+8));let hl=8;if(sz===1){sz=Number(dv.getBigUint64(p+8));hl=16}else if(sz===0)sz=e-p;if(sz<8||p+sz>e)break;out.push({t,s:p+hl,e:p+sz});p+=sz}return out};
- const add=(key,val)=>{const d=MP4N[key];val=String(val).replace(/\0/g,'').trim();if(!val)return;const r={label:d?d[0]:key,value:val,cat:d?d[1]:'txt'};g.rows.push(r);if(r.cat==='loc'&&/ISO6709|©xyz/.test(key)){const m=val.match(/([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/);if(m)F.gps=[+m[1],+m[2]]}};
+ const tops=[];
+ while(o+8<=len){const h=await rd(o,32);const dv=new DataView(h.buffer);let sz=dv.getUint32(0),hl=8;const type=latin1(h.slice(4,8));if(sz===1){sz=Number(dv.getBigUint64(8));hl=16}else if(sz===0)sz=len-o;if(sz<8)break;if(type==='moov'){if(sz>80e6)throw new Error(T('Estructura de archivo inesperada'));moov=await rd(o,sz);F.moovOff=o;F.moovLen=sz}
+  else if(!['ftyp','mdat','free','skip','wide','pdin','moof','mfra','sidx','styp','emsg','prft','ssix'].includes(type))tops.push({type,o,sz,hl,uuid:type==='uuid'?[...h.slice(hl,hl+16)].map(b=>b.toString(16).padStart(2,'0')).join(''):''});o+=sz}
+ F.tops=tops;
+ F.note='Al guardar se borran los datos sin tocar la imagen ni el sonido. Los textos del vídeo no se pueden reescribir aquí, solo quitar.';
+ const g=G(F,'mp4','Metadatos del vídeo',{granular:true});
+ if(!moov){g.rows.push({label:'Sin datos',vt:['no se encontró la cabecera del vídeo'],noop:true});F.readonly=true;return}
+ F.moov=moov;
+ for(const b of tops){const isC=b.uuid==='d8fec3d61b0e483c92975828877ec481',isX=b.uuid==='be7acfcb97a942e89c71999491e3afac';const gg=isC?G(F,'c2pa','Credenciales de contenido (C2PA)',{granular:true,note:C2PA_NOTE}):G(F,'priv','Bloques privados o desconocidos',{granular:true,note:'Bloques que añaden algunos programas. No forman parte de la imagen ni del sonido.'});gg.rows.push({label:isC?'C2PA':isX?'XMP':b.type==='uuid'?'uuid '+b.uuid.slice(0,8):b.type,vt:[isX?'bloque XMP con datos del programa o del autor ({0})':'{0}',size(b.sz)],cat:isC?'ai':'hid',top:b})}
+ const boxes=(u,s,e)=>{const out=[];let p=s;const dv=new DataView(u.buffer,u.byteOffset);while(p+8<=e){let sz=dv.getUint32(p);const t=latin1(u.slice(p+4,p+8));let hl=8;if(sz===1){sz=Number(dv.getBigUint64(p+8));hl=16}else if(sz===0)sz=e-p;if(sz<8||p+sz>e)break;out.push({t,h:p,s:p+hl,e:p+sz});p+=sz}return out};
+ const add=(key,val,box)=>{const d=MP4N[key];val=String(val).replace(/\0/g,'').trim();if(!val)return;const r={label:d?d[0]:key,value:val,cat:d?d[1]:'txt',kill:[box]};g.rows.push(r);if(r.cat==='loc'&&/ISO6709|©xyz/.test(key)){const m=val.match(/([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/);if(m)F.gps=[+m[1],+m[2]]}};
  const mv=boxes(moov,0,moov.length)[0];if(!mv)return;const kids=boxes(moov,mv.s,mv.e);
- const mvhd=kids.find(b=>b.t==='mvhd');
- if(mvhd){const dv=new DataView(moov.buffer);const v=moov[mvhd.s];const c=v===1?Number(dv.getBigUint64(mvhd.s+4)):dv.getUint32(mvhd.s+4);if(c>0){const d=new Date((c-2082844800)*1000);if(d.getFullYear()>1971)g.rows.push({label:'Fecha de creación',value:d.toISOString().replace('T',' ').slice(0,19)+' UTC',cat:'date'})}}
+ const times=[];const tbox=b=>{const v=moov[b.s];times.push([b.s+4,v===1?16:8])};
+ const mvhd=kids.find(b=>b.t==='mvhd');if(mvhd)tbox(mvhd);
+ for(const tr of kids.filter(b=>b.t==='trak')){const tk=boxes(moov,tr.s,tr.e);const th=tk.find(b=>b.t==='tkhd');if(th)tbox(th);const md=tk.find(b=>b.t==='mdia');if(md){const mh=boxes(moov,md.s,md.e).find(b=>b.t==='mdhd');if(mh)tbox(mh)}}
+ if(mvhd){const dv=new DataView(moov.buffer);const v=moov[mvhd.s];const c=v===1?Number(dv.getBigUint64(mvhd.s+4)):dv.getUint32(mvhd.s+4);if(c>0){const d=new Date((c-2082844800)*1000);if(d.getFullYear()>1971)g.rows.push({label:'Fecha de creación',value:d.toISOString().replace('T',' ').slice(0,19)+' UTC',cat:'date',zero:times})}}
  const parseMeta=(b)=>{let s=b.s;if(latin1(moov.slice(s+4,s+8))!=='hdlr')s+=4;const mk=boxes(moov,s,b.e);let keys=[];
   const kb=mk.find(x=>x.t==='keys');if(kb){const dv=new DataView(moov.buffer);let p=kb.s+8;const n=dv.getUint32(kb.s+4);for(let i=0;i<n&&p+8<=kb.e;i++){const ks=dv.getUint32(p);keys.push(latin1(moov.slice(p+8,p+ks)));p+=ks}}
   const il=mk.find(x=>x.t==='ilst');if(!il)return;
-  for(const it of boxes(moov,il.s,il.e)){let key=it.t;const idx=new DataView(moov.buffer).getUint32(it.s-8+4);if(keys.length&&!/^[©a-z]/i.test(it.t))key=keys[idx-1]||key;else if(keys.length&&/^\0/.test(it.t))key=keys[idx-1]||key;
+  for(const it of boxes(moov,il.s,il.e)){let key=it.t;const idx=new DataView(moov.buffer).getUint32(it.h+4);if(keys.length&&!/^[©a-z]/i.test(it.t))key=keys[idx-1]||key;
    const db=boxes(moov,it.s,it.e).find(x=>x.t==='data');if(!db)continue;const typ=new DataView(moov.buffer).getUint32(db.s)&0xFFFFFF;const val=moov.slice(db.s+8,db.e);
-   add(key,typ===1?td.decode(val):typ===23&&val.length===4?new DataView(val.buffer).getFloat32(0).toFixed(2):typ===21||typ===22?String(val.reduce((a,b)=>a*256+b,0)):size(val.length))}};
+   add(key,typ===1?td.decode(val):typ===23&&val.length===4?new DataView(val.buffer).getFloat32(0).toFixed(2):typ===21||typ===22?String(val.reduce((a,b)=>a*256+b,0)):size(val.length),it)}};
  for(const k of kids){
   if(k.t==='meta')parseMeta(k);
   if(k.t==='udta')for(const x of boxes(moov,k.s,k.e)){
    if(x.t==='meta'){parseMeta(x);continue}
-   if(x.t==='loci'){const dv=new DataView(moov.buffer);let p=x.s+6;while(p<x.e&&moov[p]!==0)p++;p+=2;if(p+8<=x.e){const lon=dv.getInt32(p)/65536,lat=dv.getInt32(p+4)/65536;if(lat||lon){g.rows.push({label:'Ubicación',value:lat.toFixed(5)+', '+lon.toFixed(5),cat:'loc'});F.gps=[lat,lon]}}continue}
-   if(x.t.charCodeAt(0)===0xA9){const body=moov.slice(x.s,x.e);if(body.length>4){const n=(body[0]<<8)|body[1];add(x.t,td.decode(body.slice(4,4+n)))}}}}
- if(!g.rows.length)g.rows.push({label:'Sin datos',vt:['este vídeo no lleva datos de ubicación, móvil ni autor'],noop:true})}
+   if(x.t==='loci'){const dv=new DataView(moov.buffer);let p=x.s+6;while(p<x.e&&moov[p]!==0)p++;p+=2;if(p+8<=x.e){const lon=dv.getInt32(p)/65536,lat=dv.getInt32(p+4)/65536;if(lat||lon){g.rows.push({label:'Ubicación',value:lat.toFixed(5)+', '+lon.toFixed(5),cat:'loc',kill:[x]});F.gps=[lat,lon]}}continue}
+   if(x.t.charCodeAt(0)===0xA9){const body=moov.slice(x.s,x.e);if(body.length>4){const n=(body[0]<<8)|body[1];add(x.t,td.decode(body.slice(4,4+n)),x)}}}}
+ if(!g.rows.length){g.rows.push({label:'Sin datos',vt:['este vídeo no lleva datos de ubicación, móvil ni autor'],noop:true});if(!F.tops.length)F.readonly=true}}
+function bMP4(F){
+ const m=F.moov.slice();const g=grp(F,'mp4');const kill=[];for(const id of['c2pa','priv']){const gg=grp(F,id);if(gg)for(const r of gg.rows)if(r.top&&gone(gg,r))kill.push(r.top)}
+ for(const r of g.rows){if(!gone(g,r))continue;
+  for(const b of r.kill||[]){m.set(te.encode('free'),b.h+4);m.fill(0,b.s,b.e)}
+  for(const[o,n]of r.zero||[])m.fill(0,o,o+n)}
+ const parts=[{o:F.moovOff,len:F.moovLen,data:m},...kill.map(b=>{const d=new Uint8Array(Math.min(b.sz,64e6));const v=new DataView(d.buffer);if(b.hl===16){v.setUint32(0,1);v.setBigUint64(8,BigInt(b.sz))}else v.setUint32(0,b.sz);d.set(te.encode('free'),4);return{o:b.o,len:b.sz,data:d}})].sort((a,b)=>a.o-b.o);
+ const out=[];let pos=0;for(const pt of parts){out.push(F.file.slice(pos,pt.o));out.push(pt.data);if(pt.data.length<pt.len)out.push(new Uint8Array(pt.len-pt.data.length));pos=pt.o+pt.len}out.push(F.file.slice(pos));return new Blob(out)}
 
 /* ================= texto plano ================= */
-async function pTXT(F){F.readonly=true;F.text=td.decode(F.bytes.slice(0,20e6))}
+async function pTXT(F){const raw=F.bytes;let t=td.decode(raw);if(t.includes('\uFFFD')){try{t=new TextDecoder('windows-1252').decode(raw);F.cp1252=true}catch(e){}}F.text=t}
+function bTXT(F){const plan=piiPlan(F),so=stegoOpts(F);let t=F.text;if(plan)t=redactString(t,plan);if(so)t=stegoClean(t,so);return F.cp1252&&!plan&&!so?F.bytes:te.encode(t)}
 
 /* ================= datos personales ================= */
 const DNIL='TRWAGMYFPDXBNJZSQVHLCKE';
 const luhn=s=>{let t=0,alt=false;for(let i=s.length-1;i>=0;i--){let d=+s[i];if(alt){d*=2;if(d>9)d-=9}t+=d;alt=!alt}return t%10===0};
 const ibanOk=s=>{const r=(s.slice(4)+s.slice(0,4)).toUpperCase().replace(/[A-Z]/g,c=>c.charCodeAt(0)-55);let m=0;for(const ch of r)m=(m*10+ +ch)%97;return m===1};
+const cardOk=s=>{const n=s.length;if(n<13||n>19||/^(\d)\1+$/.test(s)||!luhn(s))return false;const p2=+s.slice(0,2),p4=+s.slice(0,4),p3=+s.slice(0,3);
+ if(s[0]==='4')return n===13||n===16||n===19;if(p2>=51&&p2<=55||p4>=2221&&p4<=2720)return n===16;if(p2===34||p2===37)return n===15;if(p4===6011||p2===65||p3>=644&&p3<=649)return n>=16;if(p2===62)return n>=16;return false};
 const PII_ORDER=['DNI','NIE','Nº de la Seguridad Social','IBAN (cuenta bancaria)','Tarjeta bancaria','Teléfono','Correo electrónico'];
-function findPII(text){
- const res={};const add=(k,v)=>{(res[k]=res[k]||new Set()).add(v)};let t=text;
- const cut=re=>{t=t.replace(re,m=>' '.repeat(m.length))};
- for(const m of t.matchAll(/\b([A-Z]{2}\d{2}(?:[ -]?[A-Z0-9]{4}){2,7}(?:[ -]?[A-Z0-9]{1,4})?)\b/g)){const s=m[1].replace(/[ -]/g,'');if(s.length>=15&&s.length<=34&&ibanOk(s)){add('IBAN (cuenta bancaria)',s);t=t.replace(m[0],' '.repeat(m[0].length))}}
- for(const m of t.matchAll(/(?<![\d])(?:\d[ -]?){12,18}\d(?![\d])/g)){const s=m[0].replace(/[ -]/g,'');if(s.length>=13&&s.length<=19&&/^[3-6]/.test(s)&&!/^(\d)\1+$/.test(s)&&luhn(s)){add('Tarjeta bancaria',s);t=t.replace(m[0],' '.repeat(m[0].length))}}
- for(const m of t.matchAll(/(?<![\d])(\d{2})[ /-]?(\d{8})[ /-]?(\d{2})(?![\d])/g)){const a=+m[1],b=+m[2],c=+m[3];if(a<1||a>53)continue;const n=b<1e7?a*1e7+b:+(m[1]+m[2]);if(n%97===c){add('Nº de la Seguridad Social',m[1]+m[2]+m[3]);t=t.replace(m[0],' '.repeat(m[0].length))}}
- for(const m of t.matchAll(/(?<![\dA-Za-z])(\d{8})[ -]?([A-Za-z])(?![A-Za-z\d])/g))if(DNIL[+m[1]%23]===m[2].toUpperCase())add('DNI',m[1]+m[2].toUpperCase());
- for(const m of t.matchAll(/(?<![\dA-Za-z])([XYZxyz])[ -]?(\d{7})[ -]?([A-Za-z])(?![A-Za-z\d])/g)){const n=+('XYZ'.indexOf(m[1].toUpperCase())+m[2]);if(DNIL[n%23]===m[3].toUpperCase())add('NIE',m[1].toUpperCase()+m[2]+m[3].toUpperCase())}
- cut(/(?<![\dA-Za-z])\d{8}[ -]?[A-Za-z](?![A-Za-z\d])/g);
- for(const m of t.matchAll(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g))add('Correo electrónico',m[0].toLowerCase());
- for(const m of t.matchAll(/(?<![\d+])(?:(?:\+|00)34[ .-]?)?([6789]\d{2})[ .-]?(\d{2,3})[ .-]?(\d{2,3})[ .-]?(\d{0,3})(?![\d])/g)){const d=m[1]+m[2]+m[3]+m[4];if(d.length===9)add('Teléfono',d.replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3'))}
- return res}
+function piiSpans(text){
+ /* sin "lookbehind" para que funcione también en iPhone antiguos: el grupo 1 es el carácter previo */
+ const out=[];let t=text;
+ const scan=(re,fn)=>{for(const m of[...t.matchAll(re)]){const pre=m[1]||'';const g=m.slice(2);g.unshift(m[0].slice(pre.length));const v=fn(g);if(!v)continue;const s=m.index+pre.length,e=m.index+m[0].length;out.push({k:v[0],v:v[1],s,e});t=t.slice(0,s)+' '.repeat(e-s)+t.slice(e)}};
+ scan(/(^|[^A-Za-z0-9])([A-Z]{2}\d{2}(?:[ \u00A0-]?[A-Z0-9]{4}){2,7}(?:[ \u00A0-]?[A-Z0-9]{1,4})?)(?![A-Za-z0-9])/g,m=>{const s=m[1].replace(/[ \u00A0-]/g,'');return s.length>=15&&s.length<=34&&ibanOk(s)?['IBAN (cuenta bancaria)',s]:null});
+ scan(/(^|[^\d])(\d(?:[ \u00A0-]?\d){12,18})(?!\d)/g,m=>{const s=m[0].replace(/[ \u00A0-]/g,'');return cardOk(s)?['Tarjeta bancaria',s]:null});
+ scan(/(^|[^\d])(\d{2})[ \u00A0/-]?(\d{8})[ \u00A0/-]?(\d{2})(?!\d)/g,m=>{const a=+m[1],b=+m[2],c=+m[3];if(a<1||a>53)return null;const n=b<1e7?a*1e7+b:+(m[1]+m[2]);return n%97===c?['Nº de la Seguridad Social',m[1]+m[2]+m[3]]:null});
+ scan(/(^|[^\dA-Za-z])(\d{8})[ \u00A0-]?([A-Za-z])(?![A-Za-z\d])/g,m=>DNIL[+m[1]%23]===m[2].toUpperCase()?['DNI',m[1]+m[2].toUpperCase()]:null);
+ scan(/(^|[^\dA-Za-z])([XYZxyz])[ \u00A0-]?(\d{7})[ \u00A0-]?([A-Za-z])(?![A-Za-z\d])/g,m=>{const n=+('XYZ'.indexOf(m[1].toUpperCase())+m[2]);return DNIL[n%23]===m[3].toUpperCase()?['NIE',m[1].toUpperCase()+m[2]+m[3].toUpperCase()]:null});
+ scan(/(^|[^A-Za-z0-9._%+-])([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g,m=>['Correo electrónico',m[1].toLowerCase()]);
+ scan(/(^|[^\d+])((?:(?:\+|00)34[ \u00A0.-]?)?([6789]\d{2})[ \u00A0.-]?(\d{2,3})[ \u00A0.-]?(\d{2,3})(?:[ \u00A0.-]?(\d{1,3}))?)(?!\d)/g,m=>{const d=m[2]+m[3]+m[4]+(m[5]||'');return d.length===9?['Teléfono',d.replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3')]:null});
+ scan(/(^|[^\d+])((?:\+|00)(?!34)[1-9]\d{0,2}[ \u00A0.-]?\(?\d{1,4}\)?(?:[ \u00A0.-]?\d){5,12})(?!\d)/g,m=>{const d=m[0].replace(/[^\d+]/g,'').replace(/^00/,'+');return d.length>=9&&d.length<=16?['Teléfono',d]:null});
+ return out}
+function findPII(text){const res={};for(const sp of piiSpans(text)){(res[sp.k]=res[sp.k]||new Map());const mm=res[sp.k];mm.set(sp.v,(mm.get(sp.v)||0)+1)}return res}
 const mask=(k,v)=>{if(k==='Correo electrónico'){const[a,b]=v.split('@');return a.slice(0,1)+'•••@'+b}const s=v.replace(/\s/g,'');return s.length<=4?'••••':s.slice(0,2)+'•'.repeat(Math.max(2,s.length-4))+s.slice(-2)};
+const REDACT={text:1,docx:1,xlsx:1,pptx:1,odf:1,pdf:1};
 function piiGroup(F){
  if(!F.text&&!F.textErr)return;
- const g=G(F,'pii','Datos personales en el texto',{removable:false,note:'Esta app no borra texto del documento: revisa estos datos antes de enviarlo.'});
+ const can=REDACT[F.kind]&&!F.enc;
+ const g=G(F,'pii','Datos personales en el texto',{removable:!!can,granular:!!can,note:can?(F.kind==='pdf'?'Al quitarlos o cambiarlos se tapan en el PDF. Para que desaparezcan de verdad, las páginas con cambios se guardan como imagen: ese texto ya no se podrá seleccionar ni buscar.':'Al quitarlos se sustituyen por [borrado] en el texto. También puedes escribir otro valor.'):'Esta app no puede cambiar el texto de este archivo: revisa estos datos antes de enviarlo.'});
  if(F.textErr){g.rows.push({label:'Texto del PDF',vt:['no se ha podido leer para buscar datos personales'],noop:true});return}
  const res=findPII(F.text);F.pii={};
- for(const k of PII_ORDER){const s=res[k];if(!s)continue;const a=[...s];F.pii[k]=a.length;g.rows.push({label:k,vt:[a.length===1?'{0} encontrado: {1}':'{0} encontrados: {1}',a.length,a.slice(0,3).map(v=>mask(k,v)).join(', ')+(a.length>3?'…':'')],cat:'pii'})}
- if(!g.rows.length)g.rows.push({label:'Nada encontrado',vt:['no hay DNI, teléfonos, correos ni cuentas a la vista'],noop:true})}
+ for(const k of PII_ORDER){const mm=res[k];if(!mm)continue;F.pii[k]=mm.size;
+  for(const[v,n]of mm)g.rows.push(can?{label:k,value:v,edit:true,cat:'pii',pii:true,vt0:n,sub:n>1?T('{0} veces',n):''}:{label:k,vt:['{0}',mask(k,v)],cat:'pii',sub:n>1?T('{0} veces',n):''})}
+ if(F.scanned)g.rows.push({label:'Páginas escaneadas',vt:[F.scanned===1?'1 página es una imagen (escaneada): su texto no se puede revisar automáticamente, revísala a mano':'{0} páginas son imágenes (escaneadas): su texto no se puede revisar automáticamente, revísalas a mano',F.scanned],noop:true,cat:'pii'});
+ if(!g.rows.filter(r=>!r.noop||r.label==='Páginas escaneadas').length){g.rows.push({label:'Nada encontrado',vt:['no hay DNI, teléfonos, correos ni cuentas a la vista'],noop:true});g.removable=false;g.granular=false}}
+function piiPlan(F){const g=grp(F,'pii');if(!g||!g.removable)return null;const m=new Map();for(const r of g.rows){if(!r.pii)continue;const key=r.label+'|'+r.value;if(gone(g,r))m.set(key,T('[borrado]'));else if(r.newVal!==undefined&&r.newVal!==r.value)m.set(key,r.newVal)}return m.size?m:null}
+const planSpans=(text,plan)=>piiSpans(text).filter(sp=>plan.has(sp.k+'|'+sp.v)).map(sp=>({...sp,rep:plan.get(sp.k+'|'+sp.v)}));
+function redactString(text,plan){for(const x of planSpans(text,plan).sort((a,b)=>b.s-a.s))text=text.slice(0,x.s)+x.rep+text.slice(x.e);return text}
+function redactSegs(segs,plan){
+ let g='';const pos=[];let prev;segs.forEach((sg,i)=>{if(i&&sg.para!==prev)g+='\n';const v=sg.get();pos.push([g.length,g.length+v.length]);g+=v;prev=sg.para});
+ const spans=planSpans(g,plan);if(!spans.length)return 0;const edits=segs.map(()=>[]);
+ for(const sp of spans){let first=true;segs.forEach((sg,i)=>{const[a,b]=pos[i];const x=Math.max(sp.s,a),y=Math.min(sp.e,b);if(x<y){edits[i].push([x-a,y-a,first?sp.rep:'']);first=false}})}
+ segs.forEach((sg,i)=>{if(!edits[i].length)return;let v=sg.get();for(const[x,y,r]of edits[i].sort((p,q)=>q[0]-p[0]))v=v.slice(0,x)+r+v.slice(y);sg.set(v)});return spans.length}
+const XMLNS='http://www.w3.org/XML/1998/namespace';
+function elSegs(d,pick,paraName){return[...d.getElementsByTagName('*')].filter(pick).map(e=>{let p=e.parentNode;while(p&&p.localName!==paraName)p=p.parentNode;return{para:p||e,get:()=>e.textContent,set:v=>{e.textContent=v;if(/^\s|\s$/.test(v)&&e.namespaceURI===W)e.setAttributeNS(XMLNS,'xml:space','preserve')}}})}
+const SML='http://schemas.openxmlformats.org/spreadsheetml/2006/main',DML='http://schemas.openxmlformats.org/drawingml/2006/main';
+async function redactOffice(F,zip,plan){
+ const names=Object.keys(zip.files);
+ if(F.kind==='docx')for(const p of[...storyParts(names),'word/comments.xml'])await editXml(zip,p,d=>redactSegs(elSegs(d,e=>e.namespaceURI===W&&(e.localName==='t'||e.localName==='delText'),'p'),plan));
+ if(F.kind==='pptx')for(const p of names.filter(n=>/^ppt\/(slides|notesSlides|comments)\/[^/]+\.xml$/.test(n)))await editXml(zip,p,d=>{redactSegs(elSegs(d,e=>e.namespaceURI===DML&&e.localName==='t','p'),plan);redactSegs(elSegs(d,e=>e.localName==='text'&&e.prefix==='p','text'),plan)});
+ if(F.kind==='xlsx'){
+  await editXml(zip,'xl/sharedStrings.xml',d=>redactSegs(elSegs(d,e=>e.namespaceURI===SML&&e.localName==='t','si'),plan));
+  for(const p of names.filter(n=>/^xl\/(comments\d*\.xml|comments\/[^/]+\.xml|worksheets\/[^/]+\.xml)$/.test(n)))await editXml(zip,p,d=>{
+   redactSegs(elSegs(d,e=>e.namespaceURI===SML&&e.localName==='t',p.includes('comments')?'comment':'c'),plan);
+   for(const c of[...d.getElementsByTagNameNS(SML,'c')]){const t=c.getAttribute('t');if(t&&t!=='n')continue;const v=[...c.children].find(x=>x.localName==='v'),f=[...c.children].find(x=>x.localName==='f');if(!v||f)continue;const s0=v.textContent,s1=redactString(s0,plan);if(s1===s0)continue;
+    c.setAttribute('t','inlineStr');v.remove();const is=d.createElementNS(SML,'is'),te_=d.createElementNS(SML,'t');te_.textContent=s1;is.appendChild(te_);c.appendChild(is)}})}}
+async function redactODF(zip,plan){
+ const TX='urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+ for(const p of['content.xml','styles.xml'])await editXml(zip,p,d=>{const w=d.createTreeWalker(d.documentElement,NodeFilter.SHOW_TEXT);const segs=[];let n;while(n=w.nextNode()){const node=n;let q=node.parentNode;while(q&&!(q.namespaceURI===TX&&(q.localName==='p'||q.localName==='h')))q=q.parentNode;segs.push({para:q||node.parentNode,get:()=>node.data,set:v=>{node.data=v}})}redactSegs(segs,plan)})}
+async function pdfRedact(F,plan,force){
+ const L=await needPdfjs();const P=await need('pdflib');
+ const task=L.getDocument({data:F.bytes.slice(),isEvalSupported:false,verbosity:0});const doc=await task.promise;
+ const src=await P.PDFDocument.load(F.bytes,{updateMetadata:false});
+ const out=await P.PDFDocument.create({updateMetadata:false});
+ for(let i=1;i<=doc.numPages;i++){
+  const pg=await doc.getPage(i);const tc=await pg.getTextContent();const items=tc.items.filter(it=>typeof it.str==='string');
+  const{g,pos}=pdfJoin(items);
+  const spans=plan?planSpans(g,plan):[];
+  if(!spans.length&&!(force&&force.has(i))){const[cp]=await out.copyPages(src,[i-1]);out.addPage(cp);pg.cleanup();continue}
+  const sc=2,vp=pg.getViewport({scale:sc}),vp1=pg.getViewport({scale:1});
+  const c=document.createElement('canvas');c.width=Math.ceil(vp.width);c.height=Math.ceil(vp.height);const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);
+  await pg.render({canvasContext:ctx,viewport:vp}).promise;
+  const mc=document.createElement('canvas').getContext('2d');mc.font='100px Helvetica, Arial, "Liberation Sans", sans-serif';const mw=t=>mc.measureText(t).width;
+  for(const sp of spans){let first=true;items.forEach((it,k)=>{if(pos[k]<0)return;const a=pos[k],b=a+it.str.length,x=Math.max(sp.s,a),y=Math.min(sp.e,b);if(x>=y)return;
+   const tr=it.transform,h=Math.hypot(tr[2],tr[3])||it.height||10,bl=Math.hypot(tr[0],tr[1])||h,W0=it.width||h*.5*it.str.length,full=mw(it.str)||1;
+   const del=sp.rep===T('[borrado]'),pd=del?h*.3:h*.03,ux=tr[0]/bl,uy=tr[1]/bl,vx=tr[2]/h,vy=tr[3]/h;
+   const a0=W0*mw(it.str.slice(0,x-a))/full-pd,a1=W0*mw(it.str.slice(0,y-a))/full+pd,b0=-h*.3,b1=h*1.0;
+   const M=vp.transform,P=(p,q)=>{const X=tr[4]+p*ux+q*vx,Y=tr[5]+p*uy+q*vy;return[M[0]*X+M[2]*Y+M[4],M[1]*X+M[3]*Y+M[5]]};
+   const pts=[P(a0,b0),P(a1,b0),P(a1,b1),P(a0,b1)];
+   ctx.fillStyle=del?'#000':'#fff';ctx.beginPath();ctx.moveTo(...pts[0]);for(const q of pts.slice(1))ctx.lineTo(...q);ctx.closePath();ctx.fill();if(del){ctx.lineWidth=3;ctx.strokeStyle='#000';ctx.stroke()}
+   if(!del&&first){const ang=Math.atan2(pts[1][1]-pts[0][1],pts[1][0]-pts[0][0]),hp=Math.hypot(pts[3][0]-pts[0][0],pts[3][1]-pts[0][1]);ctx.save();ctx.translate(pts[3][0],pts[3][1]);ctx.rotate(ang);ctx.fillStyle='#000';ctx.font=Math.round(hp*.75)+'px sans-serif';ctx.textBaseline='bottom';ctx.fillText(sp.rep,2,-hp*.12);ctx.restore()}first=false})}
+  const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));const img=await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+  const page=out.addPage([vp1.width,vp1.height]);page.drawImage(img,{x:0,y:0,width:vp1.width,height:vp1.height});pg.cleanup()}
+ try{await task.destroy()}catch(e){}
+ return out}
 
 /* ================= detección de formato ================= */
 const KIND={jpeg:'Foto JPG',png:'Imagen PNG',webp:'Imagen WebP',heic:'Foto HEIC',pdf:'PDF',docx:'Word',xlsx:'Excel',pptx:'PowerPoint',odf:'LibreOffice',mp3:'Audio MP3',video:'Vídeo o audio MP4/MOV',text:'Texto',audio:'Audio',oldoffice:'Office antiguo',other:'Otro formato'};
 const PARSE={jpeg:pJPEG,png:pPNG,webp:pWEBP,heic:pHEIC,pdf:pPDF,docx:pOffice,xlsx:pOffice,pptx:pOffice,odf:pODF,mp3:pMP3,video:pMP4,text:pTXT};
-const BUILD={jpeg:bJPEG,png:bPNG,webp:bWEBP,pdf:bPDF,docx:bOffice,xlsx:bOffice,pptx:bOffice,odf:bODF,mp3:bMP3};
+const BUILD={heic:async F=>{const j=await heicToJpeg(F);const tiff=tiffFrom(F);return tiff?writeJpeg(jpegSegs(j),()=>true,tiff):j},jpeg:bJPEG,png:bPNG,webp:bWEBP,pdf:bPDF,docx:bOffice,xlsx:bOffice,pptx:bOffice,odf:bODF,mp3:bMP3,video:bMP4,text:bTXT};
 const OTHER={audio:'Audio: este formato no se edita aquí. Para MP3 sí. Para el resto usa tu reproductor o ExifTool.',oldoffice:'Formato antiguo de Office (.doc, .xls, .ppt). Ábrelo y guárdalo como .docx, .xlsx o .pptx y vuelve a traerlo aquí.',other:'Este formato no se puede revisar aquí. Solo se muestran los datos del sistema. Para casi cualquier formato: ExifTool.'};
 function sniff(u,name){const ext=(name.split('.').pop()||'').toLowerCase(),h=latin1(u.slice(0,12));
  if(u[0]===0xFF&&u[1]===0xD8)return'jpeg';if(h.startsWith('\x89PNG'))return'png';if(h.startsWith('RIFF')&&h.slice(8)==='WEBP')return'webp';if(h.startsWith('%PDF'))return'pdf';
@@ -878,18 +1229,20 @@ async function analyze(file,bytes,tag,path){
  if(!F.error){if(PARSE[kind]){try{await PARSE[kind](F)}catch(e){F.error=e.message||String(e)}}else F.note=OTHER[kind]}
  if(F.pages)grp(F,'sys').rows.push({label:'Páginas',value:String(F.pages)});
  piiGroup(F);
+ stegoGroup(F);
+ for(const g of metaGroups(F))for(const r of g.rows)if(r.cat!=='pii'&&typeof r.value==='string'&&AI_RE.test(r.value))r.cat='ai';
  if(!NOFULL[kind]&&F.bytes.length<300e6)F.hash=await sha(F.bytes);
  F.risk0=riskOf(F);
  return F}
 
 /* ================= riesgo ================= */
-const CATW={loc:3,pii:3,com:3,chg:3,serial:3,who:2,org:2,dev:1,date:1,soft:1,hist:1,custom:1,txt:1,tech:1};
-const PHR={loc:'dónde se hizo o se grabó',pii:'datos personales escritos en el texto',chg:'cambios sin aceptar (texto borrado que sigue dentro)',com:'comentarios con el nombre de quien los hizo',serial:'números de serie que identifican tu aparato',who:'quién es el autor o quién lo editó',org:'tu empresa, cargo o carpetas de trabajo',dev:'con qué cámara, móvil u objetivo',date:'cuándo se hizo',soft:'qué programas usas',hist:'cuánto tiempo y cuántas veces se editó',custom:'datos añadidos por programas o personas'};
-const RORDER=['loc','pii','chg','com','serial','who','org','dev','date','soft','hist','custom'];
+const CATW={ai:2,hid:2,loc:3,pii:3,com:3,chg:3,serial:3,who:2,org:2,dev:1,date:1,soft:1,hist:1,custom:1,txt:1,tech:1};
+const PHR={ai:'qué inteligencia artificial o programa lo creó',hid:'datos ocultos que no se ven a simple vista',loc:'dónde se hizo o se grabó',pii:'datos personales escritos en el texto',chg:'cambios sin aceptar (texto borrado que sigue dentro)',com:'comentarios con el nombre de quien los hizo',serial:'números de serie que identifican tu aparato',who:'quién es el autor o quién lo editó',org:'tu empresa, cargo o carpetas de trabajo',dev:'con qué cámara, móvil u objetivo',date:'cuándo se hizo',soft:'qué programas usas',hist:'cuánto tiempo y cuántas veces se editó',custom:'datos añadidos por programas o personas'};
+const RORDER=['loc','pii','chg','com','ai','hid','serial','who','org','dev','date','soft','hist','custom'];
 const RLABEL=['Sin datos personales a la vista','Riesgo bajo','Riesgo medio','Riesgo alto'];
 function riskOf(F){
  const cats=new Set();let any=false;
- for(const g of metaGroups(F))for(const r of g.rows){if(r.noop||gone(g,r)||(r.isNew&&!r.newVal))continue;any=true;if(r.cat)cats.add(r.cat)}
+ for(const g of metaGroups(F))for(const r of g.rows){if(r.noop||r.norisk||gone(g,r)||(r.isNew&&!r.newVal))continue;any=true;if(r.cat)cats.add(r.cat)}
  let lv=0;for(const c of cats)lv=Math.max(lv,CATW[c]||1);if(any&&!lv)lv=1;
  const ph=RORDER.filter(c=>cats.has(c)).map(c=>PHR[c]);
  return{lv,ph}}
@@ -900,7 +1253,7 @@ function riskText(rk){
 
 /* ================= perfiles ================= */
 const PROF={social:{label:'Para redes sociales',desc:'Quita ubicación, autor y nº de serie. Deja la fecha.',cats:['loc','who','org','serial','com','chg','hist']},
- work:{label:'Para enviar fuera de la empresa',desc:'Quita autor, empresa, revisiones, comentarios y cambios.',cats:['loc','who','org','serial','com','chg','hist','custom','soft']},
+ work:{label:'Para enviar fuera de la empresa',desc:'Quita autor, empresa, revisiones, comentarios, cambios y contenido oculto.',cats:['loc','who','org','serial','com','chg','hist','custom','soft','hid']},
  anon:{label:'Anónimo total',desc:'Quita todo lo que se puede quitar.',all:true}};
 function applyProfile(F,p){const P=PROF[p];
  for(const g of metaGroups(F)){if(!g.removable)continue;
@@ -959,13 +1312,14 @@ function renderShell(){
  <div><div class="bar"><h1>${T('Metadatos de archivos')}</h1><div class="tools"><button class="b sm" data-act="help">${T('Ayuda')}</button><select id="lang" aria-label="${T('Idioma')}"><option value="es"${LANG==='es'?' selected':''}>Español</option><option value="ca"${LANG==='ca'?' selected':''}>Català</option><option value="en"${LANG==='en'?' selected':''}>English</option></select></div></div>
  <p>${T('Mira qué datos esconde un archivo (autor, fechas, cámara, ubicación GPS…), cámbialos o bórralos y descarga una copia limpia.')}</p>
  <p>${T('Todo ocurre en tu navegador: los archivos no se suben a ningún sitio. Funciona también sin internet.')}</p>
- <p class="fmt">${T('Fotos JPG, PNG, WebP y HEIC · PDF · Word, Excel y PowerPoint · LibreOffice · MP3 · Vídeos MP4 y MOV (solo revisar)')}</p>
+ <p class="fmt">${T('Fotos JPG, PNG, WebP y HEIC · PDF · Word, Excel y PowerPoint · LibreOffice · MP3 · Vídeos MP4 y MOV · Textos y CSV')}</p>
  <div class="picks"><button class="b" data-act="pick">${T('Elegir archivos')}</button><button class="b" data-act="pickdir">${T('Elegir una carpeta')}</button></div></div>
  <div class="drop" id="drop" role="button" tabindex="0" aria-label="${T('Suelta aquí tus archivos o una carpeta')}"><b>${T('Suelta aquí tus archivos o una carpeta')}</b><span>${T('o pulsa para elegirlos')}</span><div class="prog" id="prog" hidden><i></i></div></div>
  </header>`;
  $('#foot').innerHTML=`<div><h3>${T('Las fechas del sistema no cuentan')}</h3><p>${T('"Creado" y "Modificado" en el Explorador o el Finder los pone tu ordenador, no van dentro del archivo. La copia descargada tendrá fecha nueva.')}</p></div>
  <div><h3>${T('Fotos: se conserva la orientación')}</h3><p>${T('Al quitarlo todo se mantiene la etiqueta de orientación para que la foto no salga girada. Si quieres, también puedes quitarla a mano.')}</p></div>
- <div><h3>${T('Otros formatos')}</h3><p>${T('Para vídeo, RAW y formatos poco comunes usa ExifTool:')} <code>exiftool -all= archivo</code></p></div>`;
+ <div><h3>${T('Marca de descarga de Windows')}</h3><p>${T('Windows marca los archivos descargados (también la copia limpia). Para quitarla: clic derecho › Propiedades › Desbloquear.')}</p></div>
+ <div><h3>${T('Otros formatos')}</h3><p>${T('Para fotos RAW y formatos poco comunes usa ExifTool:')} <code>exiftool -all= archivo</code></p></div>`;
  $('#help .dlgacts').innerHTML=`<button class="b" data-act="sample">${T('Cargar un ejemplo')}</button><button class="b pri" data-act="closehelp">${T('Cerrar')}</button>`;
  $('#helpbody').innerHTML=HELP[LANG]||HELP.es;
  bindDrop()}
@@ -1038,7 +1392,7 @@ const msg=(t,c='')=>{const m=$('#msg')||$('#lmsg');if(m){m.textContent=t;m.class
 function progress(i,n){const p=$('#prog');if(!p)return;if(i>=n){p.hidden=true;return}p.hidden=false;p.firstElementChild.style.width=Math.round(i/n*100)+'%'}
 
 /* ================= descarga ================= */
-const DL_OK=['jpg','jpeg','png','webp','pdf','docx','xlsx','pptx','zip','txt','csv','html','json','md'];
+const DL_OK=['mp4','jpg','jpeg','png','webp','pdf','docx','xlsx','pptx','zip','txt','csv','html','json','md'];
 async function save(name,data){
  const ext=(name.split('.').pop()||'').toLowerCase();
  const direct=()=>{try{const u=URL.createObjectURL(new Blob([data])),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);return name}catch(e){msg(T('No se pudo descargar en esta vista.'),'err');return null}};
@@ -1055,23 +1409,23 @@ function changeList(F){const removed=[],edited=[];
  for(const g of metaGroups(F)){if(g.removed){removed.push(T(g.name));continue}
   for(const r of g.rows){if(r.noop)continue;if(r.forced){removed.push(T(r.label));continue}if(r.removed&&!r.isNew){removed.push(T(r.label));continue}if(r.newVal!==undefined&&r.newVal!==r.value&&!(r.isNew&&!r.newVal))edited.push(T(r.label)+(r.isNew?' ('+T('nuevo')+')':''))}}
  return{removed,edited}}
-async function produce(F){return F.convert?await heicToJpeg(F):await BUILD[F.kind](F)}
+async function produce(F){return await BUILD[F.kind](F)}
 async function exportFile(F,action){
  if(busy)return;busy=true;msg(T('Preparando la copia…'));
  let out;try{out=await produce(F)}catch(e){busy=false;msg(e.message||String(e),'err');return}
  const name=outName(F,suf(action==='manual'?'editado':'limpio'));
- const V=await analyze(new File([out],name,{type:F.file.type,lastModified:Date.now()}),out,'copia',F.path?F.path.replace(/[^/]*$/,name):'');
+ const V=await analyze(new File([out],name,{type:F.file.type,lastModified:Date.now()}),out instanceof Blob?null:out,'copia',F.path?F.path.replace(/[^/]*$/,name):'');
  const saved=await save(name,out);
  const cl=changeList(F);const rk=riskOf(V),c=counts(V);
  LOG.push({fid:F.id,when:new Date(),outName:name,action,removed:cl.removed,edited:cl.edited,hashOut:V.hash,after:{n:c.n,lv:rk.lv,ph:rk.ph}});
  files.splice(files.indexOf(F)+1,0,V);busy=false;render();
- msg((saved?T('Descargado: {0}.',saved)+' ':'')+(()=>{const pg=grp(V,'pii'),pn=pg?pg.rows.filter(r=>r.cat==='pii').length:0,sm=c.s-pn;return pl(c.n,'Comprobación: la copia conserva {0} campo','Comprobación: la copia conserva {0} campos')+(sm>0?', '+pl(sm,'{0} privado','{0} privados')+'.':' '+T('y ninguno privado.'))+(pn?' '+T('Ojo: el texto sigue teniendo datos personales que debes revisar.'):'')})()+' '+T('La tienes en la lista.'),saved?'ok':'err')}
+ msg((saved?T('Descargado: {0}.',saved)+' ':'')+(()=>{const pg=grp(V,'pii'),pn=pg?pg.rows.filter(r=>r.cat==='pii'&&!r.noop).length:0,sm=c.s-pn;return pl(c.n,'Comprobación: la copia conserva {0} campo','Comprobación: la copia conserva {0} campos')+(sm>0?', '+pl(sm,'{0} privado','{0} privados')+'.':' '+T('y ninguno privado.'))+(pn?' '+T('Ojo: el texto sigue teniendo datos personales que debes revisar.'):'')})()+' '+T('La tienes en la lista.'),saved?'ok':'err')}
 
 async function zipAll(){
  if(busy)return;busy=true;
  const JSZip=await need('jszip');const z=new JSZip(),used={};let n=0;const p=$('#bprof')?$('#bprof').value:'anon';const list=files.filter(f=>canSave(f)&&f.tag!=='copia');
  for(const[i,F]of list.entries()){progress(i,list.length);applyProfile(F,p);try{const out=await produce(F);let nm=(F.path&&F.path.includes('/')?F.path.replace(/[^/]*$/,''):'')+outName(F,suf('limpio'));if(used[nm])nm=nm.replace(/(\.[^.]+)$/,'_'+(++used[nm])+'$1');else used[nm]=1;z.file(nm,out);n++;
-  const V=await analyze(new File([out],nm.split('/').pop()),out,'copia');const rk=riskOf(V),c=counts(V),cl=changeList(F);LOG.push({fid:F.id,when:new Date(),outName:nm,action:p,removed:cl.removed,edited:cl.edited,hashOut:V.hash,after:{n:c.n,lv:rk.lv,ph:rk.ph}})}catch(e){}}
+  const V=await analyze(new File([out],nm.split('/').pop()),out instanceof Blob?null:out,'copia');const rk=riskOf(V),c=counts(V),cl=changeList(F);LOG.push({fid:F.id,when:new Date(),outName:nm,action:p,removed:cl.removed,edited:cl.edited,hashOut:V.hash,after:{n:c.n,lv:rk.lv,ph:rk.ph}})}catch(e){}}
  progress(1,1);busy=false;render();
  const data=await z.generateAsync({type:'uint8array',compression:'DEFLATE'});
  const sv=await save(T('archivos_limpios')+'.zip',data);if(sv)msg(T('{0} archivos limpios dentro de {1}',n,sv),'ok')}
@@ -1110,7 +1464,7 @@ async function reportPDF(list){
   if(!parsed(F)){line(T('Formato no revisable con esta app.'),{color:C.mute,after:6});rule();continue}
   const r0=F.risk0||riskOf(F);line(T('Antes')+': '+T(RLABEL[r0.lv])+'. '+riskText(r0),{bold:true,color:lvc(r0.lv)});
   const byCat={};for(const g of fieldGroups(F))for(const r of g.rows)if(!r.noop&&!r.isNew){const k=r.cat||'tech';byCat[k]=(byCat[k]||0)+1}
-  const CN={loc:'ubicación',who:'personas',org:'empresa',serial:'nº de serie',dev:'aparato',date:'fechas',soft:'programas',hist:'historial',com:'comentarios',chg:'cambios',custom:'personalizados',txt:'textos',tech:'técnicos'};
+  const CN={ai:'IA',hid:'oculto',pii:'datos personales',loc:'ubicación',who:'personas',org:'empresa',serial:'nº de serie',dev:'aparato',date:'fechas',soft:'programas',hist:'historial',com:'comentarios',chg:'cambios',custom:'personalizados',txt:'textos',tech:'técnicos'};
   line(T('Metadatos encontrados: {0}',counts(F).n)+(Object.keys(byCat).length?' ('+Object.entries(byCat).map(([k,v])=>T(CN[k]||k)+' '+v).join(', ')+')':''),{indent:10});
   if(F.pii&&Object.keys(F.pii).length)line(T('Datos personales en el texto')+': '+Object.entries(F.pii).map(([k,v])=>T(k)+' '+v).join(', ')+'. '+T('No se borran: hay que revisarlos a mano.'),{indent:10,color:C.red});
   const ex=LOG.filter(e=>e.fid===F.id);
@@ -1160,7 +1514,7 @@ document.addEventListener('input',e=>{const i=e.target;if(!cur||i.dataset.g===un
  const c=changes(cur),sb=document.querySelector('[data-act=save]'),rb=document.querySelector('[data-act=reset]');if(sb){sb.disabled=!c;sb.textContent=T('Guardar cambios')+(c?' ('+c+')':'')}if(rb)rb.disabled=!c});
 document.addEventListener('click',async e=>{
  const b=e.target.closest('button');if(!b)return;const a=b.dataset.act;
- if(b.dataset.f){cur=files.find(F=>F.id===+b.dataset.f);render();return}
+ if(b.dataset.f){cur=files.find(F=>F.id===+b.dataset.f);render();if(innerWidth<900)$('#detail').scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});return}
  if(!a)return;const F=cur;
  if(a==='help'){const d=$('#help');if(d.showModal)d.showModal();else d.setAttribute('open','');return}
  if(a==='closehelp'){const d=$('#help');if(d.close)d.close();else d.removeAttribute('open');return}
@@ -1175,7 +1529,7 @@ document.addEventListener('click',async e=>{
  else if(a==='grp'){const g=F.groups[+b.dataset.g];if(g.granular){const rs=g.rows.filter(r=>!r.forced&&!r.noop);const all=rs.every(r=>r.removed);rs.forEach(r=>r.removed=!all)}else g.removed=!g.removed;render()}
  else if(a==='prof'){applyProfile(F,b.dataset.p);F.lastProf=b.dataset.p;render();msg(changes(F)?T('Marcado con el perfil «{0}». Revisa la lista y pulsa Guardar cambios.',T(PROF[b.dataset.p].label)):T('No hay nada que quitar con este perfil.'),'ok')}
  else if(a==='save'){await exportFile(F,F.lastProf&&changes(F)?F.lastProf:'manual')}
- else if(a==='convert'){await exportFile(F,'anon')}
+ else if(a==='convert'){applyProfile(F,'anon');render();await exportFile(F,'anon')}
  else if(a==='reset'){const N=await analyze(F.file,F.kind==='video'?null:F.bytes,F.tag,F.path);files[files.indexOf(F)]=N;cur=N;render()}
  else if(a==='report1'){await reportPDF([F])}
  else if(a==='copy'){try{await navigator.clipboard.writeText(reportText(F));msg(T('Informe copiado.'),'ok')}catch(err){msg(T('No se pudo copiar en esta vista.'),'err')}}
