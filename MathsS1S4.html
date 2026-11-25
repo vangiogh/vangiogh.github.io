@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mates ADE">
+<meta name="format-detection" content="telephone=no">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="sticker">
+<title>Misión Matemáticas Empresariales — Aventura Interactiva (Semanas 1 a 4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+
+  /* Sticker Style Tokens */
+--background: #edf5ed;
+--surface-container-low: #f5f9f2;
+--surface-container: #e0eddf;
+--surface-container-high: #cbdFcb;
+
+  /* Ink */
+  --on-surface: #2e1a28;
+  --on-surface-variant: #604868;
+
+  /* Rules */
+  --outline: #907898;
+  --outline-variant: #dcc8e0;
+
+  /* Accents */
+  --primary: #287a50;
+  --on-primary: #ffffff;
+  --primary-container: #bce5ca;
+  --on-primary-container: #2e1a28;
+  --primary-soft: #e3f4e8;
+
+  --secondary: #8a5101;
+  --on-secondary: #ffffff;
+  --secondary-container: #efe5fa;
+  --on-secondary-container: #3b2059;
+
+  --tertiary: #0096cc;
+  --tertiary-container: #dcf3fc;
+  --on-tertiary-container: #004b66;
+
+  --tangerine: #d96a00;
+  --tangerine-container: #fff0db;
+  --on-tangerine-container: #5c2b00;
+
+  --error: #c53030;
+  --on-error: #ffffff;
+  --error-container: #fde8e8;
+  --on-error-container: #741616;
+
+  /* Shared Semantic Tokens */
+  --positive: #138a5b;
+  --on-positive: #ffffff;
+  --positive-container: #ddf7eb;
+  --on-positive-container: #0b4d32;
+
+  --warning: #b85600;
+  --warning-container: #fff0db;
+  --on-warning-container: #5c2b00;
+
+  --focus: var(--primary);
+
+  /* Data series */
+  --data-1: #c2207f;
+  --data-2: #7c52aa;
+  --data-3: #0096cc;
+  --data-4: #d96a00;
+  --data-context: #c8b8d0;
+
+  /* Fonts */
+  --font-headline: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-label: 'DM Sans', sans-serif;
+
+  /* Type Scale (Narrative) */
+  --display-size: clamp(2.35rem, 1.35rem+3.6vw, 4rem);
+  --headline-size: clamp(1.75rem, 1.2rem+1.9vw, 2.5rem);
+  --subhead-size: clamp(1.2rem, 1.05rem+0.55vw, 1.45rem);
+  --body-size: clamp(1.02rem, 0.98rem+0.2vw, 1.125rem);
+  --label-size: clamp(0.75rem, 0.72rem+0.15vw, 0.8125rem);
+
+  /* Shape */
+  --rounded: 1rem;
+  --rounded-lg: 2rem;
+  --rounded-full: 9999px;
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5.5rem;
+
+  /* Style Effects */
+  --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+  --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+  --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+  --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+  --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+  --shadow-positive: 0 4px 16px rgb(19 138 91 / 0.18);
+  --shadow-tangerine: 0 4px 16px rgb(217 106 0 / 0.18);
+  --pop-scale: scale(1.03);
+  --lift: translateY(-4px);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+/* Base reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; margin: 0; padding: 0; scroll-behavior: smooth; }
+header { position: static !important; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.65;
+  color: var(--on-surface);
+  background-color: var(--background);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.page-grid {
+  display: grid;
+  gap: var(--space-2xl);
+  padding: var(--space-lg);
+  max-width: 1160px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.page-grid * { min-width: 0; }
+
+/* Typography */
+.display {
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: var(--display-size);
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  color: var(--on-surface);
+  margin: 0 0 var(--space-md) 0;
+}
+.display em, .section-title em {
+  font-style: normal;
+  color: var(--primary);
+}
+
+.section-title {
+  font-family: var(--font-headline);
+  font-weight: 800;
+  font-size: var(--headline-size);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--on-surface);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.subhead {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: var(--subhead-size);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--on-surface);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.kicker {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: var(--label-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.caption {
+  font-size: var(--label-size);
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.02em;
+}
+
+p { margin: 0 0 var(--space-md) 0; max-width: 65ch; }
+
+/* Game HUD Header */
+.game-hud {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-pink);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.hud-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 800;
+  font-size: var(--subhead-size);
+  color: var(--on-surface);
+}
+
+.hud-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.xp-pill {
+  background: var(--surface-container);
+  border-radius: var(--rounded-full);
+  padding: var(--space-xs) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 220px;
+}
+
+.xp-track {
+  flex: 1;
+  height: 12px;
+  background: var(--surface-container-high);
+  border-radius: var(--rounded-full);
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--tertiary);
+  border-radius: var(--rounded-full);
+  transition: width var(--dur-long) var(--ease-bounce);
+}
+
+.xp-label {
+  font-weight: 800;
+  font-size: var(--label-size);
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.medal-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.medal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--rounded-full);
+  font-size: var(--label-size);
+  font-weight: 700;
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+  transition: transform var(--dur-short) var(--ease-bounce), background-color var(--dur-short) var(--ease-out);
+}
+
+.medal-chip.unlocked {
+  background: var(--positive-container);
+  color: var(--on-positive-container);
+  box-shadow: var(--shadow-positive);
+}
+
+.hud-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-top: var(--space-sm);
+}
+
+.nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Buttons & Pills */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--rounded-full);
+  border: none;
+  font-weight: 700;
+  font-size: var(--body-size);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--dur-short) var(--ease-bounce),
+              box-shadow var(--dur-short) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+
+.btn:hover { transform: var(--pop-scale); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: var(--shadow-pink);
+}
+.btn-primary:hover { box-shadow: var(--shadow-pink-deep); }
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--on-secondary);
+  box-shadow: var(--shadow-grape);
+}
+.btn-secondary:hover { box-shadow: var(--shadow-grape-deep); }
+
+.btn-soft {
+  background: var(--surface-container);
+  color: var(--on-surface);
+}
+.btn-soft:hover { background: var(--surface-container-high); }
+
+.btn-soft.active {
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: var(--shadow-pink);
+}
+
+.btn-quiet {
+  background: transparent;
+  color: var(--primary);
+  padding: var(--space-xs) var(--space-md);
+}
+.btn-quiet:hover { background: var(--primary-soft); }
+
+/* Badges & Tags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--rounded-full);
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font-size: var(--label-size);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--rounded-full);
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+  font-size: var(--label-size);
+  font-weight: 700;
+}
+
+.tag-sky {
+  background: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+  border: none;
+}
+
+.tag-tangerine {
+  background: var(--tangerine-container);
+  color: var(--on-tangerine-container);
+  border: none;
+}
+
+/* Cards & Panels */
+.hero-panel {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-pink);
+  padding: var(--space-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.card {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded);
+  box-shadow: var(--shadow-pink);
+  padding: var(--space-lg);
+  transition: transform var(--dur-short) var(--ease-bounce), box-shadow var(--dur-short) var(--ease-out);
+}
+.card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+.card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+
+.card-sky { box-shadow: var(--shadow-sky) !important; }
+.card-grape { box-shadow: var(--shadow-grape) !important; }
+.card-pink { box-shadow: var(--shadow-pink) !important; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+  gap: var(--space-lg);
+}
+
+.asymmetric-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+/* Coach Speech Bubble */
+.coach-bubble {
+  background: var(--surface-container);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-grape);
+}
+
+.coach-avatar {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--rounded-full);
+  background: var(--surface-container-low);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-pink);
+}
+
+.coach-name {
+  font-size: var(--label-size);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin-bottom: var(--space-xs);
+}
+
+/* Week Section Shell */
+.week-section {
+  display: grid;
+  gap: var(--space-xl);
+  padding-top: var(--space-md);
+}
+
+.week-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* Formula & Pill Badges */
+.formula-pill {
+  display: inline-block;
+  background: var(--surface-container);
+  color: var(--on-surface);
+  font-weight: 800;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--rounded-full);
+  font-variant-numeric: tabular-nums;
+  margin: var(--space-xs) 0;
+}
+
+.metaphor-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  background: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rounded);
+  font-weight: 600;
+  margin-top: var(--space-sm);
+}
+
+.metaphor-strip.grape {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.metaphor-strip.pink {
+  background: var(--primary-soft);
+  color: var(--on-surface);
+}
+
+/* High-Contrast Comparative Tables */
+.table-card {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded);
+  box-shadow: var(--shadow-grape);
+  padding: var(--space-lg);
+  overflow-x: auto;
+}
+
+.sticker-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.sticker-table th {
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-size: var(--label-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+}
+.sticker-table th:first-child { border-radius: var(--rounded) 0 0 var(--rounded); }
+.sticker-table th:last-child { border-radius: 0 var(--rounded) var(--rounded) 0; }
+
+.sticker-table td {
+  padding: var(--space-sm) var(--space-md);
+  vertical-align: top;
+}
+
+.sticker-table tbody tr:nth-child(even) td {
+  background: var(--surface-container);
+}
+.sticker-table tbody tr:nth-child(even) td:first-child { border-radius: var(--rounded) 0 0 var(--rounded); }
+.sticker-table tbody tr:nth-child(even) td:last-child { border-radius: 0 var(--rounded) var(--rounded) 0; }
+
+/* Interactive Lab Panels */
+.lab-panel {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-sky);
+  padding: var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.lab-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-md);
+}
+
+.control-group {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 180px;
+}
+
+.control-group label {
+  font-size: var(--label-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+input[type="range"] {
+  accent-color: var(--primary);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.svg-stage {
+  background: var(--background);
+  border-radius: var(--rounded);
+  padding: var(--space-md);
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+}
+
+.svg-stage svg {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  display: block;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.stat-tile {
+  background: var(--surface-container);
+  border-radius: var(--rounded);
+  padding: var(--space-md);
+}
+
+.stat-tile .stat-val {
+  font-weight: 900;
+  font-size: var(--subhead-size);
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Interactive Challenge Cards */
+.challenge-card {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-pink);
+  padding: var(--space-xl);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.challenge-card.solved {
+  box-shadow: var(--shadow-positive);
+}
+
+.challenge-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: var(--space-sm);
+}
+
+.option-btn {
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rounded-full);
+  border: 2px solid var(--outline-variant);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  font-weight: 700;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  transition: transform var(--dur-short) var(--ease-bounce),
+              background-color var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
+}
+
+.option-btn:hover {
+  transform: var(--pop-scale);
+  background: var(--surface-container);
+  box-shadow: var(--shadow-pink);
+}
+
+.option-btn.selected-wrong {
+  background: var(--error-container);
+  color: var(--on-error-container);
+  border-color: var(--error);
+}
+
+.option-btn.selected-correct {
+  background: var(--positive-container);
+  color: var(--on-positive-container);
+  border-color: var(--positive);
+}
+
+.feedback-box {
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: none;
+  gap: var(--space-sm);
+}
+
+.feedback-box.visible {
+  display: grid;
+  animation: popIn var(--dur-short) var(--ease-bounce);
+}
+
+.feedback-box.correct {
+  background: var(--positive-container);
+  color: var(--on-positive-container);
+}
+
+.feedback-box.wrong {
+  background: var(--error-container);
+  color: var(--on-error-container);
+}
+
+.steps-list {
+  display: grid;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps-list li {
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  border-radius: var(--rounded);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.96rem;
+}
+
+.step-badge {
+  display: inline-block;
+  background: var(--secondary);
+  color: var(--on-secondary);
+  font-size: var(--label-size);
+  font-weight: 800;
+  padding: 2px var(--space-sm);
+  border-radius: var(--rounded-full);
+  margin-right: var(--space-xs);
+}
+
+/* Cheat Sheet */
+.cheat-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.cheat-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-lg);
+}
+
+.cheat-item {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-pink);
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+}
+.cheat-item:nth-child(2n) { box-shadow: var(--shadow-sky); }
+.cheat-item:nth-child(3n) { box-shadow: var(--shadow-grape); }
+
+.cheat-item.is-hidden { display: none; }
+
+/* Disclaimer Footer in every section */
+.section-disclaimer {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--on-surface-variant);
+  background: var(--surface-container);
+  border-radius: var(--rounded);
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.site-footer {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-grape);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Reveal & Keyframes */
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 780px) {
+  .hero-panel, .asymmetric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-grid {
+    padding: var(--space-sm);
+    gap: var(--space-xl);
+  }
+  .hero-panel, .lab-panel, .challenge-card {
+    padding: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   TEMAS DE COLOR (selector superior)
+   ========================================================= */
+html[data-theme="rosa"] {
+  --background: #fbeef4;
+  --surface-container-low: #fdf6f9;
+  --surface-container: #f5dde8;
+  --surface-container-high: #ecc6d7;
+  --primary: #b0306e;
+  --primary-container: #f7c9de;
+  --primary-soft: #fbe4ee;
+  --secondary: #6b3fa0;
+  --outline-variant: #e8c4d6;
+  --shadow-pink: 0 4px 16px rgb(176 48 110 / 0.2);
+  --shadow-pink-deep: 0 10px 28px rgb(176 48 110 / 0.32);
+}
+html[data-theme="naranja"] {
+  --background: #fdf1e6;
+  --surface-container-low: #fff8f1;
+  --surface-container: #fae1cb;
+  --surface-container-high: #f3cba8;
+  --primary: #b4510a;
+  --primary-container: #fbd3b0;
+  --primary-soft: #fde8d6;
+  --secondary: #2f6b8a;
+  --outline-variant: #ecc9a8;
+  --shadow-pink: 0 4px 16px rgb(180 81 10 / 0.2);
+  --shadow-pink-deep: 0 10px 28px rgb(180 81 10 / 0.32);
+}
+html[data-theme="gris"] {
+  --background: #eff0f2;
+  --surface-container-low: #f8f9fa;
+  --surface-container: #e2e4e8;
+  --surface-container-high: #cfd2d8;
+  --primary: #3f4752;
+  --primary-container: #d3d7de;
+  --primary-soft: #e8eaee;
+  --secondary: #5d6573;
+  --outline: #8a909a;
+  --outline-variant: #cfd3d9;
+  --on-surface-variant: #4f5560;
+  --shadow-pink: 0 4px 16px rgb(63 71 82 / 0.18);
+  --shadow-pink-deep: 0 10px 28px rgb(63 71 82 / 0.28);
+  --shadow-grape: 0 4px 16px rgb(63 71 82 / 0.16);
+  --shadow-grape-deep: 0 10px 28px rgb(63 71 82 / 0.26);
+}
+html[data-theme="azul"] {
+  --background: #eaf1fb;
+  --surface-container-low: #f5f8fd;
+  --surface-container: #d9e6f6;
+  --surface-container-high: #c2d5ef;
+  --primary: #1f5fae;
+  --primary-container: #c6dbf5;
+  --primary-soft: #e2edfa;
+  --secondary: #a2470f;
+  --outline-variant: #c3d3ea;
+  --shadow-pink: 0 4px 16px rgb(31 95 174 / 0.2);
+  --shadow-pink-deep: 0 10px 28px rgb(31 95 174 / 0.32);
+}
+html[data-theme="amarillo"] {
+  --background: #fcf8e3;
+  --surface-container-low: #fffcef;
+  --surface-container: #f6edc0;
+  --surface-container-high: #ede09c;
+  --primary: #806000;
+  --primary-container: #f5e28f;
+  --primary-soft: #faf1c6;
+  --secondary: #8a3b12;
+  --outline-variant: #e6d9a0;
+  --shadow-pink: 0 4px 16px rgb(128 96 0 / 0.2);
+  --shadow-pink-deep: 0 10px 28px rgb(128 96 0 / 0.32);
+}
+
+body { transition: background-color var(--dur-long) var(--ease-out); }
+
+.theme-bar {
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-pink);
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+}
+.theme-bar-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--label-size);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--on-surface-variant);
+}
+.theme-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.theme-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 40px;
+  padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+  border-radius: var(--rounded-full);
+  border: 2px solid transparent;
+  background: var(--surface-container);
+  color: var(--on-surface);
+  font-weight: 700;
+  font-size: var(--label-size);
+  cursor: pointer;
+  transition: transform var(--dur-short) var(--ease-bounce), border-color var(--dur-micro) var(--ease-out);
+}
+.theme-swatch:hover { transform: var(--pop-scale); }
+.theme-swatch .dot {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--rounded-full);
+  box-shadow: inset 0 0 0 3px rgb(255 255 255 / 0.55);
+}
+.top-stack {
+  display: grid;
+  gap: var(--space-sm);
+}
+.theme-bar-author {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--label-size);
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  white-space: nowrap;
+}
+.main-title {
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--primary);
+  margin: calc(var(--space-xl) * -0.5) 0;
+}
+.theme-swatch[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: var(--surface-container-low);
+}
+
+/* =========================================================
+   AJUSTES PARA MÓVIL / iPHONE
+   ========================================================= */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: transparent; }
+code { overflow-wrap: anywhere; }
+
+/* En pantallas táctiles el :hover se queda "pegado" tras tocar */
+@media (hover: none) {
+  .btn:hover, .btn:active, .option-btn:hover, .theme-swatch:hover { transform: none; }
+  .option-btn:hover { box-shadow: none; }
+  .btn-soft:not(.active):hover { background: var(--surface-container); }
+  .btn-primary:hover { box-shadow: var(--shadow-pink); }
+  .btn-secondary:hover { box-shadow: var(--shadow-grape); }
+  .btn-quiet:hover { background: transparent; }
+}
+
+@media (max-width: 640px) {
+  .page-grid {
+    padding-left: max(var(--space-sm), env(safe-area-inset-left));
+    padding-right: max(var(--space-sm), env(safe-area-inset-right));
+    padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
+  }
+  .game-hud, .theme-bar { padding: var(--space-md); }
+  .hud-stats, .xp-pill { width: 100%; }
+  .xp-pill { min-width: 0; }
+
+  /* Menú de semanas: fila deslizable con el dedo */
+  .hud-nav .nav-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 calc(var(--space-md) * -1);
+    padding: 2px var(--space-md) 6px;
+  }
+  .hud-nav .nav-pills::-webkit-scrollbar { display: none; }
+  .hud-nav .nav-pills .btn { flex: 0 0 auto; white-space: nowrap; }
+
+  .btn { font-size: 0.95rem; padding: var(--space-sm) var(--space-md); }
+  .lab-panel .nav-pills .btn { font-size: 0.88rem; }
+  .hero-panel, .lab-panel, .challenge-card { padding: var(--space-md); }
+  .coach-bubble { padding: var(--space-md); }
+  .coach-avatar { width: 48px; height: 48px; }
+
+  /* Gráficos: más ancho útil y texto legible */
+  .svg-stage { padding: var(--space-xs); min-height: 0; }
+  .svg-stage svg text { font-size: 19px; }
+  .stat-tile .stat-val { font-size: 1.1rem; overflow-wrap: anywhere; }
+
+  /* Tablas: cada fila se convierte en una ficha */
+  .table-card { padding: var(--space-md); }
+  .sticker-table thead {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .sticker-table, .sticker-table tbody, .sticker-table tr, .sticker-table td {
+    display: block; width: 100%;
+  }
+  .sticker-table tr {
+    background: var(--surface-container);
+    border-radius: var(--rounded);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+  .sticker-table tbody tr td {
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: var(--space-xs) 0;
+  }
+  .sticker-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--label-size);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--on-surface-variant);
+  }
+  .sticker-table td:first-child::before { display: none; }
+  .sticker-table td:first-child { font-size: 1.05rem; }
+}
+</style>
+<script>
+  /* Aplica el tema guardado antes de pintar la página (evita el parpadeo) */
+  (function() {
+    try {
+      var t = localStorage.getItem('mates-theme');
+      if (t && t !== 'verde') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div class="page-grid">
+
+  <!-- AUTOR + SELECTOR DE COLORES -->
+  <div class="top-stack">
+  <span class="theme-bar-author">By Jordi Ginestà (11/2026)</span>
+  <div class="theme-bar" role="group" aria-label="Selector de color del tema">
+    <span class="theme-bar-label"><i data-lucide="palette" aria-hidden="true"></i> Elige tu color</span>
+    <div class="theme-swatches">
+      <button type="button" class="theme-swatch" data-theme-btn="verde" aria-pressed="true" onclick="setTheme('verde')"><span class="dot" style="background:#287a50"></span>Verdes</button>
+      <button type="button" class="theme-swatch" data-theme-btn="rosa" aria-pressed="false" onclick="setTheme('rosa')"><span class="dot" style="background:#b0306e"></span>Rosas</button>
+      <button type="button" class="theme-swatch" data-theme-btn="naranja" aria-pressed="false" onclick="setTheme('naranja')"><span class="dot" style="background:#d96a00"></span>Naranjas</button>
+      <button type="button" class="theme-swatch" data-theme-btn="gris" aria-pressed="false" onclick="setTheme('gris')"><span class="dot" style="background:#5d6573"></span>Grises</button>
+      <button type="button" class="theme-swatch" data-theme-btn="azul" aria-pressed="false" onclick="setTheme('azul')"><span class="dot" style="background:#1f5fae"></span>Azules</button>
+      <button type="button" class="theme-swatch" data-theme-btn="amarillo" aria-pressed="false" onclick="setTheme('amarillo')"><span class="dot" style="background:#e0b400"></span>Amarillos</button>
+    </div>
+  </div>
+  </div>
+
+  <!-- TÍTULO PRINCIPAL -->
+  <h1 class="main-title">A.D.E.: MATEMÁTICAS EMPRESARIALES I</h1>
+
+  <!-- TOP GAME HUD -->
+  <header class="game-hud" aria-label="Panel de progreso del jugador">
+    <div class="hud-top">
+      <div class="hud-brand">
+        <span class="badge"><i data-lucide="gamepad-2" aria-hidden="true"></i> Nivel 14: Misión Matemáticas Empresariales</span>
+        <span>Aventura Empresarial</span>
+      </div>
+      <div class="hud-stats">
+        <div class="xp-pill" aria-label="Barra de energía matemática">
+          <i data-lucide="zap" aria-hidden="true"></i>
+          <div class="xp-track"><div class="xp-fill" id="xp-bar-fill"></div></div>
+          <span class="xp-label" id="xp-text">0 / 135 XP</span>
+        </div>
+        <div class="medal-strip" aria-label="Medallas desbloqueadas">
+          <span class="medal-chip" id="medal-s1"><i data-lucide="award" aria-hidden="true"></i> S1</span>
+          <span class="medal-chip" id="medal-s2"><i data-lucide="award" aria-hidden="true"></i> S2</span>
+          <span class="medal-chip" id="medal-s3"><i data-lucide="award" aria-hidden="true"></i> S3</span>
+          <span class="medal-chip" id="medal-s4"><i data-lucide="award" aria-hidden="true"></i> S4</span>
+          <span class="medal-chip" id="medal-master"><i data-lucide="trophy" aria-hidden="true"></i> Maestro</span>
+        </div>
+      </div>
+    </div>
+    <nav class="hud-nav" aria-label="Navegación por semanas">
+      <div class="nav-pills">
+        <a class="btn btn-soft" href="#semana-1">Semana 1 · Conjuntos y Álgebra</a>
+        <a class="btn btn-soft" href="#semana-2">Semana 2 · Sucesiones y Límites</a>
+        <a class="btn btn-soft" href="#semana-3">Semana 3 · Derivadas e Integrales</a>
+        <a class="btn btn-soft" href="#semana-4">Semana 4 · Optimización y 3D</a>
+        <a class="btn btn-primary" href="#hoja-trucos"><i data-lucide="sparkles" aria-hidden="true"></i> Hoja de Trucos</a>
+      </div>
+      <button type="button" class="btn btn-quiet" id="reset-progress-btn" onclick="handleResetProgress(this)">
+        <i data-lucide="rotate-ccw" aria-hidden="true"></i> Reiniciar partida
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO INTRO -->
+  <section class="hero-panel" aria-labelledby="hero-title">
+    <div>
+      <span class="kicker"><i data-lucide="compass" aria-hidden="true"></i> Guía Interactiva para Explorar y Repasar en Familia</span>
+      <h1 class="display" id="hero-title">Misión: Dominar las <em>Matemáticas</em> Empresariales</h1>
+      <p>Olvídate de memorizar páginas aburridas. Aquí las matemáticas son superpoderes para dirigir tu propia tienda, calcular combos de videojuegos, patinar por rampas y encontrar el tesoro escondido en mapas de coordenadas.</p>
+      <div class="nav-pills">
+        <a class="btn btn-primary" href="#semana-1"><i data-lucide="play" aria-hidden="true"></i> Empezar Semana 1</a>
+        <a class="btn btn-secondary" href="#hoja-trucos"><i data-lucide="bookmark-check" aria-hidden="true"></i> Ver Chuleta Rápida</a>
+      </div>
+    </div>
+    <div class="coach-bubble">
+      <div class="coach-avatar" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="20" fill="var(--primary-soft)"/>
+          <rect x="11" y="13" width="22" height="18" rx="6" fill="var(--secondary)"/>
+          <circle cx="17" cy="21" r="2.8" fill="var(--on-primary)"/>
+          <circle cx="27" cy="21" r="2.8" fill="var(--on-primary)"/>
+          <path d="M17 26.5C18.8 28.5 25.2 28.5 27 26.5" stroke="var(--primary-container)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="8" r="3" fill="var(--primary)"/>
+          <line x1="22" y1="11" x2="22" y2="13" stroke="var(--primary)" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="coach-name">Profe Pixel · Tu copiloto</div>
+        <p style="margin-bottom: var(--space-sm);">Regla de oro de esta aventura: <strong>fallar en un desafío no resta puntos</strong>. Si te equivocas, abrimos la lupa paso a paso para cazar juntos el despiste sin saltarnos ni una suma.</p>
+        <span class="tag-sky tag">9 Desafíos · +135 XP totales</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SEMANA 1: CONJUNTOS, COMBINATORIA Y ÁLGEBRA LINEAL
+       ========================================================= -->
+  <section class="week-section" id="semana-1" aria-labelledby="s1-title">
+    <div class="week-header">
+      <div>
+        <span class="kicker"><i data-lucide="layers" aria-hidden="true"></i> Semana 1 · Nivel 1</span>
+        <h2 class="section-title" id="s1-title">Organiza cromos, crea <em>combos</em> y equilibra balanzas</h2>
+        <p>Tres herramientas clave para empezar: <strong>Conjuntos</strong> para clasificar clientes, <strong>Combinatoria</strong> para contar opciones sin volverse loco, y <strong>Álgebra</strong> para resolver misterios con incógnitas.</p>
+      </div>
+      <span class="badge" id="s1-progress-badge">0 / 3 desafíos</span>
+    </div>
+
+    <!-- Píldoras de Conjuntos -->
+    <div class="card-grid">
+      <article class="card">
+        <span class="tag"><i data-lucide="package" aria-hidden="true"></i> Conjuntos</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Bolsas con etiquetas</h3>
+        <p>Un conjunto es una colección de elementos bien definidos entre llaves, como <code>A={1, 2, 3, 4}<br></code>Si el elemento está dentro usamos <code>∈</code>; si está fuera, <code>∉</code>.</p>
+        <div class="metaphor-strip">
+          <i data-lucide="circle-dot" aria-hidden="true"></i>
+          <span><strong>Metáfora de canicas:</strong> El universo <code>U</code> es toda tu caja de canicas. Un conjunto <code>A</code> es una bolsita dentro de esa caja.</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag"><i data-lucide="git-merge" aria-hidden="true"></i> Operaciones</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Las 4 jugadas básicas</h3>
+        <p><strong>Unión (∪):</strong><br>
+        &nbspJuntar 2 bolsas sin repetir cromos.<br>
+        <strong>Intersección (∩):</strong><br>&nbsp Solo los cromos repetidos.<br>
+        <strong>Diferencia (\):</strong><br>&nbsp Los de A quitando B.<br>
+        <strong>Complemento (Aᶜ):</strong><br>&nbsp Todo lo de <code>U</code> fuera de A.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag"><i data-lucide="shield-check" aria-hidden="true"></i> Súper Trucos</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">De Morgan e Inclusión-Exclusión</h3>
+        <p><strong>1ª Ley De Morgan:</strong><br><code>(A ∪ B)ᶜ=Aᶜ ∩ Bᶜ</code><br>
+        <strong>2ª Ley De Morgan:</strong><br><code>(A ∩ B)ᶜ=Aᶜ ∪ Bᶜ</code><br>
+        <strong>Sin contar doble:</strong><br><code>|A ∪ B|=|A|+|B|-|A ∩ B|</code></p>
+        <div class="metaphor-strip pink">
+          <i data-lucide="pizza" aria-hidden="true"></i>
+          <span><strong>Metáfora de la fiesta:</strong> Si 70 toman pizza y 50 helado, y 40 toman ambas cosas, ¡no hay 120 niños! Hay <code>70+50 - 40=80</code>.</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Laboratorio Interactivo 1: Diagrama de Venn -->
+    <div class="lab-panel" id="venn-lab">
+      <div>
+        <span class="kicker"><i data-lucide="mouse-pointer-click" aria-hidden="true"></i> Laboratorio Interactivo 1</span>
+        <h3 class="subhead">Explorador de Diagramas de Venn (Tienda Online vs Tienda Física)</h3>
+        <p>Basado en el ejercicio de la tienda de moda: <code>O={C1, C2, C3, C6, C7}</code> (Online), <code>F={C3, C4, C5, C6, C8}</code> (Física), dentro de un universo de 10 clientes <code>U={C1..C10}</code>. Toca una operación para iluminar su zona:</p>
+      </div>
+      <div class="nav-pills" role="group" aria-label="Operaciones de conjuntos">
+        <button type="button" class="btn btn-soft active" id="venn-btn-union" onclick="setVennOp('union')">Unión (O ∪ F)</button>
+        <button type="button" class="btn btn-soft" id="venn-btn-inter" onclick="setVennOp('inter')">Intersección (O ∩ F)</button>
+        <button type="button" class="btn btn-soft" id="venn-btn-diffO" onclick="setVennOp('diffO')">Solo Online (O \ F)</button>
+        <button type="button" class="btn btn-soft" id="venn-btn-diffF" onclick="setVennOp('diffF')">Solo Física (F \ O)</button>
+        <button type="button" class="btn btn-soft" id="venn-btn-compUnion" onclick="setVennOp('compUnion')">Ninguno (O ∪ F)ᶜ</button>
+        <button type="button" class="btn btn-soft" id="venn-btn-compInter" onclick="setVennOp('compInter')">No en ambos (O ∩ F)ᶜ</button>
+      </div>
+
+      <div class="asymmetric-grid">
+        <div class="svg-stage">
+          <svg viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de Venn interactivo de clientes Online y Física">
+            <defs>
+              <clipPath id="clip-left">
+                <circle cx="245" cy="170" r="105"/>
+              </clipPath>
+              <clipPath id="clip-right">
+                <circle cx="395" cy="170" r="105"/>
+              </clipPath>
+            </defs>
+            <!-- Universo U -->
+            <rect id="venn-zone-u" x="18" y="18" width="604" height="294" rx="24" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="2.5"/>
+            <text x="36" y="46" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface-variant)">UNIVERSO U={C1..C10}</text>
+
+            <!-- Solo O (círculo izquierdo tapado por el derecho) -->
+            <circle id="venn-zone-o" cx="245" cy="170" r="105" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="3"/>
+            <!-- Solo F -->
+            <circle id="venn-zone-f" cx="395" cy="170" r="105" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="3"/>
+            <!-- Intersección exacta -->
+            <g clip-path="url(#clip-left)">
+              <circle id="venn-zone-inter" cx="395" cy="170" r="105" fill="var(--secondary-container)"/>
+            </g>
+            <!-- Contornos limpios encima -->
+            <circle cx="245" cy="170" r="105" fill="none" stroke="var(--primary)" stroke-width="3"/>
+            <circle cx="395" cy="170" r="105" fill="none" stroke="var(--tertiary)" stroke-width="3"/>
+
+            <!-- Etiquetas de conjuntos -->
+            <text x="175" y="92" font-family="DM Sans, sans-serif" font-weight="800" font-size="15" fill="var(--primary)">O (Online)</text>
+            <text x="405" y="92" font-family="DM Sans, sans-serif" font-weight="800" font-size="15" fill="var(--on-tertiary-container)">F (Física)</text>
+
+            <!-- Fichas de elementos -->
+            <g font-family="DM Sans, sans-serif" font-weight="800" font-size="13" text-anchor="middle">
+              <!-- Solo O -->
+              <rect x="165" y="128" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2"/>
+              <text x="188" y="146" fill="var(--on-surface)">C1</text>
+              <rect x="150" y="166" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2"/>
+              <text x="173" y="184" fill="var(--on-surface)">C2</text>
+              <rect x="175" y="204" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2"/>
+              <text x="198" y="222" fill="var(--on-surface)">C7</text>
+
+              <!-- Intersección -->
+              <rect x="297" y="136" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2"/>
+              <text x="320" y="154" fill="var(--on-surface)">C3</text>
+              <rect x="297" y="178" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2"/>
+              <text x="320" y="196" fill="var(--on-surface)">C6</text>
+
+              <!-- Solo F -->
+              <rect x="430" y="128" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="2"/>
+              <text x="453" y="146" fill="var(--on-surface)">C4</text>
+              <rect x="445" y="166" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="2"/>
+              <text x="468" y="184" fill="var(--on-surface)">C5</text>
+              <rect x="422" y="204" width="46" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="2"/>
+              <text x="445" y="222" fill="var(--on-surface)">C8</text>
+
+              <!-- Fuera en U -->
+              <rect x="536" y="232" width="54" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="2"/>
+              <text x="563" y="250" fill="var(--on-surface-variant)">C9</text>
+              <rect x="536" y="266" width="54" height="26" rx="13" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="2"/>
+              <text x="563" y="284" fill="var(--on-surface-variant)">C10</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="stat-row" style="grid-template-columns: 1fr;">
+          <div class="stat-tile">
+            <div class="caption">Operación seleccionada</div>
+            <div class="stat-val" id="venn-op-title">Unión: O ∪ F</div>
+            <p id="venn-op-desc" style="margin-top: var(--space-xs); margin-bottom: 0;">Clientes que compraron online, en tienda física o en ambos canales.</p>
+          </div>
+          <div class="stat-tile">
+            <div class="caption">Elementos resultantes</div>
+            <div class="stat-val" id="venn-op-set" style="color: var(--secondary);">{C1, C2, C3, C4, C5, C6, C7, C8}</div>
+          </div>
+          <div class="stat-tile">
+            <div class="caption">Cardinalidad (Total)</div>
+            <div class="stat-val" id="venn-op-count">8 clientes</div>
+            <p class="caption" id="venn-op-demorgan" style="margin-top: var(--space-xs); margin-bottom: 0;">Fórmula: |O|+|F| - |O ∩ F|=5+5 - 2=8</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Combinatoria: Tabla Comparativa de Alto Contraste -->
+    <div class="table-card">
+      <span class="kicker"><i data-lucide="dice-5" aria-hidden="true"></i> Combinatoria · La Chuleta de los Combos</span>
+      <h3 class="subhead">¿Importa el orden? ¿Se pueden repetir? ¡Elige tu fórmula!</h3>
+      <p>2 reglas previas antes de empezar: <strong>Principio de la Suma ("O")</strong>=<code>m+n</code> (Ej. 3 redes o 2 emails=5) <strong>Principio del Producto ("Y")</strong>=<code>m·n</code> (Ej. 4 collares · 5 colores=20)</p>
+      <table class="sticker-table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>¿Importa el orden?</th>
+            <th>¿Se repite?</th>
+            <th>Fórmula</th>
+            <th>Ejemplo del temario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Tipo"><strong>Permutación simple</strong></td>
+            <td data-label="¿Importa el orden?">Sí (Caben todos)</td>
+            <td data-label="¿Se repite?">No</td>
+            <td data-label="Fórmula"><code>Pₙ=n!</code></td>
+            <td data-label="Ejemplo del temario">Ordenar 5 productos distintos en escaparate: <code>5!=120</code></td>
+          </tr>
+          <tr>
+            <td data-label="Tipo"><strong>Variación sin repetición</strong></td>
+            <td data-label="¿Importa el orden?">Sí (eliges<br><code>k</code> de <code>n</code>)</td>
+            <td data-label="¿Se repite?">No</td>
+            <td data-label="Fórmula"><code>Vₙ,ₖ =n!/(n-k)!</code></td>
+            <td data-label="Ejemplo del temario">2 premios distintos entre 5 finalistas: <code>5!/3!=20</code></td>
+          </tr>
+          <tr>
+            <td data-label="Tipo"><strong>Combinación sin repetición</strong></td>
+            <td data-label="¿Importa el orden?">No (eliges <code>k</code> de <code>n</code>)</td>
+            <td data-label="¿Se repite?">No</td>
+            <td data-label="Fórmula"><code>Cₙ,ₖ =n!/(k!(n-k)!)</code></td>
+            <td data-label="Ejemplo del temario">Elegir 3 de 8 productos para promo: <code>8!/(3!·5!)=56</code></td>
+          </tr>
+          <tr>
+            <td data-label="Tipo"><strong>Permutación con repetición</strong></td>
+            <td data-label="¿Importa el orden?">Sí (entran todos)<br></td>
+            <td data-label="¿Se repite?">Sí</td>
+            <td data-label="Fórmula"><code>PR=n!/(k₁!·k₂!…)</code></td>
+            <td data-label="Ejemplo del temario">Ramo con 2 tulipanes iguales+1 rosa: <code>3!/(2!·1!)=3</code></td>
+          </tr>
+          <tr>
+            <td data-label="Tipo"><strong>Variación con repetición</strong></td>
+            <td data-label="¿Importa el orden?">Sí</td>
+            <td data-label="¿Se repite?">Sí</td>
+            <td data-label="Fórmula"><code>VRₙ,ₖ=nᵏ</code></td>
+            <td data-label="Ejemplo del temario">Clave de 3 letras (27 opciones): <code>27³=19.683</code></td>
+          </tr>
+          <tr>
+            <td data-label="Tipo"><strong>Combinación con repetición</strong></td>
+            <td data-label="¿Importa el orden?">No</td>
+            <td data-label="¿Se repite?">Sí</td>
+            <td data-label="Fórmula"><code>CRₙ,ₖ =(n+k-1)!/(k!(n-1)!)</code></td>
+            <td data-label="Ejemplo del temario">Elegir 3 esencias entre 5 (repitiendo): <code>7!/(3!·4!)=35</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Píldoras de Álgebra Lineal -->
+    <div class="card-grid">
+      <article class="card card-sky">
+        <span class="tag tag-sky"><i data-lucide="scale" aria-hidden="true"></i> Álgebra·Balanzas</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Sistemas 2·2 y Punto de Equilibrio</h3>
+        <p>Cuando tienes dos límites a la vez (horas de máquina y horas de operario), usas un sistema de dos ecuaciones con <code>x</code> e <code>y</code>. ¡Como equilibrar dos balanzas a la vez!</p>
+        <div class="formula-pill">2x+y=100 &nbsp;|&nbsp; x+2y=80</div>
+      </article>
+      <article class="card card-grape">
+        <span class="tag"><i data-lucide="sparkles" aria-hidden="true"></i> Ecuación 2º Grado</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">El detector Δ=b²-4ac</h3>
+        <p>El discriminante <code>Δ</code> te chiva cuántas soluciones hay:<br>
+        • Si <code>Δ &gt; 0</code>: 2 soluciones reales.<br>
+        • Si <code>Δ=0</code>: 1 solución real.<br>
+        • Si <code>Δ &lt; 0</code>: Sin solución real.</p>
+      </article>
+      <article class="card card-pink">
+        <span class="tag tag-tangerine"><i data-lucide="coins" aria-hidden="true"></i> Potencias</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Interés Compuesto</h3>
+        <p>Si inviertes <code>P=1.000€</code> al <code>5%</code> anual (<code>r=0.05</code>) durante <code>t=3</code> años:<br>
+        <span class="formula-pill">A=P(1+r)ᵗ=1.157,63€</span></p>
+      </article>
+    </div>
+
+    <!-- Desafíos Semana 1 -->
+    <article class="challenge-card" id="ch-s1-1">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 1A · Conjuntos (+15 XP)</span>
+        <span class="tag" id="status-s1-1">Pendiente</span>
+      </div>
+      <h3 class="subhead">La campaña de los 120 clientes (Inclusión-Exclusión)</h3>
+      <p>Una empresa encuesta a <strong>120 personas</strong>: <strong>70</strong> siguen la marca en redes, <strong>50</strong> vieron el anuncio en TV y <strong>40</strong> lo hicieron por <em>ambos medios</em>. ¿Cuántas personas fueron alcanzadas por <strong>al menos un canal</strong>?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 1A">
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-1', 0, this)">A) 120 personas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-1', 1, this)">B) 80 personas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-1', 2, this)">C) 160 personas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-1', 3, this)">D) 40 personas</button>
+      </div>
+      <div class="feedback-box" id="fb-s1-1" aria-live="polite"></div>
+    </article>
+
+    <article class="challenge-card" id="ch-s1-2">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 1B · Combinatoria (+15 XP)</span>
+        <span class="tag" id="status-s1-2">Pendiente</span>
+      </div>
+      <h3 class="subhead">El sorteo de los 3 premios diferentes</h3>
+      <p>Una empresa sortea <strong>3 premios distintos</strong> (un viaje, una tablet y una tarjeta regalo) entre <strong>10 clientes</strong> (cada persona solo puede ganar 1 premio). ¿De cuántas formas distintas pueden repartirse?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 1B">
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-2', 0, this)">A) 120 formas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-2', 1, this)">B) 1.000 formas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-2', 2, this)">C) 720 formas</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-2', 3, this)">D) 30 formas</button>
+      </div>
+      <div class="feedback-box" id="fb-s1-2" aria-live="polite"></div>
+    </article>
+
+    <article class="challenge-card" id="ch-s1-3">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 1C · Álgebra Lineal (+15 XP)</span>
+        <span class="tag" id="status-s1-3">Pendiente</span>
+      </div>
+      <h3 class="subhead">La balanza misteriosa</h3>
+      <p>Resuelve el sistema de ecuaciones del cuaderno: <code>y=2x+1</code>&nbsp&nbsp e &nbsp&nbsp  <code>y=-x+4</code>. ¿Cuánto valen <code>x</code> e <code>y</code>?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 1C">
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-3', 0, this)">A) x=1, y=3</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-3', 1, this)">B) x=3, y=1</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-3', 2, this)">C) x=5, y=11</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s1-3', 3, this)">D) x=2, y=5</button>
+      </div>
+      <div class="feedback-box" id="fb-s1-3" aria-live="polite"></div>
+    </article>
+
+    <p class="section-disclaimer">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </section>
+
+  <!-- =========================================================
+       SEMANA 2: SUCESIONES, SERIES, LÍMITES Y CONTINUIDAD
+       ========================================================= -->
+  <section class="week-section" id="semana-2" aria-labelledby="s2-title">
+    <div class="week-header">
+      <div>
+        <span class="kicker"><i data-lucide="trending-up" aria-hidden="true"></i> Semana 2 · Nivel 2</span>
+        <h2 class="section-title" id="s2-title">Sube de nivel con <em>sucesiones</em> y patina por los límites</h2>
+        <p>Las sucesiones predicen cómo crece una tienda mes a mes, y los límites+continuidad nos avisan si una rampa de precios es suave o tiene un precipicio escondido.</p>
+      </div>
+      <span class="badge" id="s2-progress-badge">0 / 2 desafíos</span>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <span class="tag"><i data-lucide="plus-circle" aria-hidden="true"></i> Progresión Aritmética</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Sumar siempre lo mismo (+d)</h3>
+        <p>Cada mes sumas la misma cantidad fija <code>d</code>.<br>
+        <strong>Término n:</strong> <code>aₙ=a₁+(n - 1)·d</code><br>
+        <strong>Suma total:</strong> <code>Sₙ=(n / 2)·(2a₁+(n - 1)·d)</code></p>
+        <div class="metaphor-strip">
+          <i data-lucide="piggy-bank" aria-hidden="true"></i>
+          <span><strong>Ejemplo hucha:</strong> Empiezas con 50€ y metes 2€ más cada mes. ¡En el mes 12 tendrás <code>50+12·2=74€</code>!</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag"><i data-lucide="rocket" aria-hidden="true"></i> Progresión Geométrica</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Multiplicar siempre por r (×r)</h3>
+        <p>Cada mes multiplicas por la razón <code>r</code>.<br>
+        <strong>Término n:</strong> <code>aₙ =a₁·rⁿ⁻¹</code><br>
+        <strong>Suma total:</strong> <code>Sₙ =a₁·(1-rⁿ)/(1-r)</code></p>
+        <div class="metaphor-strip grape">
+          <i data-lucide="sparkles" aria-hidden="true"></i>
+          <span><strong>Truco viral:</strong> Duplicar una inversión cada mes (<code>r=2</code>) hace que en solo 5 meses se multiplique por <code>2⁴=16</code>.</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="tag tag-sky"><i data-lucide="flag" aria-hidden="true"></i> Límite y Continuidad</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">La prueba del lápiz</h3>
+        <p>Una función es continua en <code>a</code> si puedes dibujarla <strong>sin levantar el lápiz</strong>:<br>
+        1. Existe <code>f(a)</code>.<br>
+        2. Límites izquierdo y derecho coinciden.<br>
+        3. El límite vale lo mismo que <code>f(a)</code>.</p>
+      </article>
+    </div>
+
+    <!-- Laboratorio Interactivo 2: Sucesiones -->
+    <div class="lab-panel">
+      <div>
+        <span class="kicker"><i data-lucide="bar-chart-2" aria-hidden="true"></i> Laboratorio Interactivo 2</span>
+        <h3 class="subhead">Simulador de Tendencias: ¿Cómo evoluciona tu empresa?</h3>
+        <p>Elige un tipo de sucesión del temario oficial y observa los 10 primeros meses con marcas estilo piruleta:</p>
+      </div>
+      <div class="nav-pills" role="group" aria-label="Tipo de sucesión">
+        <button type="button" class="btn btn-soft active" id="seq-btn-arith" onclick="setSeqMode('arith')">Aritmética (aₙ=50+2(n-1))</button>
+        <button type="button" class="btn btn-soft" id="seq-btn-geom" onclick="setSeqMode('geom')">Geométrica (aₙ=10·1.3ⁿ⁻¹)</button>
+        <button type="button" class="btn btn-soft" id="seq-btn-conv" onclick="setSeqMode('conv')">Convergente (aₙ=5+100/n)</button>
+      </div>
+      <div class="svg-stage">
+        <svg id="seq-svg" viewBox="0 0 640 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de sucesión numérica"></svg>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="caption">Primer término (a₁)</div>
+          <div class="stat-val" id="seq-stat-a1">50</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption">Mes 10 (a₁₀)</div>
+          <div class="stat-val" id="seq-stat-a10" style="color: var(--secondary);">68</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption">Comportamiento</div>
+          <div class="stat-val" id="seq-stat-beh" style="color: var(--on-surface);">Creciente · Diverge a +∞</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Laboratorio Interactivo 3: Rampa de Monopatín (Límites y Continuidad) -->
+    <div class="lab-panel" style="box-shadow: var(--shadow-pink);">
+      <div>
+        <span class="kicker"><i data-lucide="activity" aria-hidden="true"></i> Laboratorio Interactivo 3</span>
+        <h3 class="subhead">La Rampa del Monopatín: Límites y Discontinuidades</h3>
+        <p>Desliza al patinador por el eje <code>x</code> y comprueba si la rampa es continua o si hay un salto, un hueco o un precipicio:</p>
+      </div>
+      <div class="nav-pills" role="group" aria-label="Ejemplos de continuidad">
+        <button type="button" class="btn btn-soft active" id="lim-btn-cont" onclick="setLimMode('cont')">Tarifa Datos (Continua)</button>
+        <button type="button" class="btn btn-soft" id="lim-btn-jump" onclick="setLimMode('jump')">Tarifa Luz (Salto finito)</button>
+        <button type="button" class="btn btn-soft" id="lim-btn-inf" onclick="setLimMode('inf')">Almacén (Salto infinito)</button>
+        <button type="button" class="btn btn-soft" id="lim-btn-hole" onclick="setLimMode('hole')">Hueco Evitable (x=2)</button>
+      </div>
+      <div class="lab-controls">
+        <div class="control-group" style="flex: 1;">
+          <label for="lim-slider">Posición del patinador (x): <span id="lim-x-readout">50</span></label>
+          <input type="range" id="lim-slider" min="0" max="100" value="40" oninput="updateLimSlider(this.value)">
+        </div>
+      </div>
+      <div class="svg-stage">
+        <svg id="lim-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico cartesiano de límites y continuidad"></svg>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="caption">Límite por la izquierda (a⁻)</div>
+          <div class="stat-val" id="lim-left-val">20 €</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption">Límite por la derecha (a⁺)</div>
+          <div class="stat-val" id="lim-right-val" style="color: var(--secondary);">20 €</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption">Diagnóstico de la rampa</div>
+          <div class="stat-val" id="lim-diag-val" style="color: var(--positive);">Continua en x=50</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desafíos Semana 2 -->
+    <article class="challenge-card" id="ch-s2-1">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 2A · Sucesiones (+15 XP)</span>
+        <span class="tag" id="status-s2-1">Pendiente</span>
+      </div>
+      <h3 class="subhead">Fábrica en crecimiento constante</h3>
+      <p>Una empresa produce <strong>1.000 unidades</strong> en el primer mes (<code>a₁=1.000</code>) y aumenta su producción en <strong>150 unidades</strong> cada mes (<code>d=150</code>). ¿Cuántas unidades producirá en el <strong>mes 10</strong>?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 2A">
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-1', 0, this)">A) 2.500 unidades</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-1', 1, this)">B) 2.350 unidades</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-1', 2, this)">C) 1.150 unidades</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-1', 3, this)">D) 16.750 unidades</button>
+      </div>
+      <div class="feedback-box" id="fb-s2-1" aria-live="polite"></div>
+    </article>
+
+    <article class="challenge-card" id="ch-s2-2">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 2B · Continuidad (+15 XP)</span>
+        <span class="tag" id="status-s2-2">Pendiente</span>
+      </div>
+      <h3 class="subhead">¿Hay escalón en x=2?</h3>
+      <p>Dada la función a trozos: <code>f(x)=x²-1</code> si <code>x &lt; 2</code>, y <code>f(x)=3x-5</code> si <code>x≥2</code>. ¿Qué pasa exactamente en <code>x=2</code>?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 2B">
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-2', 0, this)">A) Es continua porque ambos lados dan 3</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-2', 1, this)">B) No es continua: por la izquierda da 3 y por la derecha da 1</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-2', 2, this)">C) Tiene una asíntota infinita en x=2</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s2-2', 3, this)">D) Es continua porque ambos lados dan 1</button>
+      </div>
+      <div class="feedback-box" id="fb-s2-2" aria-live="polite"></div>
+    </article>
+
+    <p class="section-disclaimer">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </section>
+
+  <!-- =========================================================
+       SEMANA 3: DERIVADAS E INTEGRALES DE UNA VARIABLE REAL
+       ========================================================= -->
+  <section class="week-section" id="semana-3" aria-labelledby="s3-title">
+    <div class="week-header">
+      <div>
+        <span class="kicker"><i data-lucide="gauge" aria-hidden="true"></i> Semana 3 · Nivel 3</span>
+        <h2 class="section-title" id="s3-title">El velocímetro <em>derivado</em> y la mochila acumuladora</h2>
+        <p>La <strong>derivada</strong> te dice lo rápido que cambian tus beneficios en un instante para encontrar la cima; la <strong>integral</strong> suma todo lo acumulado en el camino.</p>
+      </div>
+      <span class="badge" id="s3-progress-badge">0 / 2 desafíos</span>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <span class="tag"><i data-lucide="trending-up" aria-hidden="true"></i> Derivadas</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">La inclinación de tu montaña rusa</h3>
+        <p>• Si <code>f'(a) &gt; 0</code>: el vagón <strong>sube</strong> (crece).<br>
+        • Si <code>f'(a) &lt; 0</code>: el vagón <strong>baja</strong> (decrece).<br>
+        • Si <code>f'(a)=0</code>: ¡<strong>cima o valle</strong>! Mira la segunda derivada: <code>f''(a) &lt; 0</code>=<strong>Máximo</strong>; <code>f''(a) &gt; 0</code>=<strong>Mínimo</strong>.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag"><i data-lucide="box" aria-hidden="true"></i> Integrales</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">De lo marginal al total</h3>
+        <p>Si sabes cuánto ganas por cada unidad extra (<strong>ingreso marginal</strong> <code>I'(x)</code>), la <strong>Regla de Barrow</strong> calcula el ingreso total acumulado entre <code>a</code> y <code>b</code>:</p>
+        <div class="formula-pill">∫ₐᵇ f(x) dx=F(b) - F(a)</div>
+      </article>
+
+      <article class="card">
+        <span class="tag tag-tangerine"><i data-lucide="wand-2" aria-hidden="true"></i> Truco LIATE</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Integración por partes</h3>
+        <p>Fórmula: <code>∫ u dv=u·v - ∫ v du</code>. Para elegir quién es <code>u</code> (la parte que derivamos), usa el orden <strong>L-I-A-T-E</strong>: <strong>L</strong>ogarítmicas, <strong>I</strong>nversas trig., <strong>A</strong>lgebraicas, <strong>T</strong>rigonométricas, <strong>E</strong>xponenciales.</p>
+      </article>
+    </div>
+
+    <!-- Laboratorio Interactivo 4: Derivada vs Integral -->
+    <div class="lab-panel" style="box-shadow: var(--shadow-grape);">
+      <div>
+        <span class="kicker"><i data-lucide="sliders" aria-hidden="true"></i> Laboratorio Interactivo 4</span>
+        <h3 class="subhead">Laboratorio de Cálculo: Tangente (Derivada) y Área (Integral)</h3>
+        <p>Cambia entre el modo <strong>Montaña Rusa (Derivada)</strong> para buscar el punto óptimo y el modo <strong>Mochila (Integral)</strong> para sumar el área acumulada:</p>
+      </div>
+      <div class="nav-pills" role="group" aria-label="Modo de cálculo">
+        <button type="button" class="btn btn-soft active" id="calc-btn-deriv" onclick="setCalcMode('deriv')">Modo Derivada · Beneficio B(x)=-x²+8x</button>
+        <button type="button" class="btn btn-soft" id="calc-btn-integ" onclick="setCalcMode('integ')">Modo Integral · I'(x)=200 - 0.5x</button>
+      </div>
+      <div class="lab-controls">
+        <div class="control-group" style="flex: 1;">
+          <label for="calc-slider" id="calc-slider-label">Cantidad x: <span id="calc-x-readout">2</span></label>
+          <input type="range" id="calc-slider" min="0" max="8" step="0.5" value="2" oninput="updateCalcSlider(this.value)">
+        </div>
+      </div>
+      <div class="svg-stage">
+        <svg id="calc-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico interactivo de derivada e integral"></svg>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="caption" id="calc-s1-lbl">Altura actual B(x)</div>
+          <div class="stat-val" id="calc-s1-val">12</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption" id="calc-s2-lbl">Pendiente B'(x)</div>
+          <div class="stat-val" id="calc-s2-val" style="color: var(--secondary);">+4</div>
+        </div>
+        <div class="stat-tile">
+          <div class="caption" id="calc-s3-lbl">Estado</div>
+          <div class="stat-val" id="calc-s3-val" style="color: var(--positive);">Subiendo hacia la cima</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desafíos Semana 3 -->
+    <article class="challenge-card" id="ch-s3-1">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 3A · Derivadas (+15 XP)</span>
+        <span class="tag" id="status-s3-1">Pendiente</span>
+      </div>
+      <h3 class="subhead">El precio perfecto para maximizar ingresos</h3>
+      <p>Una tienda vende un pack a precio <code>p</code>. Su ingreso total es <code>I(p)=400p - 8p²</code>. ¿A qué precio <code>p</code> el ingreso llega a su <strong>máximo</strong> (<code>I'(p)=0</code>)?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 3A">
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-1', 0, this)">A) p=50 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-1', 1, this)">B) p=25 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-1', 2, this)">C) p=16 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-1', 3, this)">D) p=400 €</button>
+      </div>
+      <div class="feedback-box" id="fb-s3-1" aria-live="polite"></div>
+    </article>
+
+    <article class="challenge-card" id="ch-s3-2">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 3B · Integrales (+15 XP)</span>
+        <span class="tag" id="status-s3-2">Pendiente</span>
+      </div>
+      <h3 class="subhead">Sumando ventas con la Regla de Barrow</h3>
+      <p>Una empresa tiene un ingreso marginal de <code>I'(x)=200 - 0.5x</code> (en euros), partiendo con <code>I(0)=0</code>. Calcula el <strong>ingreso total acumulado</strong> al vender <code>x=100</code> unidades: <code>∫₀¹⁰⁰ (200 - 0.5x) dx</code>.</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 3B">
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-2', 0, this)">A) 15.000 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-2', 1, this)">B) 20.000 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-2', 2, this)">C) 17.500 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s3-2', 3, this)">D) 19.500 €</button>
+      </div>
+      <div class="feedback-box" id="fb-s3-2" aria-live="polite"></div>
+    </article>
+
+    <p class="section-disclaimer">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </section>
+
+  <!-- =========================================================
+       SEMANA 4: VARIAS VARIABLES Y PROGRAMACIÓN LINEAL
+       ========================================================= -->
+  <section class="week-section" id="semana-4" aria-labelledby="s4-title">
+    <div class="week-header">
+      <div>
+        <span class="kicker"><i data-lucide="compass" aria-hidden="true"></i> Semana 4 · Jefe Final</span>
+        <h2 class="section-title" id="s4-title">Dos botones a la vez y el mapa de la <em>Programación Lineal</em></h2>
+        <p>En la vida real casi todo depende de varias cosas a la vez (<code>x</code> e <code>y</code>). Aprende a congelar una variable con derivadas parciales y a encontrar el vértice campeón en Programación Lineal.</p>
+      </div>
+      <span class="badge" id="s4-progress-badge">0 / 2 desafíos</span>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <span class="tag"><i data-lucide="snowflake" aria-hidden="true"></i> Derivadas Parciales</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Congela una variable</h3>
+        <p>Para derivar <code>f(x, y)</code> respecto a <code>x</code> (<code>∂f/∂x</code>), tratas la <code>y</code> como si fuera un <strong>número congelado</strong>. El <strong>Vector Gradiente</strong> <code>∇f=(fₓ, fᵧ)</code> es la brújula hacia donde más rápido sube la función.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag"><i data-lucide="grid" aria-hidden="true"></i> Integrales Dobles</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">De dentro hacia fuera</h3>
+        <p>Miden un volumen acumulado sobre un rectángulo <code>[a,b] × [c,d]</code>. Primero integras respecto a la variable interior (ej. <code>dx</code> congelando <code>y</code>) y luego respecto a la exterior (<code>dy</code>).</p>
+      </article>
+
+      <article class="card">
+        <span class="tag tag-sky"><i data-lucide="map-pin" aria-hidden="true"></i> Programación Lineal</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">El tesoro está en las esquinas</h3>
+        <p>Dibujas las restricciones para encerrar la <strong>región factible</strong> (un polígono). ¡La mejor solución (máximo beneficio o mínimo coste) <strong>siempre</strong> está en uno de sus vértices!</p>
+      </article>
+    </div>
+
+    <!-- Tabla Hessiana -->
+    <div class="table-card">
+      <span class="kicker"><i data-lucide="radar" aria-hidden="true"></i> Mapa de Puntos Críticos (Matriz Hessiana)</span>
+      <h3 class="subhead">Clasifica un punto crítico con D=fₓₓ · fᵧᵧ - (fₓᵧ)²</h3>
+      <table class="sticker-table">
+        <thead>
+          <tr>
+            <th>Valor de D</th>
+            <th>Signo de fₓₓ</th>
+            <th>Qué es en el paisaje 3D</th>
+            <th>Significado en la empresa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Valor de D"><code>D &gt; 0</code></td>
+            <td data-label="Signo de fₓₓ"><code>fₓₓ &gt; 0</code></td>
+            <td data-label="Qué es en el paisaje 3D"><strong>Mínimo local</strong> (fondo de un cuenco)</td>
+            <td data-label="Significado en la empresa">Combinación que <strong>minimiza</strong> el coste</td>
+          </tr>
+          <tr>
+            <td data-label="Valor de D"><code>D &gt; 0</code></td>
+            <td data-label="Signo de fₓₓ"><code>fₓₓ &lt; 0</code></td>
+            <td data-label="Qué es en el paisaje 3D"><strong>Máximo local</strong> (cima de una montaña)</td>
+            <td data-label="Significado en la empresa">Combinación que <strong>maximiza</strong> el beneficio</td>
+          </tr>
+          <tr>
+            <td data-label="Valor de D"><code>D &lt; 0</code></td>
+            <td data-label="Signo de fₓₓ">Cualquiera</td>
+            <td data-label="Qué es en el paisaje 3D"><strong>Punto de silla</strong> (sube por un lado, baja por otro)</td>
+            <td data-label="Significado en la empresa">Zona inestable o ambigua (ni máximo ni mínimo)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Laboratorio Interactivo 5: Programación Lineal -->
+    <div class="lab-panel" style="box-shadow: var(--shadow-tangerine);">
+      <div>
+        <span class="kicker"><i data-lucide="pentagon" aria-hidden="true"></i> Laboratorio Interactivo 5</span>
+        <h3 class="subhead">Buscador de Vértices Óptimos (Programación Lineal)</h3>
+        <p>Explora los dos casos reales del temario. Haz clic en cualquier vértice del polígono factible (zona rosa) para evaluar la función objetivo <code>Z</code> y descubrir al ganador:</p>
+      </div>
+      <div class="nav-pills" role="group" aria-label="Casos de programación lineal">
+        <button type="button" class="btn btn-soft active" id="lp-btn-case1" onclick="setLPMode('case1')">Caso 1 · Maximizar Producción (Fábrica)</button>
+        <button type="button" class="btn btn-soft" id="lp-btn-case2" onclick="setLPMode('case2')">Caso 2 · Minimizar Coste (Kits ONG)</button>
+      </div>
+      <div class="asymmetric-grid">
+        <div class="svg-stage">
+          <svg id="lp-svg" viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Región factible de programación lineal"></svg>
+        </div>
+        <div class="stat-row" style="grid-template-columns: 1fr;">
+          <div class="stat-tile">
+            <div class="caption">Función Objetivo</div>
+            <div class="stat-val" id="lp-obj-title">Maximizar Z=50x+40y</div>
+            <p class="caption" id="lp-constraints" style="margin-top: var(--space-xs); margin-bottom: 0;">Restricciones: 2x+y ≤ 120, x+2y ≤ 80, x ≥ 0, y ≥ 0</p>
+          </div>
+          <div class="stat-tile">
+            <div class="caption">Vértice seleccionado (toca un punto)</div>
+            <div class="stat-val" id="lp-selected-pt" style="color: var(--secondary);">(53.33, 13.33)</div>
+            <p id="lp-selected-val" style="margin-top: var(--space-xs); margin-bottom: 0;">Valor Z=3.200 €</p>
+          </div>
+          <div class="stat-tile" style="background: var(--positive-container);">
+            <div class="caption" style="color: var(--on-positive-container);">Campeón Óptimo</div>
+            <div class="stat-val" id="lp-winner" style="color: var(--on-positive-container);">(60, 0) → Z=3.000 €</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desafíos Semana 4 -->
+    <article class="challenge-card" id="ch-s4-1">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 4A · Hessiana (+15 XP)</span>
+        <span class="tag" id="status-s4-1">Pendiente</span>
+      </div>
+      <h3 class="subhead">Clasifica el punto crítico de la campaña</h3>
+      <p>El coste de una campaña es <code>C(x, y)=x³+y² - 6xy</code>. Sabemos que <code>(6, 18)</code> es un punto crítico y sus segundas derivadas son <code>Cₓₓ=6x</code>, <code>Cᵧᵧ=2</code>, <code>Cₓᵧ=-6</code>. Al calcular <code>D=Cₓₓ·Cᵧᵧ - (Cₓᵧ)²</code> en <code>(6, 18)</code>, ¿qué tipo de punto es?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 4A">
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-1', 0, this)">A) Punto de silla porque D &lt; 0</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-1', 1, this)">B) Mínimo local porque D=36 &gt; 0 y Cₓₓ=36 &gt; 0</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-1', 2, this)">C) Máximo local porque D=36 &gt; 0 y Cₓₓ &lt; 0</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-1', 3, this)">D) No se puede saber porque falta una tercera variable</button>
+      </div>
+      <div class="feedback-box" id="fb-s4-1" aria-live="polite"></div>
+    </article>
+
+    <article class="challenge-card" id="ch-s4-2">
+      <div class="challenge-header">
+        <span class="badge"><i data-lucide="target" aria-hidden="true"></i> Desafío 4B · Programación Lineal (+15 XP)</span>
+        <span class="tag" id="status-s4-2">Pendiente</span>
+      </div>
+      <h3 class="subhead">El envío más barato de la ONG</h3>
+      <p>Una ONG quiere <strong>minimizar</strong> el coste de enviar kits humanitarios: <code>Z=60x+80y</code>. Sus vértices factibles son <code>(80, 120)</code>, <code>(120, 80)</code>, <code>(80, 150)</code> y <code>(225, 150)</code>. ¿Cuál logra el coste mínimo?</p>
+      <div class="options-grid" role="group" aria-label="Opciones desafío 4B">
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-2', 0, this)">A) (80, 120) con 14.400 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-2', 1, this)">B) (80, 150) con 16.800 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-2', 2, this)">C) (120, 80) con 13.600 €</button>
+        <button type="button" class="option-btn" onclick="submitChallenge('s4-2', 3, this)">D) (225, 150) con 25.500 €</button>
+      </div>
+      <div class="feedback-box" id="fb-s4-2" aria-live="polite"></div>
+    </article>
+
+    <p class="section-disclaimer">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </section>
+
+  <!-- =========================================================
+       SECCIÓN FINAL: HOJA DE TRUCOS Y FÓRMULAS MÁGICAS
+       ========================================================= -->
+  <section class="week-section" id="hoja-trucos" aria-labelledby="cheat-title">
+    <div class="week-header">
+      <div>
+        <span class="kicker"><i data-lucide="zap" aria-hidden="true"></i> Super-Chatsheet · Repaso Express</span>
+        <h2 class="section-title" id="cheat-title">Hoja de Trucos y <em>Fórmulas</em> Mágicas</h2>
+        <p>Todo el temario en un solo vistazo antes del examen. Filtra por semana si quieres repasar solo un bloque.</p>
+      </div>
+    </div>
+
+    <div class="cheat-filter-row" role="group" aria-label="Filtrar fórmulas por semana">
+      <button type="button" class="btn btn-soft active" id="cf-all" onclick="filterCheat('all')">Ver Todo</button>
+      <button type="button" class="btn btn-soft" id="cf-s1" onclick="filterCheat('s1')">Semana 1</button>
+      <button type="button" class="btn btn-soft" id="cf-s2" onclick="filterCheat('s2')">Semana 2</button>
+      <button type="button" class="btn btn-soft" id="cf-s3" onclick="filterCheat('s3')">Semana 3</button>
+      <button type="button" class="btn btn-soft" id="cf-s4" onclick="filterCheat('s4')">Semana 4</button>
+    </div>
+
+    <div class="cheat-card-list" id="cheat-grid">
+      <div class="cheat-item" data-week="s1">
+        <span class="tag">S1 · Conjuntos</span>
+        <h3 class="subhead">Inclusión-Exclusión & De Morgan</h3>
+        <p><code>|A ∪ B|=|A|+|B|-|A ∩ B|</code><br>
+        <code>|A ∪ B ∪ C|=|A|+|B|+|C|-|A∩B|-|A∩C|-|B∩C|+|A∩B∩C|</code><br>
+        <code>(A ∪ B)ᶜ=Aᶜ ∩ Bᶜ</code><br>
+        <code>(A ∩ B)ᶜ=Aᶜ ∪ Bᶜ</code></p>
+      </div>
+
+      <div class="cheat-item" data-week="s1">
+        <span class="tag">S1 · Combinatoria</span>
+        <h3 class="subhead">Tabla Rápida+Binomial</h3>
+        <p>• Orden+todos: <code>Pₙ=n!</code><br>
+        • Orden+parte: <code>Vₙ,ₖ=n!/(n-k)!</code> (sin rep.) · <code>nᵏ</code> (con rep.)<br>
+        • Sin orden: <code>Cₙ,ₖ=n!/(k!(n-k)!)</code><br>
+        • Prob. Binomial: <code>P(X=k)=C(n,k)·pᵏ·(1-p)ⁿ⁻ᵏ</code></p>
+      </div>
+
+      <div class="cheat-item" data-week="s1">
+        <span class="tag">S1·Álgebra</span>
+        <h3 class="subhead">2º Grado e Interés</h3>
+        <p><code>x=(-b ± √(b²-4ac))/2a</code><br>
+        Discriminante: <code>Δ=b²-4ac</code><br>
+        (<code>&gt;0</code> dos reales, <code>=0</code> una, <code>&lt;0</code> ninguna real)<br>
+        Interés compuesto: <code>A=P(1+r)ᵗ</code></p>
+      </div>
+
+      <div class="cheat-item" data-week="s2">
+        <span class="tag tag-sky">S2 · Sucesiones</span>
+        <h3 class="subhead">Aritmética vs Geométrica</h3>
+        <p><strong>Aritmética (+d):</strong><br>
+        <code>aₙ=a₁+(n-1)·d</code><br>
+        <code>Sₙ=(n/2)·(2a₁+(n-1)·d)</code><br>
+        <strong>Geométrica (×r):</strong><br>
+        <code>aₙ=a₁·rⁿ⁻¹</code> · <code>Sₙ=a₁·(1-rⁿ)/(1-r)</code></p>
+      </div>
+
+      <div class="cheat-item" data-week="s2">
+        <span class="tag tag-sky">S2·Límites y Continuidad</span>
+        <h3 class="subhead">Los 3 Pasos de Continuidad</h3>
+        <p>Continua en <code>a</code> si: <code>f(a)</code> existe, <code>lim x→a⁻=lim x→a⁺</code>, y coinciden con <code>f(a)</code>.<br>
+        <strong>Ojo al truco:</strong> si da <code>0/0</code> o <code>∞/∞</code>, factoriza o divide por la mayor potencia de <code>x</code>.</p>
+      </div>
+
+      <div class="cheat-item" data-week="s3">
+        <span class="tag tag-tangerine">S3 · Derivadas</span>
+        <h3 class="subhead">Cimas, Valles y Reglas</h3>
+        <p><code>(xⁿ)'=n·xⁿ⁻¹</code> · <code>(ln x)'=1/x</code> · <code>(eˣ)'=eˣ</code><br>
+        Producto: <code>u'v+uv'</code> · Cociente: <code>(u'v - uv')/v²</code><br>
+        <strong>Óptimo:</strong> <code>f'(x)=0</code> → si <code>f''(x) &lt; 0</code> es Máximo; si <code>f''(x) &gt; 0</code> es Mínimo.</p>
+      </div>
+
+      <div class="cheat-item" data-week="s3">
+        <span class="tag tag-tangerine">S3 · Integrales</span>
+        <h3 class="subhead">Barrow y LIATE</h3>
+        <p><code>∫ xⁿ dx=xⁿ⁺¹/(n+1)+C</code> (<code>n ≠ -1</code>)<br>
+        <code>∫ (1/x) dx=ln|x|+C</code><br>
+        <strong>Barrow:</strong> <code>∫ₐᵇ f(x) dx=F(b)-F(a)</code><br>
+        <strong>Por partes:</strong> <code>∫ u dv=u·v - ∫ v du</code> (prioridad <strong>LIATE</strong>).</p>
+      </div>
+
+      <div class="cheat-item" data-week="s4">
+        <span class="tag">S4 · Varias Variables</span>
+        <h3 class="subhead">Parciales, Hessiana y PL</h3>
+        <p><strong>Parcial:</strong> deriva <code>x</code> congelando <code>y</code>.<br>
+        <strong>Hessiana:</strong> <code>D=fₓₓ·fᵧᵧ - (fₓᵧ)²</code><br>
+        (<code>D&gt;0, fₓₓ&gt;0</code> Mínimo; <code>D&gt;0, fₓₓ&lt;0</code> Máximo; <code>D&lt;0</code> Silla)<br>
+        <strong>Prog. Lineal:</strong> evalúa <code>Z</code> en todos los vértices de la región factible.</p>
+      </div>
+    </div>
+
+    <p class="section-disclaimer">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </section>
+
+  <!-- FOOTER FINAL -->
+  <footer class="site-footer">
+    <p style="margin: 0;"><strong>Fuentes del curso:</strong> Guía construida a partir de los módulos teóricos y cuadernos de ejercicios resueltos de Matemáticas Empresariales (Semanas 1 a 4: Teoría de Conjuntos, Combinatoria, Álgebra Lineal, Sucesiones, Límites, Continuidad, Derivadas, Integrales, Varias Variables y Programación Lineal).</p>
+    <p class="section-disclaimer" style="margin: 0;">Descargo de responsabilidad: Esta guía interactiva es un recurso de apoyo educativo. El usuario tiene la obligación de corroborar que toda la información y cálculos sean correctos con su temario oficial.</p>
+  </footer>
+
+</div>
+
+<api-shim></api-shim>
+<script>
+/* =========================================================
+   DATA & STATE
+   ========================================================= */
+const TOTAL_XP=135;
+
+const CHALLENGES={
+  's1-1': {
+    week: 's1',
+    correct: 1,
+    wrongWhy: [
+      `¡Cuidado! 120 es el total de personas encuestadas (el Universo U), no las que vieron la campaña. Aún quedan personas fuera.`,
+      ``,
+      `¡Ojo con el doble conteo! Si sumas 70+50+40=160 te pasas hasta del total de 120 personas porque sumaste dos veces a los 40 repetidos.`,
+      `40 son los que vieron AMBOS medios (la intersección), o también los que no vieron ninguno. ¡Pero aquí buscamos los que vieron AL MENOS uno (la unión)!`
+    ],
+    steps: [
+      `<strong>Paso 1 (Identificar datos):</strong> Redes |R|=70, TV |T|=50, Ambos |R ∩ T|=40.`,
+      `<strong>Paso 2 (Fórmula de Inclusión-Exclusión):</strong> |R ∪ T|=|R|+|T|-|R ∩ T|.`,
+      `<strong>Paso 3 (Sumar):</strong> Primero sumamos los dos grupos: 70+50=120.`,
+      `<strong>Paso 4 (Restar repetidos):</strong> Como los 40 de "ambos" se contaron 2 veces, los restamos una vez: 120-40=<strong>80 personas</strong>.`
+    ]
+  },
+  's1-2': {
+    week: 's1',
+    correct: 2,
+    wrongWhy: [
+      `¡Casi! 120 sería una COMBINACIÓN C(10,3)=720/6=120, donde NO importa el orden. Pero aquí los premios son DIFERENTES (no es lo mismo ganar un viaje que una tarjeta).`,
+      `1.000=10³ sería si una misma persona pudiera ganar los 3 premios a la vez (variación con repetición). Aquí cada premio va a un cliente distinto.`,
+      ``,
+      `¡Ups! 30=10·3 no sirve para repartir premios. Para el primer premio hay 10 opciones, para el segundo quedan 9 y para el tercero quedan 8.`
+    ],
+    steps: [
+      `<strong>Paso 1 (Elegir fórmula):</strong> Importa el orden (premios distintos) y NO se repite cliente → <strong>Variación sin repetición</strong> V₁₀,₃=10! / (10 - 3)!`,
+      `<strong>Paso 2 (Restar paréntesis):</strong> 10-3=7, así que queda 10!/7!.`,
+      `<strong>Paso 3 (Simplificar factorial):</strong> (10·9·8·7!)/7!=10·9·8.`,
+      `<strong>Paso 4 (Multiplicar paso a paso):</strong> 10·9=90; y 90·8=<strong>720 formas distintas</strong>.`
+    ]
+  },
+  's1-3': {
+    week: 's1',
+    correct: 0,
+    wrongWhy: [
+      ``,
+      `¡Casi! Parece que intercambiaste x por y. Si x=3, entonces y=2(3)+1=7 (y no 1).`,
+      `Si x=5, en la primera ecuación y=2(5)+1=11, pero en la segunda y=-5+4=-1. ¡No coinciden!`,
+      `Si x=2, en la primera ecuación y=2(2)+1=5, pero en la segunda y=-2+4=2. ¡La balanza se desnivela!`
+    ],
+    steps: [
+      `<strong>Paso 1 (Igualación):</strong> Como ambas ecuaciones valen "y", las igualamos: 2x+1=-x+4.`,
+      `<strong>Paso 2 (Agrupar las x):</strong> Sumamos x en ambos lados: 2x+x+1=4 → 3x+1=4.`,
+      `<strong>Paso 3 (Despejar x):</strong> Restamos 1 en ambos lados: 3x=4-1 → 3x=3 → x=3 / 3=<strong>1</strong>.`,
+      `<strong>Paso 4 (Calcular y):</strong> Sustituimos x=1 en la primera: y=2(1)+1=2+1=<strong>3</strong>. Comprobación: -1+4=3. ¡Perfecto!`
+    ]
+  },
+  's2-1': {
+    week: 's2',
+    correct: 1,
+    wrongWhy: [
+      `¡Despiste clásico! Multiplicaste 10·150=1.500 y sumaste 1.000=2.500. Pero del mes 1 al mes 10 solo das 9 saltos (n-1=9), no 10`,
+      ``,
+      `1.150=1.000+150 es la producción del mes 2 (a₂), ¡no del mes 10!`,
+      `16.750 es la suma ACUMULADA de los 10 meses juntos (S₁₀), pero la pregunta pide solo cuánto se produce en el mes 10.`
+    ],
+    steps: [
+      `<strong>Paso 1 (Identificar progresión):</strong> Al sumar +150 cada mes, es aritmética: aₙ=a₁+(n-1)·d.`,
+      `<strong>Paso 2 (Sustituir datos):</strong> a₁=1.000, d=150, n=10 → a₁₀=1.000+(10-1)·150.`,
+      `<strong>Paso 3 (Resolver el paréntesis primero):</strong> 10-1=9. Ahora multiplicamos: 9·150=1.350.`,
+      `<strong>Paso 4 (Sumar):</strong> 1.000+1.350=<strong>2.350 unidades</strong>.`
+    ]
+  },
+  's2-2': {
+    week: 's2',
+    correct: 1,
+    wrongWhy: [
+      `Comprueba bien el trozo derecho (3x-5) para x=2: 3·2-5=6-5=1, ¡no 3!`,
+      ``,
+      `Ningún denominador se hace 0 ni explota a infinito en x=2. Los dos trozos dan números normales (3 y 1), así que es un salto finito.`,
+      `Comprueba bien el trozo izquierdo (x²-1) para x=2: 2²-1=4-1=3, ¡no 1!`
+    ],
+    steps: [
+      `<strong>Paso 1 (Valor de la función f(2)):</strong> Usamos el trozo con "≥ 2": f(2)=3·(2)-5=6-5=1.`,
+      `<strong>Paso 2 (Límite por la derecha x → 2⁺):</strong> Usamos 3x-5 → 3·(2)-5=6 - 5=<strong>1</strong>.`,
+      `<strong>Paso 3 (Límite por la izquierda x → 2⁻):</strong> Usamos x²-1 → 2²-1=4-1=<strong>3</strong>.`,
+      `<strong>Paso 4 (Comparar):</strong> Como 3≠1, los límites laterales no coinciden → <strong>No es continua en x=2</strong> (hay un salto de 2 unidades).`
+    ]
+  },
+  's3-1': {
+    week: 's3',
+    correct: 1,
+    wrongWhy: [
+      `Si p=50 €, la demanda D(50)=400-8(50)=0 y el ingreso es 0 €. ¡Comprueba la ecuación 400-16p=0!`,
+      ``,
+      `16 es el número que multiplica a la p al derivar 8p² (porque 8·2=16), ¡pero falta dividir 400 entre 16!`,
+      `400 es el término independiente de la derivada, no el precio óptimo.`
+    ],
+    steps: [
+      `<strong>Paso 1 (Derivar I(p)):</strong> La derivada de 400p=400, y la de -8p²=-8·(2p)=-16p. Así que I'(p)=400 - 16p.`,
+      `<strong>Paso 2 (Igualar a cero para hallar la cima):</strong> 400-16p=0`,
+      `<strong>Paso 3 (Despejar p):</strong> 400=16p → p=400/16`,
+      `<strong>Paso 4 (Dividir paso a paso):</strong> 400/16 → mitad de 400 es 200 (entre 8), mitad 100 (entre 4), mitad 50 (entre 2), mitad=<strong>25€</strong>. Como I''(p)=-16 &lt; 0, es un máximo.`
+    ]
+  },
+  's3-2': {
+    week: 's3',
+    correct: 2,
+    wrongWhy: [
+      `¡Ojo al integrar -0.5x! La primitiva de x es x²/2, así que -0.5 · (x²/2)=-0.25x². Si restaste 0.5 · 100²=5.000, olvidaste dividir entre 2.`,
+      `20.000 € sería 200 × 100, pero te olvidaste de integrar y restar la parte -0.5x.`,
+      ``,
+      `¡Cuidado! 19.500 € sería sustituir x=100 directamente en 200·100-0.5·100 sin integrar primero.`
+    ],
+    steps: [
+      `<strong>Paso 1 (Hallar la primitiva F(x)):</strong> ∫ (200 - 0.5x) dx=200x - 0.5·(x² / 2)=200x - 0.25x².`,
+      `<strong>Paso 2 (Evaluar en el límite superior b=100):</strong> F(100)=200·100 - 0.25·(100)²=20.000 - 0.25·10.000.`,
+      `<strong>Paso 3 (Calcular la resta):</strong> 0.25 × 10.000=2.500. Entonces 20.000 - 2.500=17.500.`,
+      `<strong>Paso 4 (Aplicar Barrow F(100) - F(0)):</strong> Como F(0)=0, el resultado es 17.500 - 0=<strong>17.500 €</strong>.`
+    ]
+  },
+  's4-1': {
+    week: 's4',
+    correct: 1,
+    wrongWhy: [
+      `¡Revisa la resta de D! D=(6·6)·2 - (-6)²=36·2 - 36=72 - 36=+36, que es MAYOR que 0. (El punto de silla ocurría en (0, 0), donde D=0 - 36=-36).`,
+      ``,
+      `Fíjate en el signo de Cₓₓ en (6, 18): Cₓₓ=6·x=6·6=+36, que es POSITIVO (> 0), no negativo. Positivo significa forma de cuenco (mínimo).`,
+      `¡Sí se puede saber! Con la matriz Hessiana de 2 variables basta calcular D=Cₓₓ·Cᵧᵧ - (Cₓᵧ)².`
+    ],
+    steps: [
+      `<strong>Paso 1 (Evaluar las segundas derivadas en (6, 18)):</strong> Cₓₓ=6·(6)=36; Cᵧᵧ=2; Cₓᵧ=-6.`,
+      `<strong>Paso 2 (Aplicar fórmula de D):</strong> D=Cₓₓ · Cᵧᵧ - (Cₓᵧ)²=36 · 2 - (-6)².`,
+      `<strong>Paso 3 (Multiplicar y elevar al cuadrado):</strong> 36 × 2=72, y (-6)²=(-6) × (-6)=+36.`,
+      `<strong>Paso 4 (Restar y clasificar):</strong> D=72 - 36=<strong>+36 &gt; 0</strong>. Como D &gt; 0 y Cₓₓ=36 &gt; 0, es un <strong>Mínimo local</strong>.`
+    ]
+  },
+  's4-2': {
+    week: 's4',
+    correct: 2,
+    wrongWhy: [
+      `En (80, 120) el coste es 60·80+80·120=4.800+9.600=14.400 €. ¡Hay otro vértice más barato!`,
+      `En (80, 150) el coste es 60·80+80·150=4.800+12.000=16.800 €. Es más caro porque envías 230 kits en vez de 200.`,
+      ``,
+      `En (225, 150) el coste es 25.500 €, ¡el vértice más caro de todos!`
+    ],
+    steps: [
+      `<strong>Paso 1 (Evaluar (80, 120)):</strong> 60×80+80×120=4.800+9.600=14.400 €.`,
+      `<strong>Paso 2 (Evaluar (120, 80)):</strong> 60×120+80×80=7.200+6.400=<strong>13.600 €</strong>.`,
+      `<strong>Paso 3 (Evaluar los otros dos):</strong> (80, 150)=4.800+12.000=16.800 €; (225, 150)=13.500+12.000=25.500 €.`,
+      `<strong>Paso 4 (Elegir el mínimo):</strong> Como queremos gastar lo menos posible, gana <strong>(120, 80) con 13.600 €</strong>.`
+    ]
+  }
+};
+
+let appState={
+  solved: {},
+  vennOp: 'union',
+  seqMode: 'arith',
+  limMode: 'cont',
+  limX: 40,
+  calcMode: 'deriv',
+  calcX: 2,
+  lpMode: 'case1',
+  lpIdx: 2,
+  cheatFilter: 'all',
+  theme: 'verde'
+};
+
+/* =========================================================
+   SELECTOR DE TEMA DE COLOR
+   ========================================================= */
+const THEMES=['verde', 'rosa', 'naranja', 'gris', 'azul', 'amarillo'];
+
+function setTheme(name) {
+  if (THEMES.indexOf(name) === -1) name='verde';
+  appState.theme=name;
+  if (name === 'verde') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', name);
+  document.querySelectorAll('[data-theme-btn]').forEach(function(b) {
+    b.setAttribute('aria-pressed', b.dataset.themeBtn === name ? 'true' : 'false');
+  });
+  try { localStorage.setItem('mates-theme', name); } catch (e) {}
+  saveStateSafe();
+}
+
+/* =========================================================
+   STATE PERSISTENCE & HUD
+   ========================================================= */
+function saveStateSafe() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+    window.notebookAppApi.setAppState(appState).catch(function() {});
+  }
+}
+
+function updateHUD() {
+  const solvedKeys=Object.keys(appState.solved);
+  const xp=solvedKeys.length * 15;
+  const pct=Math.min(100, Math.round((xp / TOTAL_XP) * 100));
+
+  const fillEl=document.getElementById('xp-bar-fill');
+  const textEl=document.getElementById('xp-text');
+  if (fillEl) fillEl.style.width=pct+'%';
+  if (textEl) textEl.textContent=xp+' / '+TOTAL_XP+' XP';
+
+  const counts={ s1: 0, s2: 0, s3: 0, s4: 0 };
+  const totals={ s1: 3, s2: 2, s3: 2, s4: 2 };
+  solvedKeys.forEach(function(id) {
+    if (CHALLENGES[id]) counts[CHALLENGES[id].week]++;
+  });
+
+  ['s1', 's2', 's3', 's4'].forEach(function(wk) {
+    const badge=document.getElementById(wk+'-progress-badge');
+    if (badge) badge.textContent=counts[wk]+' / '+totals[wk]+' desafíos';
+    const medal=document.getElementById('medal-'+wk);
+    if (medal) {
+      if (counts[wk] === totals[wk]) medal.classList.add('unlocked');
+      else medal.classList.remove('unlocked');
+    }
+  });
+
+  const masterMedal=document.getElementById('medal-master');
+  if (masterMedal) {
+    if (solvedKeys.length === Object.keys(CHALLENGES).length) masterMedal.classList.add('unlocked');
+    else masterMedal.classList.remove('unlocked');
+  }
+}
+
+function handleResetProgress(btn) {
+  if (!btn) return;
+  if (btn.dataset.armed !== 'true') {
+    btn.dataset.armed='true';
+    btn.textContent='Toca otra vez para confirmar';
+    setTimeout(function() {
+      if (btn.dataset.armed === 'true') {
+        btn.dataset.armed='false';
+        btn.innerHTML=`<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reiniciar partida`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }, 4000);
+    return;
+  }
+  btn.dataset.armed='false';
+  btn.innerHTML=`<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reiniciar partida`;
+  appState.solved={};
+  Object.keys(CHALLENGES).forEach(function(id) {
+    const card=document.getElementById('ch-'+id);
+    const status=document.getElementById('status-'+id);
+    const fb=document.getElementById('fb-'+id);
+    if (card) {
+      card.classList.remove('solved');
+      card.querySelectorAll('.option-btn').forEach(function(b) {
+        b.classList.remove('selected-correct', 'selected-wrong');
+      });
+    }
+    if (status) status.textContent='Pendiente';
+    if (fb) {
+      fb.classList.remove('visible', 'correct', 'wrong');
+      fb.innerHTML='';
+    }
+  });
+  updateHUD();
+  saveStateSafe();
+  if (window.lucide) window.lucide.createIcons();
+}
+
+/* =========================================================
+   CHALLENGE ENGINE (Step-by-step zero-skip feedback)
+   ========================================================= */
+function submitChallenge(id, idx, btnEl) {
+  const ch=CHALLENGES[id];
+  if (!ch) return;
+  const card=document.getElementById('ch-'+id);
+  const fb=document.getElementById('fb-'+id);
+  const status=document.getElementById('status-'+id);
+  if (!card || !fb) return;
+
+  card.querySelectorAll('.option-btn').forEach(function(b) {
+    b.classList.remove('selected-correct', 'selected-wrong');
+  });
+
+  if (idx === ch.correct) {
+    if (btnEl) btnEl.classList.add('selected-correct');
+    card.classList.add('solved');
+    if (status) status.textContent='Superado (+15 XP)';
+    appState.solved[id]=true;
+    fb.className='feedback-box visible correct';
+    fb.innerHTML =
+      `<div><strong>¡Súper! Has acertado (+15 XP)</strong>. Aquí tienes el desglose completo paso a paso para repasarlo juntos:</div>` +
+      `<ul class="steps-list">` +
+      ch.steps.map(function(s, i) { return `<li><span class="step-badge">${i+1}</span> ${s}</li>`; }).join('') +
+      `</ul>`;
+    updateHUD();
+    saveStateSafe();
+  } else {
+    if (btnEl) btnEl.classList.add('selected-wrong');
+    fb.className='feedback-box visible wrong';
+    const reason=ch.wrongWhy[idx] || `Ese resultado no coincide con la operación correcta.`;
+    fb.innerHTML =
+      `<div><strong>¡Casi! Vamos a cazar el despiste juntos:</strong> ${reason}</div>` +
+      `<ul class="steps-list">` +
+      ch.steps.map(function(s, i) { return `<li><span class="step-badge">${i+1}</span> ${s}</li>`; }).join('') +
+      `</ul>` +
+      `<div style="margin-top: var(--space-sm);"><span class="caption">Ahora toca la opción correcta arriba para sumar tus +15 XP.</span></div>`;
+  }
+}
+
+/* =========================================================
+   LAB 1: INTERACTIVE VENN DIAGRAM
+   ========================================================= */
+const VENN_DATA={
+  union: {
+    title: `Unión: O ∪ F`,
+    desc: `Clientes que compraron online, en tienda física o en ambos canales.`,
+    set: `{C1, C2, C3, C4, C5, C6, C7, C8}`,
+    count: `8 clientes`,
+    formula: `Fórmula: |O|+|F| - |O ∩ F|=5+5 - 2=8`,
+    zones: { u: 'var(--surface-container-low)', o: 'var(--primary-container)', f: 'var(--tertiary-container)', inter: 'var(--secondary-container)' }
+  },
+  inter: {
+    title: `Intersección: O ∩ F`,
+    desc: `Clientes repetidos que compraron tanto online como en tienda física.`,
+    set: `{C3, C6}`,
+    count: `2 clientes`,
+    formula: `Solo los elementos que viven en los dos círculos a la vez.`,
+    zones: { u: 'var(--surface-container-low)', o: 'var(--surface-container-low)', f: 'var(--surface-container-low)', inter: 'var(--primary-container)' }
+  },
+  diffO: {
+    title: `Diferencia: O \\ F`,
+    desc: `Clientes que compraron EXCLUSIVAMENTE online (quitando los de física).`,
+    set: `{C1, C2, C7}`,
+    count: `3 clientes`,
+    formula: `Fórmula: |O| - |O ∩ F|=5 - 2=3`,
+    zones: { u: 'var(--surface-container-low)', o: 'var(--primary-container)', f: 'var(--surface-container-low)', inter: 'var(--surface-container-low)' }
+  },
+  diffF: {
+    title: `Diferencia: F \\ O`,
+    desc: `Clientes que compraron EXCLUSIVAMENTE en tienda física.`,
+    set: `{C4, C5, C8}`,
+    count: `3 clientes`,
+    formula: `Fórmula: |F| - |O ∩ F|=5 - 2=3`,
+    zones: { u: 'var(--surface-container-low)', o: 'var(--surface-container-low)', f: 'var(--tertiary-container)', inter: 'var(--surface-container-low)' }
+  },
+  compUnion: {
+    title: `Complemento de la unión: (O ∪ F)ᶜ`,
+    desc: `Clientes del universo U que NO usaron ninguno de los dos canales. ¡1ª Ley de De Morgan: igual a Oᶜ ∩ Fᶜ!`,
+    set: `{C9, C10}`,
+    count: `2 clientes`,
+    formula: `Fórmula: |U| - |O ∪ F|=10 - 8=2`,
+    zones: { u: 'var(--primary-soft)', o: 'var(--surface-container-low)', f: 'var(--surface-container-low)', inter: 'var(--surface-container-low)' }
+  },
+  compInter: {
+    title: `Complemento de la intersección: (O ∩ F)ᶜ`,
+    desc: `Todo el universo excepto los 2 clientes que están en ambos. ¡2ª Ley de De Morgan: igual a Oᶜ ∪ Fᶜ!`,
+    set: `{C1, C2, C4, C5, C7, C8, C9, C10}`,
+    count: `8 clientes`,
+    formula: `Fórmula: |U| - |O ∩ F|=10 - 2=8`,
+    zones: { u: 'var(--primary-soft)', o: 'var(--primary-container)', f: 'var(--tertiary-container)', inter: 'var(--surface-container-low)' }
+  }
+};
+
+function setVennOp(op) {
+  const data=VENN_DATA[op];
+  if (!data) return;
+  appState.vennOp=op;
+
+  ['union', 'inter', 'diffO', 'diffF', 'compUnion', 'compInter'].forEach(function(k) {
+    const b=document.getElementById('venn-btn-'+k);
+    if (b) {
+      if (k === op) b.classList.add('active');
+      else b.classList.remove('active');
+    }
+  });
+
+  const zU=document.getElementById('venn-zone-u');
+  const zO=document.getElementById('venn-zone-o');
+  const zF=document.getElementById('venn-zone-f');
+  const zI=document.getElementById('venn-zone-inter');
+  if (zU) zU.setAttribute('fill', data.zones.u);
+  if (zO) zO.setAttribute('fill', data.zones.o);
+  if (zF) zF.setAttribute('fill', data.zones.f);
+  if (zI) zI.setAttribute('fill', data.zones.inter);
+
+  const tEl=document.getElementById('venn-op-title');
+  const dEl=document.getElementById('venn-op-desc');
+  const sEl=document.getElementById('venn-op-set');
+  const cEl=document.getElementById('venn-op-count');
+  const fEl=document.getElementById('venn-op-demorgan');
+  if (tEl) tEl.textContent=data.title;
+  if (dEl) dEl.textContent=data.desc;
+  if (sEl) sEl.textContent=data.set;
+  if (cEl) cEl.textContent=data.count;
+  if (fEl) fEl.textContent=data.formula;
+
+  saveStateSafe();
+}
+
+/* =========================================================
+   LAB 2: SEQUENCE LOLLIPOP CHART
+   ========================================================= */
+function setSeqMode(mode) {
+  appState.seqMode=mode;
+  ['arith', 'geom', 'conv'].forEach(function(m) {
+    const b=document.getElementById('seq-btn-'+m);
+    if (b) {
+      if (m === mode) b.classList.add('active');
+      else b.classList.remove('active');
+    }
+  });
+
+  const svg=document.getElementById('seq-svg');
+  if (!svg) return;
+
+  const vals=[];
+  let maxVal=110;
+  let behText='';
+  let limitLine=null;
+
+  for (let n=1; n <= 10; n++) {
+    if (mode === 'arith') vals.push(50+2 * (n - 1));
+    else if (mode === 'geom') vals.push(+(10 * Math.pow(1.3, n - 1)).toFixed(1));
+    else vals.push(+(5+100 / n).toFixed(1));
+  }
+
+  if (mode === 'arith') {
+    maxVal=80;
+    behText='Aritmética (+2 cada mes) · Diverge a +∞';
+  } else if (mode === 'geom') {
+    maxVal=120;
+    behText='Geométrica (×1.3 cada mes) · Crece rápido';
+  } else {
+    maxVal=115;
+    behText='Convergente · Se acerca al límite L=5';
+    limitLine=5;
+  }
+
+  const a1El=document.getElementById('seq-stat-a1');
+  const a10El=document.getElementById('seq-stat-a10');
+  const behEl=document.getElementById('seq-stat-beh');
+  if (a1El) a1El.textContent=vals[0];
+  if (a10El) a10El.textContent=vals[9];
+  if (behEl) behEl.textContent=behText;
+
+  const padL=56, padR=28, padT=24, padB=42;
+  const w=640 - padL - padR;
+  const h=290 - padT - padB;
+  const stepX=w / 10;
+
+  let markup='';
+  // Gridlines
+  for (let g=0; g <= 4; g++) {
+    const gy=padT+(h * g) / 4;
+    const gVal=Math.round(maxVal * (1 - g / 4));
+    markup += `<line x1="${padL}" y1="${gy}" x2="${640 - padR}" y2="${gy}" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1.5"/>`;
+    markup += `<text x="${padL - 8}" y="${gy+4}" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="var(--on-surface-variant)">${gVal}</text>`;
+  }
+
+  if (limitLine !== null) {
+    const ly=padT+h - (limitLine / maxVal) * h;
+    markup += `<line x1="${padL}" y1="${ly}" x2="${640 - padR}" y2="${ly}" stroke="var(--positive)" stroke-dasharray="6 4" stroke-width="2.5"/>`;
+    markup += `<text x="${640 - padR - 4}" y="${ly - 6}" text-anchor="end" font-family="DM Sans, sans-serif" font-size="12" font-weight="800" fill="var(--positive)">Límite L=5</text>`;
+  }
+
+  vals.forEach(function(v, idx) {
+    const cx=padL+stepX * idx+stepX / 2;
+    const cy=padT+h - (v / maxVal) * h;
+    const barH=Math.max(4, padT+h - cy);
+    const fillCol=mode === 'arith' ? 'var(--data-1)' : (mode === 'geom' ? 'var(--data-2)' : 'var(--data-3)');
+    markup += `<rect x="${cx - 4}" y="${cy}" width="8" height="${barH}" rx="4" fill="${fillCol}" opacity="0.3"/>`;
+    markup += `<circle cx="${cx}" cy="${cy}" r="7" fill="${fillCol}"/>`;
+    markup += `<text x="${cx}" y="${cy - 12}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="800" fill="var(--on-surface)">${v}</text>`;
+    markup += `<text x="${cx}" y="${padT+h+22}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-surface-variant)">n=${idx+1}</text>`;
+  });
+
+  svg.innerHTML=markup;
+  saveStateSafe();
+}
+
+/* =========================================================
+   LAB 3: LIMITS & CONTINUITY SKATE RAMP
+   ========================================================= */
+const LIM_MODES={
+  cont: { min: 0, max: 100, step: 1, def: 40, crit: 50, left: '20 €', right: '20 €', diag: 'Continua en x=50', diagColor: 'var(--positive)' },
+  jump: { min: 0, max: 150, step: 5, def: 80, crit: 100, left: '10 €', right: '15 €', diag: 'Salto finito de 5 € en x=100', diagColor: 'var(--warning)' },
+  inf: { min: 0, max: 49, step: 1, def: 30, crit: 50, left: '+∞ (explota)', right: 'No definido', diag: 'Asíntota vertical en q=50', diagColor: 'var(--error)' },
+  hole: { min: 0, max: 5, step: 0.2, def: 1.4, crit: 2, left: '4', right: '4', diag: 'Discontinuidad evitable (hueco en x=2)', diagColor: 'var(--secondary)' }
+};
+
+function setLimMode(mode) {
+  appState.limMode=mode;
+  const cfg=LIM_MODES[mode];
+  if (!cfg) return;
+
+  ['cont', 'jump', 'inf', 'hole'].forEach(function(m) {
+    const b=document.getElementById('lim-btn-'+m);
+    if (b) {
+      if (m === mode) b.classList.add('active');
+      else b.classList.remove('active');
+    }
+  });
+
+  const slider=document.getElementById('lim-slider');
+  if (slider) {
+    slider.min=cfg.min;
+    slider.max=cfg.max;
+    slider.step=cfg.step;
+    slider.value=cfg.def;
+  }
+  appState.limX=cfg.def;
+
+  const lEl=document.getElementById('lim-left-val');
+  const rEl=document.getElementById('lim-right-val');
+  const dEl=document.getElementById('lim-diag-val');
+  if (lEl) lEl.textContent=cfg.left;
+  if (rEl) rEl.textContent=cfg.right;
+  if (dEl) {
+    dEl.textContent=cfg.diag;
+    dEl.style.color=cfg.diagColor;
+  }
+
+  renderLimChart();
+  saveStateSafe();
+}
+
+function updateLimSlider(val) {
+  appState.limX=parseFloat(val);
+  renderLimChart();
+}
+
+function evalLimY(mode, x) {
+  if (mode === 'cont') return x <= 50 ? 20 : 20+0.5 * (x - 50);
+  if (mode === 'jump') return x <= 100 ? 0.1 * x : 15+0.5 * (x - 100);
+  if (mode === 'inf') return Math.min(600, 3000 / Math.max(0.5, 50 - x));
+  return x+2;
+}
+
+function renderLimChart() {
+  const mode=appState.limMode;
+  const cfg=LIM_MODES[mode];
+  const svg=document.getElementById('lim-svg');
+  const read=document.getElementById('lim-x-readout');
+  if (!svg || !cfg) return;
+
+  const xCur=appState.limX;
+  const yCur=evalLimY(mode, xCur);
+  if (read) {
+    const isHole=mode === 'hole' && Math.abs(xCur - 2) < 0.05;
+    read.textContent=xCur+(isHole ? ' (Hueco: sin valor exacto)' : ' → altura f(x)='+yCur.toFixed(1));
+  }
+
+  const padL=56, padR=28, padT=24, padB=38;
+  const w=640 - padL - padR;
+  const h=300 - padT - padB;
+
+  const xMax=mode === 'cont' ? 100 : (mode === 'jump' ? 150 : (mode === 'inf' ? 55 : 5));
+  const yMax=mode === 'cont' ? 50 : (mode === 'jump' ? 45 : (mode === 'inf' ? 600 : 7));
+
+  function sx(x) { return padL+(x / xMax) * w; }
+  function sy(y) { return padT+h - (Math.min(yMax, y) / yMax) * h; }
+
+  let markup='';
+  // Grid
+  for (let g=0; g <= 3; g++) {
+    const gy=padT+(h * g) / 3;
+    markup += `<line x1="${padL}" y1="${gy}" x2="${640 - padR}" y2="${gy}" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1.5"/>`;
+  }
+
+  // Critical vertical guide
+  const cxCrit=sx(cfg.crit);
+  markup += `<line x1="${cxCrit}" y1="${padT}" x2="${cxCrit}" y2="${padT+h}" stroke="var(--secondary)" stroke-dasharray="5 5" stroke-width="2"/>`;
+  markup += `<text x="${cxCrit}" y="${padT+h+22}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="800" fill="var(--secondary)">x=${cfg.crit}</text>`;
+
+  // Curve paths
+  if (mode === 'cont') {
+    markup += `<polyline points="${sx(0)},${sy(20)} ${sx(50)},${sy(20)} ${sx(100)},${sy(45)}" fill="none" stroke="var(--data-1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+    markup += `<circle cx="${sx(50)}" cy="${sy(20)}" r="6" fill="var(--positive)"/>`;
+  } else if (mode === 'jump') {
+    markup += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(100)}" y2="${sy(10)}" stroke="var(--data-1)" stroke-width="4" stroke-linecap="round"/>`;
+    markup += `<line x1="${sx(100)}" y1="${sy(15)}" x2="${sx(150)}" y2="${sy(40)}" stroke="var(--data-3)" stroke-width="4" stroke-linecap="round"/>`;
+    markup += `<circle cx="${sx(100)}" cy="${sy(10)}" r="6" fill="var(--data-1)"/>`;
+    markup += `<circle cx="${sx(100)}" cy="${sy(15)}" r="6" fill="var(--surface-container-low)" stroke="var(--data-3)" stroke-width="3"/>`;
+  } else if (mode === 'inf') {
+    let pts=[];
+    for (let x=0; x <= 45; x += 1) pts.push(`${sx(x)},${sy(3000 / (50 - x))}`);
+    markup += `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--data-1)" stroke-width="4" stroke-linecap="round"/>`;
+  } else {
+    markup += `<line x1="${sx(0)}" y1="${sy(2)}" x2="${sx(5)}" y2="${sy(7)}" stroke="var(--data-1)" stroke-width="4" stroke-linecap="round"/>`;
+    markup += `<circle cx="${sx(2)}" cy="${sy(4)}" r="7" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="3.5"/>`;
+  }
+
+  // Skater marker
+  const mx=sx(xCur);
+  const my=sy(yCur);
+  markup += `<circle cx="${mx}" cy="${my}" r="9" fill="var(--primary)" stroke="var(--surface-container-low)" stroke-width="3"/>`;
+
+  svg.innerHTML=markup;
+}
+
+/* =========================================================
+   LAB 4: DERIVATIVE & INTEGRAL PLAYGROUND
+   ========================================================= */
+function setCalcMode(mode) {
+  appState.calcMode=mode;
+  const bD=document.getElementById('calc-btn-deriv');
+  const bI=document.getElementById('calc-btn-integ');
+  if (bD) bD.classList.toggle('active', mode === 'deriv');
+  if (bI) bI.classList.toggle('active', mode === 'integ');
+
+  const slider=document.getElementById('calc-slider');
+  const lbl=document.getElementById('calc-slider-label');
+  if (slider) {
+    if (mode === 'deriv') {
+      slider.min=0; slider.max=8; slider.step=0.5; slider.value=2;
+      appState.calcX=2;
+      if (lbl) lbl.innerHTML=`Unidades x (0 a 8): <span id="calc-x-readout">2</span>`;
+    } else {
+      slider.min=0; slider.max=100; slider.step=5; slider.value=50;
+      appState.calcX=50;
+      if (lbl) lbl.innerHTML=`Límite superior x (0 a 100): <span id="calc-x-readout">50</span>`;
+    }
+  }
+  renderCalcChart();
+  saveStateSafe();
+}
+
+function updateCalcSlider(val) {
+  appState.calcX=parseFloat(val);
+  renderCalcChart();
+}
+
+function renderCalcChart() {
+  const mode=appState.calcMode;
+  const x=appState.calcX;
+  const svg=document.getElementById('calc-svg');
+  const read=document.getElementById('calc-x-readout');
+  if (!svg) return;
+  if (read) read.textContent=x;
+
+  const s1L=document.getElementById('calc-s1-lbl');
+  const s1V=document.getElementById('calc-s1-val');
+  const s2L=document.getElementById('calc-s2-lbl');
+  const s2V=document.getElementById('calc-s2-val');
+  const s3L=document.getElementById('calc-s3-lbl');
+  const s3V=document.getElementById('calc-s3-val');
+
+  const padL=56, padR=28, padT=24, padB=38;
+  const w=640 - padL - padR;
+  const h=300 - padT - padB;
+  let markup='';
+
+  for (let g=0; g <= 3; g++) {
+    const gy=padT+(h * g) / 3;
+    markup += `<line x1="${padL}" y1="${gy}" x2="${640 - padR}" y2="${gy}" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1.5"/>`;
+  }
+
+  if (mode === 'deriv') {
+    const xMax=8, yMax=18;
+    function sx(v) { return padL+(v / xMax) * w; }
+    function sy(v) { return padT+h - (v / yMax) * h; }
+
+    let pts=[];
+    for (let t=0; t <= 8; t += 0.25) pts.push(`${sx(t)},${sy(-t * t+8 * t)}`);
+    markup += `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--data-1)" stroke-width="4" stroke-linecap="round"/>`;
+
+    const yVal=-x * x+8 * x;
+    const slope=-2 * x+8;
+    const x1=Math.max(0, x - 1.5), x2=Math.min(8, x+1.5);
+    const y1=yVal+slope * (x1 - x), y2=yVal+slope * (x2 - x);
+
+    markup += `<line x1="${sx(x1)}" y1="${sy(y1)}" x2="${sx(x2)}" y2="${sy(y2)}" stroke="var(--secondary)" stroke-width="3.5" stroke-linecap="round"/>`;
+    markup += `<circle cx="${sx(x)}" cy="${sy(yVal)}" r="8" fill="var(--primary)" stroke="var(--surface-container-low)" stroke-width="3"/>`;
+
+    if (s1L) s1L.textContent='Beneficio B(x)';
+    if (s1V) s1V.textContent=yVal.toFixed(1);
+    if (s2L) s2L.textContent="Derivada B'(x)";
+    if (s2V) s2V.textContent=(slope > 0 ? '+' : '')+slope.toFixed(1);
+    if (s3L) s3L.textContent='Velocímetro';
+    if (s3V) {
+      if (Math.abs(slope) < 0.01) { s3V.textContent='¡CIMA MÁXIMA!'; s3V.style.color='var(--positive)'; }
+      else if (slope > 0) { s3V.textContent='Subiendo (crece)'; s3V.style.color='var(--primary)'; }
+      else { s3V.textContent='Bajando (decrece)'; s3V.style.color='var(--warning)'; }
+    }
+  } else {
+    const xMax=100, yMax=220;
+    function sx(v) { return padL+(v / xMax) * w; }
+    function sy(v) { return padT+h - (v / yMax) * h; }
+
+    const yEnd=200 - 0.5 * x;
+    const areaPoly=`${sx(0)},${sy(0)} ${sx(0)},${sy(200)} ${sx(x)},${sy(yEnd)} ${sx(x)},${sy(0)}`;
+    markup += `<polygon points="${areaPoly}" fill="var(--tertiary-container)"/>`;
+    markup += `<line x1="${sx(0)}" y1="${sy(200)}" x2="${sx(100)}" y2="${sy(150)}" stroke="var(--data-3)" stroke-width="4" stroke-linecap="round"/>`;
+    markup += `<circle cx="${sx(x)}" cy="${sy(yEnd)}" r="8" fill="var(--tertiary)" stroke="var(--surface-container-low)" stroke-width="3"/>`;
+
+    const total=200 * x - 0.25 * x * x;
+    if (s1L) s1L.textContent="Ingreso Marginal I'(x)";
+    if (s1V) s1V.textContent=yEnd.toFixed(1)+' €/ud';
+    if (s2L) s2L.textContent='Área Integral ∫₀ˣ';
+    if (s2V) s2V.textContent=total.toLocaleString('es-ES')+' €';
+    if (s3L) s3L.textContent='Regla de Barrow';
+    if (s3V) { s3V.textContent=`200(${x}) - 0.25(${x})²`; s3V.style.color='var(--on-tertiary-container)'; }
+  }
+
+  svg.innerHTML=markup;
+}
+
+/* =========================================================
+   LAB 5: LINEAR PROGRAMMING FEASIBLE REGION
+   ========================================================= */
+const LP_CASES={
+  case1: {
+    obj: 'Maximizar Z=50x+40y',
+    constraints: 'Restricciones: 2x+y ≤ 120 (horas), x+2y ≤ 80 (almacén), x ≥ 0, y ≥ 0',
+    xMax: 75, yMax: 65,
+    poly: [[0,0], [0,40], [53.33, 13.33], [60,0]],
+    vertices: [
+      { x: 0, y: 0, label: '(0, 0)', z: 0 },
+      { x: 0, y: 40, label: '(0, 40)', z: 1600 },
+      { x: 53.33, y: 13.33, label: '(53.33, 13.33)', z: 3200 },
+      { x: 60, y: 0, label: '(60, 0)', z: 3000 }
+    ],
+    winnerIdx: 2,
+    winnerText: '(53.33, 13.33) → Z=3.200 € (Máximo)'
+  },
+  case2: {
+    obj: 'Minimizar Coste Z=60x+80y',
+    constraints: 'Restricciones: x+y ≥ 200, x ≥ 80, y ≤ 150, 3y ≥ 2x',
+    xMax: 250, yMax: 180,
+    poly: [[80,120], [120,80], [225,150], [80,150]],
+    vertices: [
+      { x: 80, y: 120, label: '(80, 120)', z: 14400 },
+      { x: 120, y: 80, label: '(120, 80)', z: 13600 },
+      { x: 80, y: 150, label: '(80, 150)', z: 16800 },
+      { x: 225, y: 150, label: '(225, 150)', z: 25500 }
+    ],
+    winnerIdx: 1,
+    winnerText: '(120, 80) → Z=13.600 € (Mínimo)'
+  }
+};
+
+function setLPMode(mode) {
+  appState.lpMode=mode;
+  const c=LP_CASES[mode];
+  if (!c) return;
+  appState.lpIdx=c.winnerIdx;
+
+  const b1=document.getElementById('lp-btn-case1');
+  const b2=document.getElementById('lp-btn-case2');
+  if (b1) b1.classList.toggle('active', mode === 'case1');
+  if (b2) b2.classList.toggle('active', mode === 'case2');
+
+  renderLPChart();
+  saveStateSafe();
+}
+
+function selectLPVertex(idx) {
+  appState.lpIdx=idx;
+  renderLPChart();
+  saveStateSafe();
+}
+
+function renderLPChart() {
+  const c=LP_CASES[appState.lpMode];
+  const svg=document.getElementById('lp-svg');
+  if (!c || !svg) return;
+
+  const tEl=document.getElementById('lp-obj-title');
+  const cEl=document.getElementById('lp-constraints');
+  const pEl=document.getElementById('lp-selected-pt');
+  const vEl=document.getElementById('lp-selected-val');
+  const wEl=document.getElementById('lp-winner');
+
+  const sel=c.vertices[appState.lpIdx] || c.vertices[0];
+  if (tEl) tEl.textContent=c.obj;
+  if (cEl) cEl.textContent=c.constraints;
+  if (pEl) pEl.textContent=sel.label;
+  if (vEl) vEl.textContent='Valor Z='+sel.z.toLocaleString('es-ES')+' €';
+  if (wEl) wEl.textContent=c.winnerText;
+
+  const padL=50, padR=30, padT=24, padB=40;
+  const w=640 - padL - padR;
+  const h=330 - padT - padB;
+  function sx(x) { return padL+(x / c.xMax) * w; }
+  function sy(y) { return padT+h - (y / c.yMax) * h; }
+
+  let markup='';
+  // Axes
+  markup += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+h}" stroke="var(--outline)" stroke-width="2"/>`;
+  markup += `<line x1="${padL}" y1="${padT+h}" x2="${640 - padR}" y2="${padT+h}" stroke="var(--outline)" stroke-width="2"/>`;
+
+  // Polygon
+  const polyPts=c.poly.map(function(pt) { return sx(pt[0])+','+sy(pt[1]); }).join(' ');
+  markup += `<polygon points="${polyPts}" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="3" stroke-linejoin="round"/>`;
+
+  // Vertices
+  c.vertices.forEach(function(vt, i) {
+    const cx=sx(vt.x), cy=sy(vt.y);
+    const isSel=i === appState.lpIdx;
+    const isWin=i === c.winnerIdx;
+    const fill=isWin ? 'var(--positive)' : (isSel ? 'var(--primary)' : 'var(--secondary)');
+    const r=isSel ? 11 : 8;
+    markup += `<g style="cursor: pointer;" onclick="selectLPVertex(${i})">`;
+    markup += `<circle cx="${cx}" cy="${cy}" r="28" fill="transparent"/>`;
+    markup += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="var(--surface-container-low)" stroke-width="3"/>`;
+    markup += `<text x="${cx}" y="${cy - 14}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="800" fill="var(--on-surface)">${vt.label}</text>`;
+    markup += `</g>`;
+  });
+
+  svg.innerHTML=markup;
+}
+
+/* =========================================================
+   CHEAT SHEET FILTER
+   ========================================================= */
+function filterCheat(wk) {
+  appState.cheatFilter=wk;
+  ['all', 's1', 's2', 's3', 's4'].forEach(function(k) {
+    const b=document.getElementById('cf-'+k);
+    if (b) b.classList.toggle('active', k === wk);
+  });
+
+  document.querySelectorAll('#cheat-grid .cheat-item').forEach(function(item) {
+    if (wk === 'all' || item.dataset.week === wk) item.classList.remove('is-hidden');
+    else item.classList.add('is-hidden');
+  });
+  saveStateSafe();
+}
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+async function initApp() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+    try {
+      const saved=await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === 'object') {
+        appState=Object.assign(appState, saved);
+      }
+    } catch (e) {}
+  }
+
+  // Restaurar tema de color
+  let storedTheme=null;
+  try { storedTheme=localStorage.getItem('mates-theme'); } catch (e) {}
+  setTheme(storedTheme || appState.theme || 'verde');
+
+  // Restore solved challenges
+  if (appState.solved) {
+    Object.keys(appState.solved).forEach(function(id) {
+      if (appState.solved[id] && CHALLENGES[id]) {
+        const ch=CHALLENGES[id];
+        const card=document.getElementById('ch-'+id);
+        const status=document.getElementById('status-'+id);
+        const fb=document.getElementById('fb-'+id);
+        if (card) {
+          card.classList.add('solved');
+          const btns=card.querySelectorAll('.option-btn');
+          if (btns[ch.correct]) btns[ch.correct].classList.add('selected-correct');
+        }
+        if (status) status.textContent='Superado (+15 XP)';
+        if (fb) {
+          fb.className='feedback-box visible correct';
+          fb.innerHTML =
+            `<div><strong>¡Súper! Has acertado (+15 XP)</strong>. Desglose paso a paso:</div>` +
+            `<ul class="steps-list">` +
+            ch.steps.map(function(s, i) { return `<li><span class="step-badge">${i+1}</span> ${s}</li>`; }).join('') +
+            `</ul>`;
+        }
+      }
+    });
+  }
+
+  setVennOp(appState.vennOp || 'union');
+  setSeqMode(appState.seqMode || 'arith');
+  setLimMode(appState.limMode || 'cont');
+  setCalcMode(appState.calcMode || 'deriv');
+  setLPMode(appState.lpMode || 'case1');
+  filterCheat(appState.cheatFilter || 'all');
+  updateHUD();
+
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+<script>
+(function(){
+  var _k=[81,118,121,107,112,39,78,112,117,108,122,123,231];
+  var _s=String.fromCharCode.apply(null,_k.map(function(c){return c-7;}));
+  var _done=false;
+  function _x(){
+    if(_done) return;
+    _done=true;
+    document.body.innerHTML='<div style="position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:#c53030;color:#fff;font:900 22vw/1 sans-serif;letter-spacing:-0.02em;">ERROR</div>';
+  }
+  function _c(){
+    var el=document.querySelector('.theme-bar-author');
+    if(!el || el.textContent.indexOf(_s)===-1) _x();
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    _c();
+    if(window.MutationObserver) new MutationObserver(_c).observe(document.body,{childList:true,subtree:true,characterData:true});
+    setInterval(_c,2000);
+  });
+})();
+</script>
+</body>
+</html>
